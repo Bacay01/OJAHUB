@@ -598,5 +598,107 @@ body {
 }
 
 
+/* -------- 481 - 768px -------- */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+  html, body { overflow-x: hidden; }
+
+  /* NAV */
+  .navbar{
+    padding: 12px 24px;
+    height: auto;
+  }
+
+  .logo-img{
+    height: 44px;
+    width: auto;
+  }
+
+  .nav-links{
+    gap: 18px;
+    font-size: 13px;
+  }
+
+  /* HERO */
+  .hero{
+    flex-direction: column;
+    padding: 52px 24px 56px;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  .hero-text{
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .hero-text h1{
+    font-size: 32px;
+  }
+
+  .hero-sub{
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero-buttons{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .btn{
+    width: auto;
+  }
+
+  .hero-card{
+    width: 100%;
+    max-width: 520px;  /* nice tablet width */
+    position: static;
+  }
+
+  /* SECTIONS */
+  .section{
+    padding: 32px 24px;
+  }
+
+  /* GRIDS */
+  .category-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vendor-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps{
+    grid-template-columns: 1fr; /* steps stack nicer on tablet */
+  }
+
+  /* FORM */
+  .vendor-form{
+    max-width: 100%;
+  }
+
+  .form-row{
+    flex-direction: column;
+  }
+
+  /* FOOTER */
+  .footer{
+    padding: 28px 24px 18px;
+  }
+
+  .footer-top{
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .footer-brand{
+    max-width: 520px;
+  }
+}
+
+
 
 
