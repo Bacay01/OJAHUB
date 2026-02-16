@@ -33,6 +33,7 @@ body {
   z-index: 10;
 }
 
+
 /* logo area */
 .logo {
   display: flex;
@@ -62,6 +63,8 @@ body {
   color: #1e40af;
 }
 
+
+/* RWD */
 
 
 
@@ -276,7 +279,7 @@ body {
 
 .vendor-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);   /* 3 cards on PC */
+  grid-template-columns: repeat(3, 1fr);   
   gap: 16px;
 }
 
@@ -290,8 +293,7 @@ body {
 
 .vendor-tag {
   font-size: 11px;
-  color: #16a34a;        /* green “verified” */
-  margin-bottom: 6px;
+  color: #16a34a;        
 }
 
 .vendor-card h3 {
@@ -521,93 +523,80 @@ body {
 }
 
 
-/* ---------- RESPONSIVE (PHONES & SMALL TABLETS) ---------- */
+/* -------- 0 - 480px -------- */
+@media screen and (max-width: 480px) {
 
-@media (max-width: 768px) {
+  html, body { overflow-x: hidden; }
 
-  body {
-    font-size: 15px;
-  }
-
-  /* NAVBAR */
-  .navbar {
-    padding: 8px 16px;
+  .navbar{
+    padding: 10px 14px;
     height: auto;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
   }
 
-  .logo-text {
-    font-size: 16px;
+  .logo-img{
+    height: 38px;
+    width: auto;
   }
 
-  .nav-links {
-    gap: 16px;
-    font-size: 13px;
+  .nav-links{
+    gap: 12px;
     flex-wrap: wrap;
+    font-size: 12px;
   }
 
-  /* HERO */
-  .hero {
+  .hero{
     flex-direction: column;
-    padding: 32px 16px 40px;
+    padding: 40px 14px 48px;
+    gap: 18px;
     min-height: auto;
-    gap: 24px;
   }
 
-  .hero-text {
+  .hero-text{
     flex: 1 1 auto;
     max-width: 100%;
   }
 
-  .hero-text h1 {
-    font-size: 28px;
+  .hero-text h1{ font-size: 28px; }
+  .hero-sub{ font-size: 14px; }
+
+  .hero-buttons{
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .hero-sub {
-    font-size: 14px;
+  .btn{
+    width: 100%;
+    text-align: center;
   }
 
-  .hero-card {
-    flex: 1 1 auto;
+  .hero-card{
+    width: 100%;
     max-width: 100%;
+    position: static;
   }
 
-  /* GENERIC SECTION PADDING */
-  .section {
-    padding: 28px 16px;
-  }
+  .section{ padding: 26px 14px; }
 
-  /* GRIDS → single column / 2 columns */
   .category-grid,
   .vendor-grid,
-  .steps {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  .steps{
+    grid-template-columns: 1fr;
   }
 
-  /* VENDOR FORM */
-  .vendor-form {
+  .vendor-form{
     max-width: 100%;
-    padding: 16px;
+    padding: 14px;
   }
 
-  .form-row {
-    flex-direction: column;
-  }
+  .form-row{ flex-direction: column; }
 
-  /* FOOTER */
-  .footer {
-    padding: 24px 16px 16px;
-  }
+  .footer{ padding: 26px 14px 18px; }
 
-  .footer-top {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .footer-brand,
-  .footer-col {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
+  .footer-top{ flex-direction: column; }
 }
+
+
+
+
