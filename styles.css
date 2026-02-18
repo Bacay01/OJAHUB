@@ -15,31 +15,38 @@ body {
   background: #f8fafc;   
   color: #0f172a;
   margin: 0;
+  
 }
 
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  /* PC size + spacing */
-  height: 50px;                  
-  padding: 0 60px;              
-
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  position: sticky;
+/* BOOTSTRAP NAVBAR FIX (sticky on all screens) */
+.ojahub-nav{
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  z-index: 9999;
 }
+
+.brand-logo{
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+
+
 
 
 /* logo area */
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px; */
+}
+.brand-logo{
+  height: 56px;
+  width: auto;
 }
 
 .logo-text {
@@ -103,6 +110,17 @@ body {
   background-repeat: no-repeat;
   overflow: hidden;
 }
+
+
+
+.navbar .container-fluid {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+
+
+
 .hero::before {
   content: "";
   position: absolute;
@@ -242,11 +260,42 @@ body {
 }
 
 
+/* WHY USE OJAHUB */
+
+.why-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.why-card{
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  min-height: 120px;
+}
+
+.why-card h3{
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.why-card p{
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+
+
+
 /* HOW IT WORKS */
-/* ---------- GENERIC SECTION ---------- */
+
 
 .section {
-  padding: 40px 80px;           /* PC spacing */
+  padding: 40px 80px;           
   background: #f8fafc;
 }
 
@@ -576,17 +625,26 @@ body {
 @media screen and (max-width: 480px) {
 
   html, body { overflow-x: hidden; }
+  .brand-logo{ height: 40px; }
+  .ojahub-nav .navbar-brand{ padding-top: 6px; padding-bottom: 6px; }
 
   .navbar{
-    padding: 10px 14px;
+    padding: 0px 14px;
     height: auto;
     flex-wrap: wrap;
     gap: 10px;
+  }
+  .brand-logo{
+    height: 40px;
+  }
+  .nav-slogan{
+    display: none;
   }
 
   .logo-img{
     height: 38px;
     width: auto;
+
   }
 
   .nav-links{
@@ -626,6 +684,9 @@ body {
     position: static;
   }
 
+  .why-grid{ grid-template-columns: 1fr; }
+
+
   .section{ padding: 26px 14px; }
 
   .category-grid,
@@ -652,11 +713,15 @@ body {
 @media screen and (min-width: 481px) and (max-width: 768px) {
 
   html, body { overflow-x: hidden; }
+  .brand-logo{ height: 46px; }
 
   /* NAV */
   .navbar{
     padding: 12px 24px;
     height: auto;
+  }
+  .brand-logo{
+    height: 46px;
   }
 
   .logo-img{
@@ -707,6 +772,9 @@ body {
     position: static;
   }
 
+
+  .why-grid{ grid-template-columns: repeat(2, 1fr); }
+
   /* SECTIONS */
   .section{
     padding: 32px 24px;
@@ -722,7 +790,7 @@ body {
   }
 
   .steps{
-    grid-template-columns: 1fr; /* steps stack nicer on tablet */
+    grid-template-columns: 1fr; 
   }
 
   /* FORM */
@@ -748,6 +816,7 @@ body {
     max-width: 520px;
   }
 }
+
 
 /* -------- 769 - 1279px (laptops / medium screens) -------- */
 @media screen and (min-width: 769px) and (max-width: 1279px) {
@@ -785,6 +854,8 @@ body {
     max-width: 320px;
   }
 
+  /* .why-grid{ grid-template-columns: repeat(2, 1fr); } */
+  
   /* SECTIONS */
   .section{
     padding: 40px 40px;
