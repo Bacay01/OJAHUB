@@ -470,6 +470,106 @@ body {
 
 
 
+/* FEEDBACK */
+
+.feedback {
+  padding: 40px 80px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.feedback h2 {
+  font-size: 24px;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.feedback p {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  max-width: 650px;
+  margin-bottom: 16px;
+}
+
+.feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+.feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  line-height: 1;
+  transition: 0.2s;
+}
+
+
+.feedback-btn.form-btn {
+  background: #1e40af;
+  color: #ffffff;
+}
+
+.feedback-btn.form-btn:hover {
+  background: #1d4ed8;
+}
+
+
+.feedback-btn.whatsapp-btn {
+  background: #25D366;
+  color: #ffffff;
+}
+
+.feedback-btn.whatsapp-btn:hover {
+  background: #1fb457;
+}
+
+
+.feedback-note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* -------- Feedback section responsive -------- */
+@media screen and (max-width: 480px) {
+  .feedback {
+    padding: 26px 14px;
+  }
+
+  .feedback-actions {
+    flex-direction: column;
+  }
+
+  .feedback-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .feedback {
+    padding: 32px 24px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+  .feedback {
+    padding: 40px 40px;
+  }
+}
+
+
+
+
 
 /* ---------- VENDOR FORM ---------- */
 
