@@ -631,6 +631,44 @@ body {
   margin-top: 10px;
 }
 
+.apply-btn{
+  display: inline-block;
+  background: #1d4ed8; /* blue */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  margin-top: 12px;
+  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.25);
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.apply-btn:hover{
+  background: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(29, 78, 216, 0.35);
+}
+
+.apply-btn:active{
+  transform: translateY(0);
+}
+
+.apply-btn:focus{
+  outline: 3px solid rgba(29, 78, 216, 0.35);
+  outline-offset: 3px;
+}
+
+/* Optional: make it full width on phone */
+@media (max-width: 480px){
+  .apply-btn{
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
 
 
