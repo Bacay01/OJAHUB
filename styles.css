@@ -340,12 +340,46 @@ body {
 
 /* SAMPLE VENDORS */
 
-/* ---------- FEATURED VENDORS ---------- */
+/* =========================
+FEATURED VENDORS (GROUPED) CSS
+Paste into your styles.css
+========================= */
+
+.section {
+  padding: 40px 80px;
+  background: #f8fafc;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 18px;
+}
+
+.vendor-group-title {
+  font-size: 18px;
+  margin: 20px 0 12px;
+  color: #0f172a;
+  font-weight: 700;
+  border-left: 4px solid #1e40af;
+  padding-left: 10px;
+}
+
+.vendor-group-title:first-of-type {
+  margin-top: 6px;
+}
 
 .vendor-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);   
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  margin-bottom: 10px;
 }
 
 .vendor-card {
@@ -354,26 +388,17 @@ body {
   padding: 18px;
   border: 1px solid #e5e7eb;
   min-height: 180px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
 }
-.vendor-img{
+
+.vendor-img {
   width: 100%;
-  height: 160px;
+  height: 170px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 12px;
   border: 1px solid #e5e7eb;
-}
-
-.vendor-desc{
-  font-size: 13px;
-  color: #4b5563;
-  margin: 10px 0 14px;
-  line-height: 1.5;
-}
-
-.vendor-tag {
-  font-size: 11px;
-  color: #16a34a;        
+  background: #eef2f7;
 }
 
 .vendor-card h3 {
@@ -394,32 +419,105 @@ body {
   margin-bottom: 4px;
 }
 
-.small-btn{
-  display: inline-flex;       
+.vendor-desc {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 10px 0 14px;
+  line-height: 1.5;
+}
+
+/* Vendor tags */
+.vendor-tag {
+  display: inline-block;
+  margin: 10px 0 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Green badge for verified */
+.vendor-tag.verified {
+  background: #e8f7ee;
+  color: #15803d;
+  border: 1px solid #b7ebc6;
+}
+
+/* Yellow badge for pending (optional but nice) */
+.vendor-tag.pending {
+  background: #fff8db;
+  color: #a16207;
+  border: 1px solid #f6e7a8;
+}
+
+.small-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-
   font-size: 12px;
+  font-weight: 600;
   padding: 10px 16px;
   background: #1e40af;
   color: #ffffff;
-
   border-radius: 999px;
   border: none;
   cursor: pointer;
-
-  text-decoration: none;       
-  line-height: 1;              
+  text-decoration: none;
+  line-height: 1;
   white-space: nowrap;
-  gap: 6px;
+  transition: 0.2s ease;
 }
 
-.small-btn:hover{
+.small-btn:hover {
   background: #1d4ed8;
+  color: #ffffff;
 }
-.small-btn:focus{
+
+.small-btn:focus {
   outline: 2px solid #93c5fd;
   outline-offset: 2px;
+}
+
+/* -------- Mobile -------- */
+@media screen and (max-width: 480px) {
+  .section {
+    padding: 26px 14px;
+  }
+
+  .vendor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vendor-group-title {
+    font-size: 16px;
+  }
+
+  .vendor-img {
+    height: 160px;
+  }
+}
+
+/* -------- Tablet -------- */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .section {
+    padding: 32px 24px;
+  }
+
+  .vendor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* -------- Medium screens -------- */
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+  .section {
+    padding: 40px 40px;
+  }
+
+  .vendor-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 
