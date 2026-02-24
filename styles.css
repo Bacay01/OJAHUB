@@ -521,6 +521,47 @@ Paste into your styles.css
 }
 
 
+
+
+.section-subtitle{
+  font-size: 14px;
+  color: #6b7280;
+  margin: -8px 0 18px;
+}
+
+.vendor-group-title{
+  font-size: 18px;
+  color: #0f172a;
+  margin: 22px 0 12px;
+}
+
+.vendor-tag{
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.vendor-tag.verified{
+  color: #16a34a; /* green */
+}
+
+/* optional if you still use pending somewhere */
+.vendor-tag.pending{
+  color: #f59e0b; /* amber */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* TRUST SECTION */
 
 
@@ -636,6 +677,22 @@ Paste into your styles.css
   margin-top: 10px;
   font-size: 12px;
   color: #6b7280;
+}
+
+
+
+
+
+
+.trust-disclaimer {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: #1e3a8a;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 /* -------- Feedback section responsive -------- */
@@ -1114,6 +1171,14 @@ Paste into your styles.css
   .footer{
     padding: 30px 40px 20px;
   }
+
+
+  .footer-disclaimer {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-top: 10px;
+}
 }
 
 
