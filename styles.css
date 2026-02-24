@@ -338,6 +338,82 @@ body {
 
 
 
+
+/* Vendore spotlight */
+.section-subtitle{
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+.spotlight-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.spotlight-card{
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.spotlight-img{
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 10px;
+}
+
+.spotlight-badge{
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 4px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.spotlight-card h3{
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: #0f172a;
+}
+
+.spotlight-meta{
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.spotlight-desc{
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px){
+  .spotlight-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .spotlight-img{
+    height: 180px;
+  }
+}
+
+
+
 /* SAMPLE VENDORS */
 
 /* =========================
