@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Vendors - OjaHub</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="all-vendors.css" />
+
+  <STYle>
+
+    :root{
+  --blue:#1f3fb5;
+  --blue2:#263eaa;
+  --orange:#f59e0b;
+  --orange2:#f48c06;
+  --bg:#f6f2ef;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --shadow: 0 8px 24px rgba(16,24,40,.08);
+  --radius:16px;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+}
+
+/* NAV */
+.topnav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background: linear-gradient(180deg, var(--blue), var(--blue2));
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.navbar-brand{ margin:0!important; padding:0!important; }
+.nav-logo{
+  height: 52px;
+  width:auto;
+  display:block;
+}
+
+/* PAGE */
+.page{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px;
+}
+.backlink{
+  display:inline-block;
+  margin: 14px 0 10px;
+  color:#4b5563;
+  text-decoration:none;
+  font-weight:600;
+}
+.backlink:hover{ text-decoration:underline; }
+
+.pagehead h1{
+  margin:0;
+  font-size: 34px;
+  letter-spacing:-.6px;
+}
+.pagehead p{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size: 15px;
+}
+
+/* FILTERS */
+.filters{
+  margin-top: 12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.pill{
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.75);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight:700;
+  font-size: 13px;
+  cursor:pointer;
+}
+.pill.active{
+  border-color: rgba(245,158,11,.45);
+  background: rgba(245,158,11,.18);
+}
+
+/* SEARCH */
+.searchbar{
+  margin-top:14px;
+  background: rgba(255,255,255,.65);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow: 0 6px 18px rgba(16,24,40,.05);
+}
+.searchicon{ opacity:.75; }
+.searchbar input{
+  border:none;
+  outline:none;
+  width:100%;
+  font-size:15px;
+  background:transparent;
+}
+
+/* LAYOUT */
+.layout{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: 1.2fr .9fr;
+  gap:18px;
+  align-items:start;
+}
+
+/* LEFT LIST */
+.list{ display:flex; flex-direction:column; gap:14px; }
+
+.vendor-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+}
+
+.vendor-mini{
+  background: rgba(255,255,255,.7);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px;
+  display:flex;
+  gap:12px;
+  cursor:pointer;
+  transition: transform .08s ease, box-shadow .08s ease, background .08s ease;
+}
+.vendor-mini:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  background: rgba(255,255,255,.92);
+}
+.vendor-mini.active{
+  outline: 2px solid rgba(245,158,11,.35);
+  background: rgba(255,255,255,.95);
+}
+
+.thumb{
+  width: 86px;
+  height: 86px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,.05);
+}
+
+.mini-info h3{
+  margin:0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.mini-group{
+  margin:0 0 6px;
+  display:inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  color: #111827;
+  opacity: .75;
+}
+
+.mini-meta{
+  margin:4px 0 0;
+  color:#374151;
+  font-size: 13px;
+}
+.mini-loc{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size: 12.5px;
+}
+.mini-chip{ margin-top:8px; display:flex; flex-wrap:wrap; gap:8px; }
+
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  border: 1px solid var(--line);
+  background: #fff;
+  color:#111827;
+}
+.chip.ok{
+  border-color: rgba(34,197,94,.25);
+  background: rgba(34,197,94,.08);
+}
+.chip.ghost{
+  background: rgba(255,255,255,.75);
+}
+
+/* PROMO */
+.promo{
+  background: linear-gradient(90deg, rgba(245,158,11,.95), rgba(244,140,6,.95));
+  border-radius: 18px;
+  padding: 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  box-shadow: 0 10px 26px rgba(245,158,11,.25);
+}
+.promo h4{
+  margin:0;
+  font-size: 16px;
+  font-weight: 900;
+  color:#111827;
+}
+.promo p{
+  margin:6px 0 0;
+  color:#1f2937;
+  opacity:.9;
+  font-weight:700;
+}
+.promo-btn{
+  background: linear-gradient(180deg, var(--blue), var(--blue2));
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  padding: 10px 14px;
+  border-radius: 12px;
+  white-space:nowrap;
+}
+
+/* RIGHT DETAILS */
+.detail{
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.detail-hero{
+  height: 210px;
+  background: #e5e7eb;
+}
+.detail-hero img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+.detail-body{
+  padding: 16px;
+}
+.detail-group{
+  margin:0 0 6px;
+  font-weight: 900;
+  opacity: .75;
+}
+.detail-body h2{
+  margin:0;
+  font-size: 26px;
+  letter-spacing:-.4px;
+}
+.detail-verified{
+  margin-top: 8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#374151;
+  font-weight:700;
+}
+.badge-verified{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(34,197,94,.12);
+  border: 1px solid rgba(34,197,94,.25);
+  font-size: 13px;
+}
+.dot{ opacity:.6; }
+
+.detail-cat{
+  margin:10px 0 0;
+  color:#374151;
+  font-weight:700;
+}
+.detail-loc{
+  margin:10px 0 0;
+  color:#374151;
+}
+.muted{ color: var(--muted); font-weight:700; }
+
+.sep{
+  border:none;
+  border-top: 1px solid var(--line);
+  margin: 14px 0;
+}
+
+.detail-desc{
+  margin:0;
+  color:#374151;
+  line-height: 1.55;
+}
+
+.detail-chips{
+  margin-top: 14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.whatsapp-btn{
+  margin-top: 16px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--orange), var(--orange2));
+  color:#111827;
+  text-decoration:none;
+  font-weight: 900;
+  font-size: 16px;
+  box-shadow: 0 12px 26px rgba(245,158,11,.35);
+}
+.wa-icon{
+  width:22px;
+  height:22px;
+  display:grid;
+  place-items:center;
+}
+
+/* Sticky detail on desktop */
+@media (min-width: 981px){
+  .detail{
+    position: sticky;
+    top: 86px;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px){
+  .layout{ grid-template-columns: 1fr; }
+  .vendor-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px){
+  .pagehead h1{ font-size: 28px; }
+}
+
+.group{
+  margin-top: 10px;
+}
+
+.group-title{
+  margin: 8px 0 10px;
+  font-weight: 900;
+  letter-spacing: -.3px;
+  color:#111827;
+}
+
+.group-note{
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px dashed rgba(0,0,0,.15);
+  background: rgba(255,255,255,.65);
+  color:#374151;
+  font-weight: 700;
+}
+
+
+/* FIX: ensure nothing blocks the filter pills */
+.filters {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* pills */
+.pill{
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.pill.active{
+  background: #f3f4f6;
+}
+
+/* FIX: your search bar or promo bar might be overlaying */
+.searchbar,
+.promo,
+.layout,
+.pagehead {
+  position: relative;
+  z-index: 1;
+}
+
+/* if any element is accidentally floating over everything */
+.overlay, .glass, .backdrop {
+  pointer-events: none;
+}
+  </STYle>
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <header class="topnav">
+    <nav class="navbar navbar-expand-lg navbar-dark ojahub-navbar">
+      <div class="container-fluid px-3">
+
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="Images/ojahub_logo_orange_trim@2x.png" class="nav-logo" alt="OjaHub">
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#ojahubNav"
+          aria-controls="ojahubNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="ojahubNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                <li><a class="dropdown-item" href="food.html">Food Vendors</a></li>
+                <li><a class="dropdown-item" href="fashion.html">Fashion & Clothing</a></li>
+                <li><a class="dropdown-item" href="beauty.html">Beauty & Cosmetics</a></li>
+                <li><a class="dropdown-item" href="phones.html">Phones & Gadgets</a></li>
+                <li><a class="dropdown-item" href="services.html">Services & Repairs</a></li>
+                <li><a class="dropdown-item" href="others.html">Home & Living / Others</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link active" href="all-vendors.html">All Vendors</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link"
+                 href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help."
+                 target="_blank" rel="noopener">
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">♡ Favorites</button>
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">👤 Profile</button>
+            <a class="btn btn-warning fw-bold" href="index.html#become-vendor">List Your Business</a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE -->
+  <main class="page">
+    <a class="backlink" href="index.html">← Back to Home</a>
+
+    <div class="pagehead">
+      <div>
+        <h1>All Vendors</h1>
+        <p>Browse every vendor listed on OjaHub.</p>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters" id="filters">
+  <button class="pill active" data-filter="all" type="button">All</button>
+  <button class="pill" data-filter="food" type="button">Food</button>
+  <button class="pill" data-filter="fashion" type="button">Fashion</button>
+  <button class="pill" data-filter="beauty" type="button">Beauty</button>
+  <button class="pill" data-filter="phones" type="button">Phones</button>
+  <button class="pill" data-filter="services" type="button">Services</button>
+  <button class="pill" data-filter="others" type="button">Others</button>
+</div>
+
+    <!-- SEARCH -->
+    <div class="searchbar">
+      <span class="searchicon">🔎</span>
+      <input id="searchInput" type="search" placeholder="Search all vendors..." aria-label="Search all vendors" />
+    </div>
+
+    <!-- MAIN GRID -->
+    <section class="layout">
+
+      <!-- LEFT: grouped list -->
+      <div class="list" id="vendorList">
+
+        <!-- ============ SERVICES ============ -->
+        <div class="group" data-section="Services">
+          <h3 class="group-title">Services & Repairs</h3>
+
+          <div class="vendor-grid">
+
+            <article class="vendor-mini"
+              data-group="Services"
+              data-name="TIJ Laundry"
+              data-city="Ogbomosho"
+              data-cat="Services · Laundry"
+              data-loc="Ogbomosho"
+              data-desc="Reliable laundry service for clean, fresh, and well-ironed clothing."
+              data-whatsapp="https://wa.me/2349033728795?text=Hello%20I%20found%20TIJ%20Laundry%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20laundry%20service.%20Please%20share%20your%20prices%20and%20pickup%20options.%20Thank%20you."
+              data-hero="Images/TIJ LAUDRY.JPG">
+              <img class="thumb" src="Images/TIJ LAUDRY.JPG" alt="TIJ Laundry" />
+              <div class="mini-info">
+                <h3>TIJ Laundry</h3>
+                <p class="mini-meta">• Services · Laundry</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Services"
+              data-name="Achievers Business Services"
+              data-city="Ogbomosho"
+              data-cat="Services · Business Support"
+              data-loc="Ogbomosho"
+              data-desc="Business support services including registration help and documentation support."
+              data-whatsapp="https://wa.me/2348104812467?text=Hello%20I%20found%20Achievers%20Business%20Services%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/achiever.jpg">
+              <img class="thumb" src="Images/achiever.jpg" alt="Achievers Business Services" />
+              <div class="mini-info">
+                <h3>Achievers Business Services</h3>
+                <p class="mini-meta">• Services · Business Support</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Services"
+              data-name="Pinexa Labs"
+              data-city="Ogbomosho"
+              data-cat="Services · Web & Digital Systems"
+              data-loc="Hajj Faith, Under G, Ogbomosho"
+              data-desc="We build websites and digital systems designed to help businesses grow and succeed online."
+              data-whatsapp="https://wa.me/2348123378919?text=Hello%20I%20found%20Pinexa%20Labs%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20digital%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/Pinexa Labs.jpeg">
+              <img class="thumb" src="Images/Pinexa Labs.jpeg" alt="Pinexa Labs" />
+              <div class="mini-info">
+                <h3>Pinexa Labs</h3>
+                <p class="mini-meta">• Services · Web & Digital Systems</p>
+                <p class="mini-loc">Under G, Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+
+            <!-- SK Electrical -->
+<article class="vendor-mini"
+  data-name="SK Electrical Work"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Services · Electrical / Solar"
+  data-loc="Ogbomosho"
+  data-desc="Electrical wiring (conduit/surface), repairs, and solar installations."
+  data-whatsapp="https://wa.me/2347069329711?text=Hello%20I%20found%20SK%20Electrical%20Work%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20electrical%2Fsolar%20services.%20Please%20share%20your%20pricing%20and%20availability.%20Thank%20you."
+  data-img="Images/SK electrical and electronics solar installations .jpeg"
+  data-hero="Images/SK electrical and electronics solar installations .jpeg">
+  <img class="thumb" src="Images/SK electrical and electronics solar installations .jpeg" alt="SK Electrical Work" />
+  <div class="mini-info">
+    <h3>SK Electrical Work</h3>
+    <p class="mini-meta">• Services · Electrical / Solar</p>
+    <p class="mini-loc">Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+          </div>
+        </div>
+
+        <!-- ============ PHONES ============ -->
+        <div class="group" data-section="Phones">
+          <h3 class="group-title">Phones & Gadgets</h3>
+
+          <div class="vendor-grid">
+
+            <article class="vendor-mini"
+              data-group="Phones"
+              data-name="Wealth Phone & Gadgets"
+              data-city="Ogbomosho"
+              data-cat="Phones & Gadgets"
+              data-loc="Stadium Road, Ogbomosho"
+              data-desc="Buying, selling and swapping of quality phones and gadgets."
+              data-whatsapp="https://wa.me/2348148422364?text=Hello%20I%20saw%20Wealth%20Phone%20%26%20Gadgets%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/wealth 1.JPG">
+              <img class="thumb" src="Images/wealth 1.JPG" alt="Wealth Phone & Gadgets" />
+              <div class="mini-info">
+                <h3>Wealth Phone & Gadgets</h3>
+                <p class="mini-meta">• Phones & Gadgets</p>
+                <p class="mini-loc">Stadium Road, Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Phones"
+              data-name="Mo Tech Innovations"
+              data-city="Ogbomosho"
+              data-cat="Services · Device Repair"
+              data-loc="Ogbomosho"
+              data-desc="Mobile device repairs plus buying and selling of phones."
+              data-whatsapp="https://wa.me/2347089372958?text=Hello%20I%20found%20Tech%20Innovations%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/mtech.jpg">
+              <img class="thumb" src="Images/mtech.jpg" alt="Mo Tech Innovations" />
+              <div class="mini-info">
+                <h3>Mo Tech Innovations</h3>
+                <p class="mini-meta">• Device Repair</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Phones"
+              data-name="Preshi Gadget"
+              data-city="Ogbomosho"
+              data-cat="Services · Phone Repair"
+              data-loc="Ogbomosho"
+              data-desc="Hardware and software repairs (especially iPhones), including board work and fault diagnosis."
+              data-whatsapp="https://wa.me/2348127560534?text=Hello%20I%20found%20Preshi%20Gadget%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20repair%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/Preshi Gadget.jpg">
+              <img class="thumb" src="Images/Preshi Gadget.jpg" alt="Preshi Gadget" />
+              <div class="mini-info">
+                <h3>Preshi Gadget</h3>
+                <p class="mini-meta">• Phone Repair</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+<!-- ============ FASHION & CLOTHING ============ -->
+<div class="group" data-section="fashion">
+  <h3 class="group-title">Fashion & Clothing</h3>
+
+  <div class="vendor-grid">
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Trendy Luxe By Chen"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion · Clothing Brand"
+      data-loc="Yoaco Phase 2, Dreamz Hotel Junction"
+      data-desc="Stylish and quality clothing for modern fashion lovers. Trendy, comfortable, and confidently made."
+      data-whatsapp="https://wa.me/2348072670507?text=Hello%20I%20saw%20Trendy%20Luxe%20By%20Chen%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/chen 2.JPG">
+      <img class="thumb" src="Images/chen 2.JPG" alt="Trendy Luxe By Chen" />
+      <div class="mini-info">
+        <h3>Trendy Luxe By Chen</h3>
+        <p class="mini-meta">• Fashion · Clothing Brand</p>
+        <p class="mini-loc">Yoaco Phase 2 (Dreamz Hotel Junction)</p>
+        <div class="mini-chip">
+          <span class="chip ok">✔ Replies on WhatsApp</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="The Flourijay Vault"
+      data-verified="Verified"
+      data-city="Ibadan / Ogbomosho"
+      data-cat="Fashion · Accessories"
+      data-loc="Under G, Ogbomosho / Ibadan"
+      data-desc="A fashion accessories brand offering stylish and quality pieces that complete your look."
+      data-whatsapp="https://wa.me/2348087489412?text=Hello%20I%20saw%20The%20Flourijay%20Vault%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/flourijay.jpeg">
+      <img class="thumb" src="Images/flourijay.jpeg" alt="The Flourijay Vault" />
+      <div class="mini-info">
+        <h3>The Flourijay Vault</h3>
+        <p class="mini-meta">• Fashion · Accessories</p>
+        <p class="mini-loc">Under G, Ogbomosho / Ibadan</p>
+        <div class="mini-chip">
+          <span class="chip ok">✔ Replies on WhatsApp</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Fits by precious"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Curated women’s fashion brand offering trendy, affordable and stylish clothing for everyday confidence."
+      data-whatsapp="https://wa.me/2347015657810?text=Hello%20I%20found%20Fits%20by%20precious%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/Fits by precious.jpg">
+      <img class="thumb" src="Images/Fits by precious.jpg" alt="Fits by precious" />
+      <div class="mini-info">
+        <h3>Fits by precious</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip">
+          <span class="chip ok">✔ Replies on WhatsApp</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Shebba Couture"
+      data-verified="Verified"
+      data-city="Ibadan"
+      data-cat="Fashion · Ready-to-wear"
+      data-loc="Adenuga Street, Ibadan"
+      data-desc="Ready-to-wear fashion pieces made for comfort, style, and confidence."
+      data-whatsapp="https://wa.me/2348149218062?text=Hello%20I%20saw%20Shebba%20Couture%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/shebba 2.JPG">
+      <img class="thumb" src="Images/shebba 2.JPG" alt="Shebba Couture" />
+      <div class="mini-info">
+        <h3>Shebba Couture</h3>
+        <p class="mini-meta">• Fashion · Ready-to-wear</p>
+        <p class="mini-loc">Adenuga Street, Ibadan</p>
+        <div class="mini-chip">
+          <span class="chip ok">✔ Replies on WhatsApp</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="The Girly_Co"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion · Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Carefully sourced graded thrift wears including crop tops, denim and shorts."
+      data-whatsapp="https://wa.me/2349128581721?text=Hello%20I%20found%20The%20Gorly_Co%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/GIRLYCO.jpg">
+      <img class="thumb" src="Images/GIRLYCO.jpg" alt="The Girly_Co" />
+      <div class="mini-info">
+        <h3>The Girly_Co</h3>
+        <p class="mini-meta">• Fashion · Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip">
+          <span class="chip ok">✔ Replies on WhatsApp</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Faceless Emerald"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Ready-to-wear and custom dresses with a focus on stylish, well-finished outfits."
+      data-whatsapp="https://wa.me/2348106870883?text=Hello%20I%20found%20Faceless%20Emerald%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/FACELESS.JPG">
+      <img class="thumb" src="Images/FACELESS.JPG" alt="Faceless Emerald" />
+      <div class="mini-info">
+        <h3>Faceless Emerald</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Confidence Touch"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Creative fashion brand combining fashion design and handcrafted pieces."
+      data-whatsapp="https://wa.me/2348150467588?text=Hello%20I%20found%20Confidence%20Touch%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/Confidence Touch .jpg">
+      <img class="thumb" src="Images/Confidence Touch .jpg" alt="Confidence Touch" />
+      <div class="mini-info">
+        <h3>Confidence Touch</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Shop_with_mide (SWM)"
+      data-verified="Verified"
+      data-city="Ogbomosho / Ibadan"
+      data-cat="Fashion · Style, Scent & Accessories"
+      data-loc="Under G, Ogbomosho / Ibadan"
+      data-desc="Where style meets scent & sparkle."
+      data-whatsapp="https://wa.me/2348036234997?text=Hello%20I%20found%20Shop%20With%20Mide%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+      data-hero="Images/fcd3c9e1-5ddb-4acd-974e-9a75fe162c38 - Fathia Busari.JPEG">
+      <img class="thumb" src="Images/fcd3c9e1-5ddb-4acd-974e-9a75fe162c38 - Fathia Busari.JPEG" alt="Shop_with_mide (SWM)" />
+      <div class="mini-info">
+        <h3>Shop_with_mide (SWM)</h3>
+        <p class="mini-meta">• Fashion · Style, Scent & Accessories</p>
+        <p class="mini-loc">Under G, Ogbomosho / Ibadan</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Omo Owo Ventures"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Quality football jerseys and fashion items available at affordable prices."
+      data-whatsapp="https://wa.me/2348139632529?text=Hello%20I%20found%20Omo%20Owo%20Ventures%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/Omo owo.jpg">
+      <img class="thumb" src="Images/Omo owo.jpg" alt="Omo Owo Ventures" />
+      <div class="mini-info">
+        <h3>Omo Owo Ventures</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Source Wears"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing · Jersey & Casual Wears"
+      data-loc="Behind Le Harve Hotel, Under G Area, Ogbomosho"
+      data-desc="Deals in quality jersey wears, white shirts and inner tees for everyday style and sports lovers."
+      data-whatsapp="https://wa.me/2348074167103?text=Hello%20I%20found%20Source%20Wears%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/ source wears.jpeg">
+      <img class="thumb" src="Images/ source wears.jpeg" alt="Source Wears" />
+      <div class="mini-info">
+        <h3>Source Wears</h3>
+        <p class="mini-meta">• Fashion & Clothing · Jersey & Casual Wears</p>
+        <p class="mini-loc">Under G, Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Tianah’s Empire"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Fashionable clothing store for stylish everyday looks and trusted fashion picks."
+      data-whatsapp="https://wa.me/2348085154210?text=Hello%20I%20found%20Tianah%E2%80%99s%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/IMG_0276 - Oluwadolabomi Sharon.JPEG">
+      <img class="thumb" src="Images/IMG_0276 - Oluwadolabomi Sharon.JPEG" alt="Tianah’s Empire" />
+      <div class="mini-info">
+        <h3>Tianah’s Empire</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Mhidey Empire"
+      data-verified="Verified"
+      data-city="Ibadan"
+      data-cat="Fashion & Clothing"
+      data-loc="Ibadan"
+      data-desc="Fashion brand focused on quality clothing and stylish customer-ready pieces."
+      data-whatsapp="https://wa.me/2349078719710?text=Hello%20I%20found%20Mhidey%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/Mhidey Empire.jpg">
+      <img class="thumb" src="Images/Mhidey Empire.jpg" alt="Mhidey Empire" />
+      <div class="mini-info">
+        <h3>Mhidey Empire</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ibadan</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="CAPVERSE"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing"
+      data-loc="Ogbomosho"
+      data-desc="Quality cap brand offering stylish cap designs for different looks at affordable prices."
+      data-whatsapp="https://wa.me/2349076837639?text=Hello%20I%20found%20CAPVERSE%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+      data-hero="Images/Cap verse.jpg">
+      <img class="thumb" src="Images/Cap verse.jpg" alt="CAPVERSE" />
+      <div class="mini-info">
+        <h3>CAPVERSE</h3>
+        <p class="mini-meta">• Fashion & Clothing</p>
+        <p class="mini-loc">Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Success Stitches"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion & Clothing · Fashion Design"
+      data-loc="Behind Alaska's House, Randa Area, Ogbomosho"
+      data-desc="Fashion design (custom outfits and tailoring)."
+      data-whatsapp="https://wa.me/2348169097729?text=Hello%20I%20found%20Success%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20design%20services.%20Please%20share%20your%20styles%20and%20starting%20prices.%20Thank%20you."
+      data-hero="Images/success stitches.jpeg">
+      <img class="thumb" src="Images/success stitches.jpeg" alt="Success Stitches" />
+      <div class="mini-info">
+        <h3>Success Stitches</h3>
+        <p class="mini-meta">• Fashion & Clothing · Fashion Design</p>
+        <p class="mini-loc">Randa Area, Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Bella Stitches ‘n’ Clothings"
+      data-verified="Verified"
+      data-city="Under G, Ogbomosho"
+      data-cat="Fashion · Corporate & Custom Fits"
+      data-loc="Under G, Ogbomosho"
+      data-desc="Specialized in corporate and custom-made fits for women to help them slay confidently."
+      data-whatsapp="https://wa.me/2348147512130?text=Hello%20I%20found%20Bella%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+      data-hero="Images/Bella Stitches ‘n’ clothings .jpg">
+      <img class="thumb" src="Images/Bella Stitches ‘n’ clothings .jpg" alt="Bella Stitches ‘n’ Clothings" />
+      <div class="mini-info">
+        <h3>Bella Stitches ‘n’ Clothings</h3>
+        <p class="mini-meta">• Fashion · Corporate & Custom Fits</p>
+        <p class="mini-loc">Under G, Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Abike’s Collection"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion · Unisex Wears & Accessories"
+      data-loc="Stallite Area, Ogbomosho"
+      data-desc="Unisex wears, bags, shoes, caps, sneakers, slides and accessories."
+      data-whatsapp="https://wa.me/2348061437324?text=Hello%20I%20found%20Abike%E2%80%99s%20Collection%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+      data-hero="Images/8b174f53-0aa3-4d9e-b821-43eff866a7e6 - Opeyemi Oke.JPEG">
+      <img class="thumb" src="Images/8b174f53-0aa3-4d9e-b821-43eff866a7e6 - Opeyemi Oke.JPEG" alt="Abike’s Collection" />
+      <div class="mini-info">
+        <h3>Abike’s Collection</h3>
+        <p class="mini-meta">• Fashion · Unisex Wears & Accessories</p>
+        <p class="mini-loc">Stallite Area, Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+
+    <article class="vendor-mini"
+      data-group="fashion"
+      data-name="Japheth Sport Collection"
+      data-verified="Verified"
+      data-city="Ogbomosho"
+      data-cat="Fashion · Sports Wears & Boots"
+      data-loc="Adenike, Ogbomosho"
+      data-desc="Football boots and sports collections for wholesalers and retailers."
+      data-whatsapp="https://wa.me/2349131540978?text=Hello%20I%20found%20Japheth%20Sport%20Collection%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+      data-hero="Images/IMG-20260121-WA0056 - Japhet Sunday.JPEG">
+      <img class="thumb" src="Images/IMG-20260121-WA0056 - Japhet Sunday.JPEG" alt="Japheth Sport Collection" />
+      <div class="mini-info">
+        <h3>Japheth Sport Collection</h3>
+        <p class="mini-meta">• Fashion · Sports Wears & Boots</p>
+        <p class="mini-loc">Adenike, Ogbomosho</p>
+        <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+      </div>
+    </article>
+    <!-- Keemah Empire -->
+<article class="vendor-mini"
+  data-name="Keemah Empire 🛍️"
+  data-verified="Verified"
+  data-city="Ogbomosho / Ibadan"
+  data-cat="Fashion · Unisex Wears & Accessories"
+  data-loc="Yoaco (Ogbomosho) / Akala Express (Ibadan)"
+  data-desc="Luxury unisex wears, thrift wears and fashion accessories. Motto: Giving out the best is our priority."
+  data-whatsapp="https://wa.me/2348086642417?text=Hello%20I%20found%20Keemah%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20your%20catalog%20and%20prices.%20Thank%20you."
+  data-img="Images/Keemah Empire 🛍️.jpeg"
+  data-hero="Images/Keemah Empire 🛍️.jpeg">
+  <img class="thumb" src="Images/Keemah Empire 🛍️.jpeg" alt="Keemah Empire" />
+  <div class="mini-info">
+    <h3>Keemah Empire 🛍️</h3>
+    <p class="mini-meta">• Fashion · Unisex Wears & Accessories</p>
+    <p class="mini-loc">Yoaco / Akala Express</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Immanuel stitches -->
+<article class="vendor-mini"
+  data-name="Immanuel stitches"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Fashion · Tailoring / Ready-to-wear"
+  data-loc="Around Lagos Kitchen, Under G"
+  data-desc="A brand where elegance meets luxury."
+  data-whatsapp="https://wa.me/2349058797613?text=Hello%20I%20found%20Immanuel%20stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20styles%20and%20starting%20prices.%20Thank%20you."
+  data-img="Images/placeholder.jpg"
+  data-hero="Images/placeholder.jpg">
+  <img class="thumb" src="Images/placeholder.jpg" alt="Immanuel stitches" />
+  <div class="mini-info">
+    <h3>Immanuel stitches</h3>
+    <p class="mini-meta">• Fashion · Tailoring / Ready-to-wear</p>
+    <p class="mini-loc">Around Lagos Kitchen, Under G</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Cisca’s closet -->
+<article class="vendor-mini"
+  data-name="Cisca’s closet"
+  data-verified="Verified"
+  data-city="Ibadan"
+  data-cat="Fashion · Men’s Underwear"
+  data-loc="Soka, Ibadan"
+  data-desc="Sells all types of men’s underwear."
+  data-whatsapp="https://wa.me/2347030106832?text=Hello%20I%20found%20Cisca%E2%80%99s%20closet%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20available%20options%20and%20prices.%20Thank%20you."
+  data-img="Images/Cisca’s closet .jpeg"
+  data-hero="Images/Cisca’s closet .jpeg">
+  <img class="thumb" src="Images/Cisca’s closet .jpeg" alt="Cisca’s closet" />
+  <div class="mini-info">
+    <h3>Cisca’s closet</h3>
+    <p class="mini-meta">• Fashion · Men’s Underwear</p>
+    <p class="mini-loc">Soka, Ibadan</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Esthy stitches -->
+<article class="vendor-mini"
+  data-name="Esthy stitches"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Fashion · Tailoring"
+  data-loc="Starlight, Ogbomosho"
+  data-desc="Trendy, well-tailored outfits made with precision, style and love."
+  data-whatsapp="https://wa.me/2349057458964?text=Hello%20I%20found%20Esthy%20stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20styles%20and%20starting%20prices.%20Thank%20you."
+  data-img="Images/Esthy stitches .jpeg"
+  data-hero="Images/Esthy stitches .jpeg">
+  <img class="thumb" src="Images/Esthy stitches .jpeg" alt="Esthy stitches" />
+  <div class="mini-info">
+    <h3>Esthy stitches</h3>
+    <p class="mini-meta">• Fashion · Tailoring</p>
+    <p class="mini-loc">Starlight, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Kabbs&Co -->
+<article class="vendor-mini"
+  data-name="Kabbs&Co"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Fashion · Female Ready-to-wear"
+  data-loc="Opposite At-Taofeeq Mosque, Under G"
+  data-desc="RTW female brand. Also sells cute and trendy basic tops."
+  data-whatsapp="https://wa.me/2348160494801?text=Hello%20I%20found%20Kabbs%26Co%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20available%20items%20and%20prices.%20Thank%20you."
+  data-img="Images/Kabbs&Co.jpeg"
+  data-hero="Images/Kabbs&Co.jpeg">
+  <img class="thumb" src="Images/Kabbs&Co.jpeg" alt="Kabbs&Co" />
+  <div class="mini-info">
+    <h3>Kabbs&Co</h3>
+    <p class="mini-meta">• Fashion · Female Ready-to-wear</p>
+    <p class="mini-loc">Opp. At-Taofeeq Mosque, Under G</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Dammy Stitches (Crochet) -->
+<article class="vendor-mini"
+  data-name="Dammy Stitches"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Fashion · Crochet / Handmade"
+  data-loc="Under G, Ogbomosho"
+  data-desc="Handmade crochet fashion: custom dresses and accessories for men and women."
+  data-whatsapp="https://wa.me/2349058466752?text=Hello%20I%20found%20Dammy%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20styles%20and%20prices.%20Thank%20you."
+  data-img="Images/Dammy Stitches.jpeg"
+  data-hero="Images/Dammy Stitches.jpeg">
+  <img class="thumb" src="Images/Dammy Stitches.jpeg" alt="Dammy Stitches" />
+  <div class="mini-info">
+    <h3>Dammy Stitches</h3>
+    <p class="mini-meta">• Fashion · Crochet / Handmade</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+  </div>
+</div>
+
+        <!-- ============ BEAUTY ============ -->
+        <div class="group" data-section="Beauty">
+          <h3 class="group-title">Beauty & Cosmetics</h3>
+
+          <div class="vendor-grid">
+
+            <article class="vendor-mini"
+              data-group="Beauty"
+              data-name="Nk’s Aurum"
+              data-city="Ogbomosho"
+              data-cat="Beauty & Cosmetics"
+              data-loc="Ogbomosho"
+              data-desc="Beauty and fragrance brand focused on quality self-care and wellness products."
+              data-whatsapp="https://wa.me/2348133261691?text=Hello%20I%20found%20Nk%E2%80%99s%20Aurum%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/NK'S AURUM.jpg">
+              <img class="thumb" src="Images/NK'S AURUM.jpg" alt="Nk’s Aurum" />
+              <div class="mini-info">
+                <h3>Nk’s Aurum</h3>
+                <p class="mini-meta">• Beauty & Cosmetics</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Beauty"
+              data-name="LGBeauty"
+              data-city="Ogbomosho"
+              data-cat="Beauty & Cosmetics"
+              data-loc="Ogbomosho"
+              data-desc="Makeup artist and nail technician offering beauty services and glam looks."
+              data-whatsapp="https://wa.me/2348139579411?text=Hello%20I%20found%20LGBeauty%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20beauty%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/LGBeauty .jpg">
+              <img class="thumb" src="Images/LGBeauty .jpg" alt="LGBeauty" />
+              <div class="mini-info">
+                <h3>LGBeauty</h3>
+                <p class="mini-meta">• Beauty services</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Beauty"
+              data-name="Everythingbykemy"
+              data-city="Ogbomosho"
+              data-cat="Beauty & Cosmetics"
+              data-loc="Ogbomosho"
+              data-desc="One-stop shop for girlie essentials, beauty products and personalized gift items."
+              data-whatsapp="https://wa.me/2347012490848?text=Hello%20I%20found%20Everythingbykemy%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/Everythingbykemy .jpg">
+              <img class="thumb" src="Images/Everythingbykemy .jpg" alt="Everythingbykemy" />
+              <div class="mini-info">
+                <h3>Everythingbykemy</h3>
+                <p class="mini-meta">• Beauty & Cosmetics</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Beauty"
+              data-name="Owoglo Oriflame"
+              data-city="Ibadan"
+              data-cat="Beauty & Cosmetics"
+              data-loc="Ibadan"
+              data-desc="Oriflame skincare and beauty products with options for different skin types."
+              data-whatsapp="https://wa.me/2349038668585?text=Hello%20I%20found%20Owoglo%20Oriflame%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/IMG-20251125-WA0009 - Gloria Temitope Owojori.JPEG">
+              <img class="thumb" src="Images/IMG-20251125-WA0009 - Gloria Temitope Owojori.JPEG" alt="Owoglo Oriflame" />
+              <div class="mini-info">
+                <h3>Owoglo Oriflame</h3>
+                <p class="mini-meta">• Beauty & Cosmetics</p>
+                <p class="mini-loc">Ibadan</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Beauty"
+              data-name="Glorious Essence Store"
+              data-city="Ogbomosho / Ibadan"
+              data-cat="Beauty & Cosmetics"
+              data-loc="Adenike (LAUTECH area) / Ibadan (Iyana Agbala, Iwo Road)"
+              data-desc="Hair accessories and beauty products."
+              data-whatsapp="https://wa.me/2349032099178?text=Hello%20I%20found%20Glorious%20Essence%20Store%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20hair%20accessories%20and%20beauty%20items.%20Please%20share%20your%20catalog%20and%20prices.%20Thank%20you."
+              data-hero="Images/Glorious essence store.jpeg">
+              <img class="thumb" src="Images/Glorious essence store.jpeg" alt="Glorious Essence Store" />
+              <div class="mini-info">
+                <h3>Glorious Essence Store</h3>
+                <p class="mini-meta">• Beauty & Cosmetics</p>
+                <p class="mini-loc">Ogbomosho / Ibadan</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Beauty"
+              data-name="Toyo Scents & Luxe Hair"
+              data-city="Under G, Ogbomosho"
+              data-cat="Beauty · Wigs & Perfumes"
+              data-loc="Under G, Nurudeen Street, Ogbomosho"
+              data-desc="Slay the day with quality wigs and captivating perfumes."
+              data-whatsapp="https://wa.me/2347088792461?text=Hello%20I%20found%20Toyo%20Scents%20%26%20Luxe%20Hair%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+              data-hero="Images/Toyo scents and Luxe Hair.jpg">
+              <img class="thumb" src="Images/Toyo scents and Luxe Hair.jpg" alt="Toyo Scents & Luxe Hair" />
+              <div class="mini-info">
+                <h3>Toyo Scents & Luxe Hair</h3>
+                <p class="mini-meta">• Beauty · Wigs & Perfumes</p>
+                <p class="mini-loc">Under G, Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+
+            <!-- Hair by jummy -->
+<article class="vendor-mini"
+  data-name="Hair by jummy"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Beauty · Hair / Wigs"
+  data-loc="Iyana Sobe (Kere)"
+  data-desc="Hairstylist and wig vendor."
+  data-whatsapp="https://wa.me/2348168178684?text=Hello%20I%20found%20Hair%20by%20jummy%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20your%20services%20and%20prices.%20Thank%20you."
+  data-img="Images/Hair by jummy.jpeg"
+  data-hero="Images/Hair by jummy.jpeg">
+  <img class="thumb" src="Images/Hair by jummy.jpeg" alt="Hair by jummy" />
+  <div class="mini-info">
+    <h3>Hair by jummy</h3>
+    <p class="mini-meta">• Beauty · Hair / Wigs</p>
+    <p class="mini-loc">Iyana Sobe (Kere)</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Fiyin luxe wigs -->
+<article class="vendor-mini"
+  data-name="Fiyin luxe wigs"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Beauty · Wigs"
+  data-loc="Botanical Garden, Unity Estate"
+  data-desc="Wig vendor."
+  data-whatsapp="https://wa.me/2348132133364?text=Hello%20I%20found%20Fiyin%20luxe%20wigs%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20available%20wigs%20and%20prices.%20Thank%20you."
+  data-img="Images/Fiyin luxe wigs .jpeg"
+  data-hero="Images/Fiyin luxe wigs .jpeg">
+  <img class="thumb" src="Images/Fiyin luxe wigs .jpeg" alt="Fiyin luxe wigs" />
+  <div class="mini-info">
+    <h3>Fiyin luxe wigs</h3>
+    <p class="mini-meta">• Beauty · Wigs</p>
+    <p class="mini-loc">Unity Estate</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Slayed by Anjie -->
+<article class="vendor-mini"
+  data-name="Slayed by Anjie"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Beauty · Makeup"
+  data-loc="Agbeke Shopping Complex (Opp. Nurudeen), Under G"
+  data-desc="Professional makeup artist (soft glam, birthday glam, events, photoshoots)."
+  data-whatsapp="https://wa.me/2348136329941?text=Hello%20I%20found%20Slayed%20by%20Anjie%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20makeup%20session.%20Please%20share%20your%20price%20list%20and%20availability.%20Thank%20you."
+  data-img="Images/Slayed by Anjie .jpeg"
+  data-hero="Images/Slayed by Anjie .jpeg">
+  <img class="thumb" src="Images/Slayed by Anjie .jpeg" alt="Slayed by Anjie" />
+  <div class="mini-info">
+    <h3>Slayed by Anjie</h3>
+    <p class="mini-meta">• Beauty · Makeup</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+          </div>
+        </div>
+
+        <!-- ============ FOOD ============ -->
+        <div class="group" data-section="Food">
+          <h3 class="group-title">Food Vendors</h3>
+
+          <div class="vendor-grid">
+
+            <article class="vendor-mini"
+              data-group="Food"
+              data-name="Chef Rahma Gourmet Kitchen"
+              data-city="Ogbomosho"
+              data-cat="Food · Cooked Meals"
+              data-loc="Abaa, Olubeere, Ogbomosho"
+              data-desc="Your craving, our inspiration 🤗👩‍🍳"
+              data-whatsapp="https://wa.me/2348107429358?text=Hello%20I%20found%20Chef%20Rahma%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20place%20an%20order."
+              data-hero="Images/Chef Rahma gourmet kitchen .jpg">
+              <img class="thumb" src="Images/Chef Rahma gourmet kitchen .jpg" alt="Chef Rahma Gourmet Kitchen" />
+              <div class="mini-info">
+                <h3>Chef Rahma Gourmet Kitchen</h3>
+                <p class="mini-meta">• Food · Cooked Meals</p>
+                <p class="mini-loc">Abaa, Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+
+
+            
+<article class="vendor-mini"
+  data-name="Celebrity chef"
+  data-verified="Verified"
+  data-city="Lagos"
+  data-cat="Food · Cooked Meals"
+  data-loc="Ajegunle, Apapa, Lagos"
+  data-desc="Cakes, cake decoration, event planning and wedding cakes."
+  data-whatsapp="https://wa.me/2348028453984?text=Hello%20I%20found%20Celebrity%20chef%20on%20OjaHub%20and%20I%20want%20to%20order.%20Please%20share%20your%20menu%2Fprice%20list.%20Thank%20you."
+  data-img="Images/Celebrity-chef.jpeg"
+  data-hero="Images/Celebrity-chef.jpeg">
+  <img class="thumb" src="Images/Celebrity-chef.jpeg" alt="Celebrity chef" />
+  <div class="mini-info">
+    <h3>Celebrity chef</h3>
+    <p class="mini-meta">• Food · Cooked Meals</p>
+    <p class="mini-loc">Ajegunle, Apapa, Lagos</p>
+    <div class="mini-chip">
+      <span class="chip ok">✔ Replies on WhatsApp</span>
+    </div>
+  </div>
+</article>
+
+            <article class="vendor-mini"
+              data-group="Food"
+              data-name="Bee’s Cafe and Bistro (Bee’s Treat)"
+              data-city="Ogbomosho"
+              data-cat="Food · Cooked Meals & Fast Food"
+              data-loc="Adjacent G71 Filling Station, Under G, Ogbomosho"
+              data-desc="Your go-to spot for rich meals, creamy parfaits, and tasty fast food — served fresh daily in LAUTECH."
+              data-whatsapp="https://wa.me/2348051564639?text=Hello%20I%20found%20Bee%E2%80%99s%20Cafe%20and%20Bistro%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20place%20an%20order.%20Please%20share%20your%20menu%20and%20prices.%20Thank%20you."
+              data-hero="Images/Bee’s cafe and bistro (bees treat).jpeg">
+              <img class="thumb" src="Images/Bee’s cafe and bistro (bees treat).jpeg" alt="Bee’s Treat" />
+              <div class="mini-info">
+                <h3>Bee’s Treat</h3>
+                <p class="mini-meta">• Food · Cooked Meals & Fast Food</p>
+                <p class="mini-loc">Under G, Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Food"
+              data-name="Yorhnee Creations"
+              data-city="Ogbomosho"
+              data-cat="Food · Cooked Meals"
+              data-loc="Ogbomosho"
+              data-desc="Affordable food services and meal-related offerings from a registered local brand."
+              data-whatsapp="https://wa.me/2348136966242?text=Hello%20I%20found%20Yorhnee%20Creations%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20food%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/yorhnee.jpg">
+              <img class="thumb" src="Images/yorhnee.jpg" alt="Yorhnee Creations" />
+              <div class="mini-info">
+                <h3>Yorhnee Creations</h3>
+                <p class="mini-meta">• Food · Cooked Meals</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Food"
+              data-name="Bimmy’s Kitchen"
+              data-city="Ogbomosho"
+              data-cat="Food · Cooked Meals"
+              data-loc="Ogbomosho"
+              data-desc="Fresh, flavorful meals made with care and quality ingredients."
+              data-whatsapp="https://wa.me/2348055894152?text=Hello%20I%20found%20Bimmy%E2%80%99s%20Kitchen%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20meals.%20Please%20share%20your%20menu%20and%20prices.%20Thank%20you."
+              data-hero="Images/bimmy.jpg">
+              <img class="thumb" src="Images/bimmy.jpg" alt="Bimmy’s Kitchen" />
+              <div class="mini-info">
+                <h3>Bimmy’s Kitchen</h3>
+                <p class="mini-meta">• Food · Cooked Meals</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+
+
+        
+
+        <!-- ============ OTHERS ============ -->
+        <div class="group" data-section="Others">
+          <h3 class="group-title">Home & Living / Others</h3>
+
+          <div class="vendor-grid">
+
+            <article class="vendor-mini"
+              data-group="Others"
+              data-name="Akin Decor"
+              data-city="Ogbomosho"
+              data-cat="Others · Interior Decor"
+              data-loc="Ogbomosho"
+              data-desc="Interior decor brand focused on clean, classy and functional spaces."
+              data-whatsapp="https://wa.me/2349153461979?text=Hello%20I%20found%20Akin%20Decor%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20interior%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/AKIN DECOR.JPEG">
+              <img class="thumb" src="Images/AKIN DECOR.JPEG" alt="Akin Decor" />
+              <div class="mini-info">
+                <h3>Akin Decor</h3>
+                <p class="mini-meta">• Interior Decor</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Others"
+              data-name="Ebony Autos"
+              data-city="Ogbomosho"
+              data-cat="Others · Auto Services"
+              data-loc="Ogbomosho"
+              data-desc="Auto-related products and services for car owners."
+              data-whatsapp="https://wa.me/2347025512785?text=Hello%20I%20found%20Ebony%20Autos%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20auto%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/bdcddc27-90ee-4934-89d7-4127d1398165 - OJO AMOS.JPEG">
+              <img class="thumb" src="Images/bdcddc27-90ee-4934-89d7-4127d1398165 - OJO AMOS.JPEG" alt="Ebony Autos" />
+              <div class="mini-info">
+                <h3>Ebony Autos</h3>
+                <p class="mini-meta">• Auto Services</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Others"
+              data-name="Tabby T Affairs"
+              data-city="Ogbomosho"
+              data-cat="Others · Home Essentials"
+              data-loc="Ogbomosho"
+              data-desc="Kitchen utensils and household appliances for everyday home use."
+              data-whatsapp="https://wa.me/2349027017072?text=Hello%20I%20found%20Tabby%20T%20Affairs%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/tabby.JPG">
+              <img class="thumb" src="Images/tabby.JPG" alt="Tabby T Affairs" />
+              <div class="mini-info">
+                <h3>Tabby T Affairs</h3>
+                <p class="mini-meta">• Home Essentials</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Others"
+              data-name="Oja Oko (Local Market)"
+              data-city="Ibadan"
+              data-cat="Others · Farm Produce"
+              data-loc="Ibadan"
+              data-desc="Trusted marketplace for quality farm produce and local market essentials."
+              data-whatsapp="https://wa.me/2348137151407?text=Hello%20I%20found%20Oja%20Oko%20(Local%20Market)%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/20251230_072919 - Joseph Michael.JPEG">
+              <img class="thumb" src="Images/20251230_072919 - Joseph Michael.JPEG" alt="Oja Oko (Local Market)" />
+              <div class="mini-info">
+                <h3>Oja Oko (Local Market)</h3>
+                <p class="mini-meta">• Farm Produce</p>
+                <p class="mini-loc">Ibadan</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Others"
+              data-name="Hikmah Gems'N'gleam"
+              data-city="Ogbomosho"
+              data-cat="Others · Jewelry & Accessories"
+              data-loc="Ogbomosho"
+              data-desc="Jewelry and accessories brand offering minimalist and stylish pieces."
+              data-whatsapp="https://wa.me/2349075615320?text=Hello%20I%20found%20Hikmah%20Gems%27N%27gleam%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/gems & gleam.jpg">
+              <img class="thumb" src="Images/gems & gleam.jpg" alt="Hikmah Gems'N'gleam" />
+              <div class="mini-info">
+                <h3>Hikmah Gems'N'gleam</h3>
+                <p class="mini-meta">• Jewelry & Accessories</p>
+                <p class="mini-loc">Ogbomosho</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="vendor-mini"
+              data-group="Others"
+              data-name="Baniture Creatives"
+              data-city="Ibadan / Lagos"
+              data-cat="Services · Event Management"
+              data-loc="Bodija, Ibadan · Abule Egba, Lagos"
+              data-desc="Event management company offering event planning, coordination, decoration, ushering, lighting and special effects."
+              data-whatsapp="https://wa.me/2348079041574?text=Hello%20I%20found%20Baniture%20Creatives%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20event%20services.%20Please%20share%20more%20details.%20Thank%20you."
+              data-hero="Images/baniture.jpg">
+              <img class="thumb" src="Images/baniture.jpg" alt="Baniture Creatives" />
+              <div class="mini-info">
+                <h3>Baniture Creatives</h3>
+                <p class="mini-meta">• Event Management</p>
+                <p class="mini-loc">Ibadan · Lagos</p>
+                <div class="mini-chip">
+                  <span class="chip ok">✔ Replies on WhatsApp</span>
+                  <span class="chip ghost">Price on request</span>
+                </div>
+              </div>
+            </article>
+
+
+            <!-- Valentina Eniola Balogun (Importation) -->
+<article class="vendor-mini"
+  data-name="Imported by Ennyola"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Importation"
+  data-loc="Fish Bar Street, Awa Hostel (Opp. Al-Taofeek Mosque), Under G"
+  data-desc="Importation from China."
+  data-whatsapp="https://wa.me/2347015347032?text=Hello%20I%20found%20Imported%20by%20Ennyola%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20importation.%20Please%20share%20how%20it%20works%20and%20your%20charges.%20Thank%20you."
+  data-img="Images/Imported by Ennyola .jpeg"
+  data-hero="Images/Imported by Ennyola .jpeg">
+  <img class="thumb" src="Images/Imported by Ennyola .jpeg" alt="Imported by Ennyola" />
+  <div class="mini-info">
+    <h3>Imported by Ennyola</h3>
+    <p class="mini-meta">• Others · Importation</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- JAYSHOTIT -->
+<article class="vendor-mini"
+  data-name="JAYSHOTIT 📸"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Photography"
+  data-loc="Adenike Area, Oyo, Ogbomosho"
+  data-desc="Lifestyle photography: studio and outdoor shoots."
+  data-whatsapp="https://wa.me/2348115864916?text=Hello%20I%20found%20JAYSHOTIT%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20photoshoot.%20Please%20share%20your%20packages%20and%20prices.%20Thank%20you."
+  data-img="Images/JAYSHOTIT 📸.jpeg"
+  data-hero="Images/JAYSHOTIT 📸.jpeg">
+  <img class="thumb" src="Images/JAYSHOTIT 📸.jpeg" alt="JAYSHOTIT" />
+  <div class="mini-info">
+    <h3>JAYSHOTIT 📸</h3>
+    <p class="mini-meta">• Others · Photography</p>
+    <p class="mini-loc">Adenike, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Matade.shotit -->
+<article class="vendor-mini"
+  data-name="Matade.shotit"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Videography"
+  data-loc="Adenike, LAUTECH, Ogbomosho"
+  data-desc="Mobile videography: clean visuals and cinematic storytelling."
+  data-whatsapp="https://wa.me/2347048106631?text=Hello%20I%20found%20Matade.shotit%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20video%20shoot.%20Please%20share%20your%20packages%20and%20prices.%20Thank%20you."
+  data-img="Images/Matade.shotit .jpeg"
+  data-hero="Images/Matade.shotit .jpeg">
+  <img class="thumb" src="Images/Matade.shotit .jpeg" alt="Matade.shotit" />
+  <div class="mini-info">
+    <h3>Matade.shotit</h3>
+    <p class="mini-meta">• Others · Videography</p>
+    <p class="mini-loc">Adenike, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Shaped body secret (kept neutral description) -->
+<article class="vendor-mini"
+  data-name="Shaped body secret"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Body Care"
+  data-loc="Ogbomosho (delivers to all cities)"
+  data-desc="Body care products. Contact on WhatsApp for details."
+  data-whatsapp="https://wa.me/2349132674734?text=Hello%20I%20found%20Shaped%20body%20secret%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20your%20product%20list%20and%20prices.%20Thank%20you."
+  data-img="Images/Shaped body secret .jpeg"
+  data-hero="Images/Shaped body secret .jpeg">
+  <img class="thumb" src="Images/Shaped body secret .jpeg" alt="Shaped body secret" />
+  <div class="mini-info">
+    <h3>Shaped body secret</h3>
+    <p class="mini-meta">• Others · Body Care</p>
+    <p class="mini-loc">Ogbomosho (delivers)</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+          </div>
+        </div>
+
+        <!-- Promo -->
+        <div class="promo">
+          <div class="promo-text">
+            <h4>Support local businesses</h4>
+            <p>Find trusted vendors in <b>Ogbomosho</b> and <b>Ibadan</b></p>
+          </div>
+          <a class="promo-btn" href="index.html#categories">Browse Categories ▾</a>
+        </div>
+
+      </div>
+
+    <!-- RIGHT: selected vendor detail -->
+<aside class="detail" id="detailPanel">
+  <div class="detail-hero">
+    <img id="detailHeroImg" src="Images/chen 2.JPG" alt="Vendor preview" />
+  </div>
+
+  <div class="detail-body">
+    <small class="detail-section" id="detailGroup">Category</small>
+
+    <h2 id="detailName">Select a vendor</h2>
+
+    <div class="detail-verified">
+      <span class="badge-verified" id="detailVerified">✔ Verified</span>
+      <span class="dot">·</span>
+      <span id="detailCity">City</span>
+    </div>
+
+    <p class="detail-cat" id="detailCat">Category</p>
+
+    <p class="detail-loc">
+      <span class="muted">Location:</span>
+      <span id="detailLoc">—</span>
+    </p>
+
+    <hr class="sep" />
+
+    <p class="detail-desc" id="detailDesc">Click any vendor card to preview details here.</p>
+
+    <div class="detail-chips">
+      <span class="chip ok">✔ Replies on WhatsApp</span>
+      <span class="chip ghost">Price on request</span>
+    </div>
+
+    <a id="detailWhatsApp" class="whatsapp-btn" target="_blank" rel="noopener" href="#">
+      <span class="wa-icon">🟢</span>
+      Chat on WhatsApp
+    </a>
+  </div>
+</aside>
+    </section>
+  </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = Array.from(document.querySelectorAll(".vendor-mini"));
+
+  const detailPanel   = document.getElementById("detailPanel");
+  const detailHeroImg = document.getElementById("detailHeroImg");
+  const detailName    = document.getElementById("detailName");
+  const detailCity    = document.getElementById("detailCity");
+  const detailCat     = document.getElementById("detailCat");
+  const detailLoc     = document.getElementById("detailLoc");
+  const detailDesc    = document.getElementById("detailDesc");
+  const detailWhatsApp= document.getElementById("detailWhatsApp");
+  const detailGroup   = document.getElementById("detailGroup");
+  const detailVerified= document.getElementById("detailVerified");
+
+  if (!cards.length) {
+    console.log("No .vendor-mini cards found.");
+    return;
+  }
+
+  function setActive(card, shouldScroll = false) {
+    cards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+
+    detailHeroImg.src = card.dataset.hero || card.dataset.img || card.querySelector("img")?.src || "";
+    detailName.textContent = card.dataset.name || "Vendor";
+    detailCity.textContent = card.dataset.city || "";
+    detailCat.textContent  = card.dataset.cat || "";
+    detailLoc.textContent  = card.dataset.loc || "";
+    detailDesc.textContent = card.dataset.desc || "";
+    detailWhatsApp.href    = card.dataset.whatsapp || "#";
+
+    // Optional: show section/category label
+    detailGroup.textContent = (card.dataset.group || card.closest(".group")?.querySelector(".group-title")?.textContent || "Category");
+
+    // Optional: verified badge text
+    detailVerified.textContent = card.dataset.verified ? `✔ ${card.dataset.verified}` : "✔ Verified";
+
+    // On mobile, scroll user to the detail panel
+    if (shouldScroll && detailPanel) {
+      detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  // Click to update detail panel
+  cards.forEach(card => {
+    card.addEventListener("click", () => setActive(card, true));
+  });
+
+  // Default active = first visible card
+  const firstVisible = cards.find(c => c.offsetParent !== null) || cards[0];
+  if (firstVisible) setActive(firstVisible, false);
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== FILTERS =====
+  const filterWrap = document.getElementById("filters");
+  const pills = Array.from(document.querySelectorAll(".pill"));
+  const groups = Array.from(document.querySelectorAll(".group"));
+
+  function applyFilter(key) {
+    pills.forEach(p => p.classList.toggle("active", p.dataset.filter === key));
+    groups.forEach(g => {
+      const section = (g.dataset.section || "").toLowerCase();
+      g.style.display = (key === "all" || section === key) ? "" : "none";
+    });
+  }
+
+  if (filterWrap) {
+    filterWrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".pill");
+      if (!btn) return;
+      applyFilter(btn.dataset.filter);
+    });
+  }
+
+  applyFilter("all");
+
+  // ===== VENDOR CLICK -> RIGHT PANEL =====
+  const cards = Array.from(document.querySelectorAll(".vendor-mini"));
+
+  const detailPanel = document.getElementById("detailPanel");
+  const detailHeroImg = document.getElementById("detailHeroImg");
+  const detailName = document.getElementById("detailName");
+  const detailCity = document.getElementById("detailCity");
+  const detailCat = document.getElementById("detailCat");
+  const detailLoc = document.getElementById("detailLoc");
+  const detailDesc = document.getElementById("detailDesc");
+  const detailWhatsApp = document.getElementById("detailWhatsApp");
+
+  function setActive(card, shouldScroll = false) {
+    cards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+
+    if (detailHeroImg) detailHeroImg.src = card.dataset.hero || card.dataset.img || "Images/placeholder.jpg";
+    if (detailName) detailName.textContent = card.dataset.name || "";
+    if (detailCity) detailCity.textContent = card.dataset.city || "";
+    if (detailCat) detailCat.textContent = card.dataset.cat || "";
+    if (detailLoc) detailLoc.textContent = card.dataset.loc || "";
+    if (detailDesc) detailDesc.textContent = card.dataset.desc || "";
+    if (detailWhatsApp) detailWhatsApp.href = card.dataset.whatsapp || "#";
+
+    if (shouldScroll && detailPanel) {
+      detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => setActive(card, true));
+  });
+
+  if (cards[0]) setActive(cards[0], false);
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const filterWrap = document.getElementById("filters");
+  const pills = Array.from(document.querySelectorAll(".pill"));
+  const groups = Array.from(document.querySelectorAll(".group"));
+
+  function applyFilter(key) {
+    pills.forEach(p => p.classList.toggle("active", p.dataset.filter === key));
+
+    groups.forEach(g => {
+      const section = (g.dataset.section || "").toLowerCase();
+      g.style.display = (key === "all" || section === key) ? "" : "none";
+    });
+  }
+
+  filterWrap.addEventListener("click", (e) => {
+    const btn = e.target.closest(".pill");
+    if (!btn) return;
+    applyFilter(btn.dataset.filter);
+  });
+
+  applyFilter("all");
+});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

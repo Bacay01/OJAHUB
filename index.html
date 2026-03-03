@@ -1,32 +1,28 @@
+<!doctype html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JGCNKEBFWZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGCNKEBFWZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JGCNKEBFWZ');
+  </script>
 
-  gtag('config', 'G-JGCNKEBFWZ');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ojahub</title>
-    
-    <link rel="stylesheet" href="styles.css">
-    <!-- FONTS -->
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OjaHub</title>
 
-
-
-
-
-     G-JGCNKEBFWZ
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body>
-    <!-- NAVBAR -->
-  
+
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top ojahub-nav">
   <div class="container-fluid px-3">
     <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
@@ -41,94 +37,96 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
-        <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
-        <li class="nav-item"><a class="nav-link" href="#vendors">Vendors</a></li>
+        <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why">Why OjaHub</a></li>
+        <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
         <li class="nav-item"><a class="nav-link" href="#become-vendor">For vendors</a></li>
       </ul>
 
-      <form class="d-flex ms-lg-3 mt-3 mt-lg-0" role="search" action="#vendors">
-        <input class="form-control me-2" type="search" placeholder="Search services…" aria-label="Search">
+      <form class="d-flex ms-lg-3 mt-3 mt-lg-0" role="search" action="all-vendors.html">
+        <input class="form-control me-2" type="search" placeholder="Search vendors…" aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>
     </div>
   </div>
 </nav>
 
-<!-- HERO  -->
-
-
+<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <p class="tagline">Trusted vendors & services</p>
-
     <h1>Find trusted local services near you — instantly.</h1>
 
-  <p class="hero-sub">
-  Laundry, phone repairs, barbers & more in Ogbomosho and Ibadan.
-  Browse providers and chat on WhatsApp in seconds.
-  </p>
+    <p class="hero-sub">
+      Laundry, phone repairs, food vendors, fashion, beauty & more in Ogbomosho and Ibadan.
+      Browse providers and chat on WhatsApp in seconds.
+    </p>
 
-<div class="hero-buttons">
-  <a href="#categories" class="btn primary-btn">Browse services</a>
-  <a href="#vendors" class="btn secondary-btn">See providers</a>
-</div>
+    <div class="hero-buttons">
+      <a href="#categories" class="btn primary-btn">Browse categories</a>
+      <a href="all-vendors.html" class="btn secondary-btn">Browse all vendors</a>
+    </div>
 
-<p class="hero-small">
-  Trusted vendors near you · Fast WhatsApp contact · No stress
-</p>
+    <p class="hero-small">
+      Verified vendors · Direct WhatsApp chat · No stress
+    </p>
   </div>
 
   <div class="hero-card">
     <h3>Vendors near you (demo)</h3>
     <ul>
-      <li><span class="dot food"></span>Trendy luxe by chen . Wears and Bag </li>
-      <li><span class="dot phone"></span> Wealth Store · Chargers & cases</li>
-      <li><span class="dot fashion"></span> The Flourijay Vault . Accessories </li>
+      <li><span class="dot fashion"></span>Trendy Luxe By Chen · Wears</li>
+      <li><span class="dot phone"></span>Wealth Phone & Gadgets · Phones</li>
+      <li><span class="dot fashion"></span>The Flourijay Vault · Accessories</li>
     </ul>
-    <p class="hero-note">Tap vendor to chat on WhatsApp – feature coming soon.</p>
+    <p class="hero-note">Tap vendor to chat on WhatsApp.</p>
   </div>
 </section>
 
-
-<!-- HOW IT WORKS -->
- <section class="section" id="categories">
+<!-- CATEGORIES -->
+<section class="section" id="categories">
   <h2 class="section-title">Popular categories</h2>
+
   <div class="category-grid">
+    <a class="category-card category-link" href="food.html">
+      <div class="category-icon">🍛</div>
+      <h3>Food Vendors</h3>
+      <p>Affordable local meals, snacks and student-friendly food services.</p>
+    </a>
 
-    <div class="category-card">
-  <div class="category-icon">🍛</div>
-  <h3>Food Vendors</h3>
-  <p>Affordable local meals, snacks and student-friendly food services.</p>
-</div>
-    <div class="category-card">
+    <a class="category-card category-link" href="phones.html">
       <div class="category-icon">📱</div>
-      <h3>Phones & Accessories</h3>
+      <h3>Phones & Gadgets</h3>
       <p>Phone shops, gadgets, chargers, cases and repairs.</p>
-    </div>
+    </a>
 
-    <div class="category-card">
+    <a class="category-card category-link" href="fashion.html">
       <div class="category-icon">👗</div>
-      <h3>Fashion & Wears</h3>
-      <p>Clothes, shoes, bags and everyday campus outfits.</p>
-    </div>
+      <h3>Fashion & Clothing</h3>
+      <p>Clothes, shoes, bags and everyday outfits.</p>
+    </a>
 
-    <div class="category-card">
+    <a class="category-card category-link" href="beauty.html">
       <div class="category-icon">🧴</div>
       <h3>Beauty & Cosmetics</h3>
       <p>Skincare, makeup, perfumes and self-care items.</p>
-    </div>
+    </a>
 
-    <div class="category-card">
+    <a class="category-card category-link" href="services.html">
       <div class="category-icon">🛠</div>
       <h3>Services & Repairs</h3>
-      <p>Laundry, printing, phone repair and other useful services.</p>
-    </div>
+      <p>Laundry, printing, business support, repairs and more.</p>
+    </a>
+
+    <a class="category-card category-link" href="others.html">
+      <div class="category-icon">🏠</div>
+      <h3>Home & Living / Others</h3>
+      <p>Decor, home essentials, auto services, events & more.</p>
+    </a>
   </div>
 </section>
 
-
-<!-- WHY USE OJAHUB -->
-
+<!-- WHY -->
 <section class="section" id="why">
   <h2 class="section-title">Why use OjaHub?</h2>
 
@@ -155,1003 +153,164 @@
   </div>
 </section>
 
+<!-- FEATURED (SHORT) -->
+<section class="section" id="featured">
+  <div class="section-head-row">
+    <div>
+      <h2 class="section-title">Featured local vendors</h2>
+      <p class="section-subtitle">A few trusted picks. Want more? Browse all vendors.</p>
+    </div>
+    <a class="btn btn-outline-primary" href="all-vendors.html">Browse all vendors</a>
+  </div>
 
-
-
-
- 
- 
-
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-<!-- SAMPLE VENDORS -->
-<section class="section" id="vendors">
-  <h2 class="section-title">Featured local vendors</h2>
-  <p class="section-subtitle">
-    Browse trusted local businesses in Ogbomosho and Ibadan by category.
-  </p>
-
-  <!-- SERVICES & REPAIRS -->
-  <h3 class="vendor-group-title">Services & Repairs</h3>
-  <div class="vendor-grid">
-
-    <div class="vendor-card" id="tij-laundry">
+  <div class="featured-grid">
+    <!-- 6 MAX (keep landing page light) -->
+    <div class="vendor-card">
       <img class="vendor-img" src="Images/TIJ LAUDRY.JPG" alt="TIJ Laundry service">
       <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
       <h3>TIJ Laundry</h3>
       <p class="vendor-cat">Services · Laundry</p>
       <p class="vendor-loc">Ogbomosho</p>
       <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Reliable laundry service for clean, fresh, and well-ironed clothing.</p>
+        <span class="vendor-chip">Replies on WhatsApp</span>
+        <span class="vendor-chip price">Price on request</span>
+      </div>
       <a class="small-btn" target="_blank"
-         href="https://wa.me/2349033728795?text=Hello%20I%20found%20TIJ%20Laundry%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20laundry%20service.%20Please%20share%20your%20prices%20and%20pickup%20options.%20Thank%20you.">
+        href="https://wa.me/2349033728795?text=Hello%20I%20found%20TIJ%20Laundry%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20laundry%20service.%20Please%20share%20your%20prices%20and%20pickup%20options.%20Thank%20you.">
         Chat on WhatsApp
       </a>
     </div>
 
-    <div class="vendor-card" id="achievers-business-services">
-      <img class="vendor-img" src="Images/achiever.jpg" alt="Achievers Business Services">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Achievers Business Services</h3>
-      <p class="vendor-cat">Services · Business Support</p>
-      <p class="vendor-loc">Ogbomosho</p>
-
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Business support services including registration help and documentation support.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348104812467?text=Hello%20I%20found%20Achievers%20Business%20Services%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-
-
-    <div class="vendor-card" id="pinexa-labs">
-  <img class="vendor-img" src="Images/Pinexa Labs.jpeg" alt="Pinexa Labs">
-
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-
-  <h3>Pinexa Labs</h3>
-  <p class="vendor-cat">Services · Web & Digital Systems</p>
-  <p class="vendor-loc">Hajj Faith, Under G, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    We build websites and digital systems designed to help businesses grow and succeed online — from corporate websites and eCommerce platforms to secure management systems.
-  </p>
-
-  <a class="small-btn" target="_blank" rel="noopener"
-     href="https://wa.me/2348123378919?text=Hello%20I%20found%20Pinexa%20Labs%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20digital%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-
-  </div>
-
-  <!-- PHONES & GADGETS -->
-  <h3 class="vendor-group-title">Phones & Gadgets</h3>
-  <div class="vendor-grid">
-
-    <div class="vendor-card" id="Wealth Phone & Gadget">
+    <div class="vendor-card">
       <img class="vendor-img" src="Images/wealth 1.JPG" alt="Wealth Phone and Gadgets">
       <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
       <h3>Wealth Phone & Gadgets</h3>
       <p class="vendor-cat">Phones & Gadgets</p>
       <p class="vendor-loc">Stadium Road, Ogbomosho</p>
       <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Buying, selling and swapping of quality phones and gadgets.</p>
+        <span class="vendor-chip">Replies on WhatsApp</span>
+        <span class="vendor-chip price">Price on request</span>
+      </div>
       <a class="small-btn" target="_blank"
-         href="https://wa.me/2348148422364?text=Hello%20I%20saw%20Wealth%20Phone%20%26%20Gadgets%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
+        href="https://wa.me/2348148422364?text=Hello%20I%20saw%20Wealth%20Phone%20%26%20Gadgets%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
         Chat on WhatsApp
       </a>
     </div>
 
-
-
-
-        <div class="vendor-card" id="Tech-innovation">
-      <img class="vendor-img" src="Images/mtech.jpg" alt="Tech Innovations repairs and devices">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Mo Tech Innovations</h3>
-      <p class="vendor-cat">Services · Device Repair</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Mobile device repairs plus buying and selling of phones.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2347089372958?text=Hello%20I%20found%20Tech%20Innovations%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-
-        <div class="vendor-card" id="Preshi-gadget">
-      <img class="vendor-img" src="Images/Preshi Gadget.jpg" alt="Preshi Gadget repairs">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Preshi Gadget</h3>
-      <p class="vendor-cat">Services · Phone Repair</p>
-      <p class="vendor-loc">Ogbomosho</p>
-
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Hardware and software repairs (especially iPhones), including board work and fault diagnosis.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348127560534?text=Hello%20I%20found%20Preshi%20Gadget%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20repair%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-  </div>
-
-  <!-- FASHION & CLOTHING -->
-  <h3 class="vendor-group-title">Fashion & Clothing</h3>
-  <div class="vendor-grid">
-
-    <div class="vendor-card" id="Trendy Luxe By Chen">
+    <div class="vendor-card">
       <img class="vendor-img" src="Images/chen 2.JPG" alt="Trendy Luxe By Chen products">
-      <span class="vendor-tag verified">✔ Verified · yoaco Ogbomosho</span>
+      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
       <h3>Trendy Luxe By Chen</h3>
       <p class="vendor-cat">Fashion · Clothing Brand</p>
-      <p class="vendor-loc">Yoaco Phase 2 (Dreamz Hotel Junction)</p>
+      <p class="vendor-loc">Yoaco Phase 2</p>
       <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Stylish and quality clothing for modern fashion lovers. Trendy, comfortable, and confidently made.</p>
+        <span class="vendor-chip">Replies on WhatsApp</span>
+        <span class="vendor-chip price">Price on request</span>
+      </div>
       <a class="small-btn" target="_blank"
-         href="https://wa.me/2348072670507?text=Hello%20I%20saw%20Trendy%20Luxe%20By%20Chen%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
+        href="https://wa.me/2348072670507?text=Hello%20I%20saw%20Trendy%20Luxe%20By%20Chen%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
         Chat on WhatsApp
       </a>
     </div>
 
-    <div class="vendor-card" id="The Flourijay Vault">
-      <img class="vendor-img" src="Images/flourijay.jpeg" alt="The Flourijay Vault accessories">
-      <span class="vendor-tag verified">✔ Verified · Ibadan / Ogbomosho</span>
-      <h3>The Flourijay Vault</h3>
-      <p class="vendor-cat">Fashion · Accessories</p>
-      <p class="vendor-loc">Ibadan / Ogbomosho – Under G</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">A fashion accessories brand offering stylish and quality pieces that complete your look.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348087489412?text=Hello%20I%20saw%20The%20Flourijay%20Vault%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-    <div class="vendor-card" id="Fits by precious">
-  <img class="vendor-img" src="Images/Fits by precious.jpg" alt="Fits by precious clothing">
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-  <h3>Fits by precious</h3>
-  <p class="vendor-cat">Fashion & Clothing</p>
-  <p class="vendor-loc">Ogbomosho</p>
-  <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-  <p class="vendor-desc">
-    Curated women’s fashion brand offering trendy, affordable and stylish clothing for everyday confidence.
-  </p>
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2347015657810?text=Hello%20I%20found%20Fits%20by%20precious%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-    </div>
-
-
-
-   
-
-    <div class="vendor-card" id="Shebba Couture">
-      <img class="vendor-img" src="Images/shebba 2.JPG" alt="Shebba Couture ready-to-wear">
-      <span class="vendor-tag verified">✔ Verified · Ibadan</span>
-      <h3>Shebba Couture</h3>
-      <p class="vendor-cat">Fashion · Ready-to-wear</p>
-      <p class="vendor-loc">Adenuga Street, Ibadan</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Ready-to-wear fashion pieces made for comfort, style, and confidence.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348149218062?text=Hello%20I%20saw%20Shebba%20Couture%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="The Girly_Co">
-      <img class="vendor-img" src="Images/GIRLYCO.jpg" alt="The Gorly Co">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>The Girly_Co</h3>
-      <p class="vendor-cat">Fashion & Clothing · Thrift Wears</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Carefully sourced graded thrift wears including crop tops, denim and shorts.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2349128581721?text=Hello%20I%20found%20The%20Gorly_Co%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="Faceless Emerald">
-      <img class="vendor-img" src="Images/FACELESS.JPG" alt="Faceless Emerald">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Faceless Emerald</h3>
-      <p class="vendor-cat">Fashion & Clothing</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Ready-to-wear and custom dresses with a focus on stylish, well-finished outfits.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348106870883?text=Hello%20I%20found%20Faceless%20Emerald%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="Confidence Touch">
-      <img class="vendor-img" src="Images/Confidence Touch .jpg" alt="Confidence Touch">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Confidence Touch</h3>
-      <p class="vendor-cat">Fashion & Clothing</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Creative fashion brand combining fashion design and handcrafted pieces.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348150467588?text=Hello%20I%20found%20Confidence%20Touch%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-
-    <div class="vendor-card" id="Shop_with_mide (SWM)">
-  <img class="vendor-img" src="Images/fcd3c9e1-5ddb-4acd-974e-9a75fe162c38 - Fathia Busari.JPEG" alt="Shop With Mide">
-
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho / Ibadan</span>
-
-  <h3>Shop_with_mide (SWM)</h3>
-  <p class="vendor-cat">Fashion · Style, Scent & Accessories</p>
-  <p class="vendor-loc">Under G, Ogbomosho / Ibadan</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Where style meets scent & sparkle.
-  </p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2348036234997?text=Hello%20I%20found%20Shop%20With%20Mide%20on%20OjaHub%20and%20I%E2%80%99m%20interested.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-    <div class="vendor-card" id="Omo Owo Ventures">
-      <img class="vendor-img" src="Images/Omo owo.jpg" alt="Omo Owo Ventures">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Omo Owo Ventures</h3>
-      <p class="vendor-cat">Fashion & Clothing</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Quality football jerseys and fashion items available at affordable prices.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348139632529?text=Hello%20I%20found%20Omo%20Owo%20Ventures%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-
-
-    <div class="vendor-card" id="source-wears">
-  <img class="vendor-img" src="Images/ source wears.jpeg" alt="Source Wears">
-
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-
-  <h3>Source Wears</h3>
-  <p class="vendor-cat">Fashion & Clothing · Jersey & Casual Wears</p>
-  <p class="vendor-loc">Behind Le Harve Hotel, Under G Area, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Deals in quality jersey wears, white shirts and inner tees for everyday style and sports lovers.
-  </p>
-
-  <a class="small-btn" target="_blank" rel="noopener"
-     href="https://wa.me/2348074167103?text=Hello%20I%20found%20Source%20Wears%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-    <div class="vendor-card" id="Tianah’s Empire">
-      <img class="vendor-img" src="Images/IMG_0276 - Oluwadolabomi Sharon.JPEG" alt="Tianah's Empire">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Tianah’s Empire</h3>
-      <p class="vendor-cat">Fashion & Clothing</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Fashionable clothing store for stylish everyday looks and trusted fashion picks.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348085154210?text=Hello%20I%20found%20Tianah%E2%80%99s%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="Mhidey Empire">
-      <img class="vendor-img" src="Images/Mhidey Empire.jpg" alt="Mhidey Empire">
-      <span class="vendor-tag verified">✔ Verified · Ibadan</span>
-      <h3>Mhidey Empire</h3>
-      <p class="vendor-cat">Fashion & Clothing</p>
-      <p class="vendor-loc">Ibadan</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Fashion brand focused on quality clothing and stylish customer-ready pieces.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2349078719710?text=Hello%20I%20found%20Mhidey%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="CAPVERSE">
-  <img class="vendor-img" src="Images/Cap verse.jpg" alt="CAPVERSE caps and fashion accessories">
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-  <h3>CAPVERSE</h3>
-  <p class="vendor-cat">Fashion & Clothing</p>
-  <p class="vendor-loc">Ogbomosho</p>
-  <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-  <p class="vendor-desc">
-    Quality cap brand offering stylish cap designs for different looks at affordable prices.
-  </p>
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2349076837639?text=Hello%20I%20found%20CAPVERSE%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-<div class="vendor-card" id="success-stitches">
-  <img class="vendor-img" src="Images/success stitches.jpeg" alt="Success Stitches fashion design">
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-
-  <h3>Success Stitches</h3>
-  <p class="vendor-cat">Fashion & Clothing · Fashion Design</p>
-  <p class="vendor-loc">Behind Alaska's House, Randa Area, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">Fashion design (custom outfits and tailoring).</p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2348169097729?text=Hello%20I%20found%20Success%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20design%20services.%20Please%20share%20your%20styles%20and%20starting%20prices.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-<div class="vendor-card" id="Bella Stitches ‘n’ Clothings">
-  <img class="vendor-img" src="Images/Bella Stitches ‘n’ clothings .jpg" alt="Bella Stitches n Clothings">
-
-  <span class="vendor-tag verified">✔ Verified · Under G, Ogbomosho</span>
-
-  <h3>Bella Stitches ‘n’ Clothings</h3>
-  <p class="vendor-cat">Fashion · Corporate & Custom Fits</p>
-  <p class="vendor-loc">Under G, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Specialized in corporate and custom-made fits for women to help them slay confidently.
-  </p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2348147512130?text=Hello%20I%20found%20Bella%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-
-
-
-
-<div class="vendor-card" id="Abike’s Collection">
-  <img class="vendor-img" src="Images/8b174f53-0aa3-4d9e-b821-43eff866a7e6 - Opeyemi Oke.JPEG" alt="Abike's Collection">
-
-  <span class="vendor-tag verified">✔ Verified · Stallite Area, Ogbomosho</span>
-
-  <h3>Abike’s Collection</h3>
-  <p class="vendor-cat">Fashion · Unisex Wears & Accessories</p>
-  <p class="vendor-loc">Stallite Area, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Unisex wears, bags, shoes, caps, sneakers, slides and accessories.
-  </p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2348061437324?text=Hello%20I%20found%20Abike%E2%80%99s%20Collection%20on%20OjaHub%20and%20I%E2%80%99m%20interested.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-
-
-
-
-
-<div class="vendor-card" id="Japheth Sport Collection">
-  <img class="vendor-img" src="Images/IMG-20260121-WA0056 - Japhet Sunday.JPEG" alt="Japheth Sport Collection">
-
-  <span class="vendor-tag verified">✔ Verified · Adenike, Ogbomosho</span>
-
-  <h3>Japheth Sport Collection</h3>
-  <p class="vendor-cat">Fashion · Sports Wears & Boots</p>
-  <p class="vendor-loc">Adenike, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Football boots and sports collections for wholesalers and retailers.
-  </p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2349131540978?text=Hello%20I%20found%20Japheth%20Sport%20Collection%20on%20OjaHub%20and%20I%E2%80%99m%20interested.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-
-
-
-  </div>
-
-
-  
-
-
-
-  <!-- BEAUTY & COSMETICS -->
-  <h3 class="vendor-group-title">Beauty & Cosmetics</h3>
-  <div class="vendor-grid">
-
-    <div class="vendor-card" id="Nk’s Aurum">
+    <div class="vendor-card">
       <img class="vendor-img" src="Images/NK'S AURUM.jpg" alt="Nk's Aurum beauty products">
       <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
       <h3>Nk’s Aurum</h3>
       <p class="vendor-cat">Beauty & Cosmetics</p>
       <p class="vendor-loc">Ogbomosho</p>
       <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Beauty and fragrance brand focused on quality self-care and wellness products.</p>
+        <span class="vendor-chip">Replies on WhatsApp</span>
+        <span class="vendor-chip price">Price on request</span>
+      </div>
       <a class="small-btn" target="_blank"
-         href="https://wa.me/2348133261691?text=Hello%20I%20found%20Nk%E2%80%99s%20Aurum%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
+        href="https://wa.me/2348133261691?text=Hello%20I%20found%20Nk%E2%80%99s%20Aurum%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
         Chat on WhatsApp
       </a>
     </div>
 
-    <div class="vendor-card" id="LGBeauty">
-      <img class="vendor-img" src="Images/LGBeauty .jpg" alt="LGBeauty">
+    <div class="vendor-card">
+      <img class="vendor-img" src="Images/Bee’s cafe and bistro (bees treat).jpeg" alt="Bee’s Cafe and Bistro">
       <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>LGBeauty</h3>
-      <p class="vendor-cat">Beauty & Cosmetics</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Makeup artist and nail technician offering beauty services and glam looks.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348139579411?text=Hello%20I%20found%20LGBeauty%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20beauty%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="Everythingbykemy">
-      <img class="vendor-img" src="Images/Everythingbykemy .jpg" alt="Everythingbykemy">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Everythingbykemy</h3>
-      <p class="vendor-cat">Beauty & Cosmetics</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">One-stop shop for girlie essentials, beauty products and personalized gift items.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2347012490848?text=Hello%20I%20found%20Everythingbykemy%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-
-    <div class="vendor-card" id="Owoglo Oriflame">
-  <img class="vendor-img" src="Images/IMG-20251125-WA0009 - Gloria Temitope Owojori.JPEG" alt="Owoglo Oriflame beauty products">
-  <span class="vendor-tag verified">✔ Verified · Ibadan</span>
-  <h3>Owoglo Oriflame</h3>
-  <p class="vendor-cat">Beauty & Cosmetics</p>
-  <p class="vendor-loc">Ibadan</p>
-
-  <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-  <p class="vendor-desc">
-    Oriflame skincare and beauty products with options for different skin types, including natural-based products.
-  </p>
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2349038668585?text=Hello%20I%20found%20Owoglo%20Oriflame%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-<div class="vendor-card" id="glorious-essence-store">
-  <img class="vendor-img" src="Images/Glorious essence store.jpeg" alt="Glorious Essence Store beauty products">
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho / Ibadan</span>
-
-  <h3>Glorious Essence Store</h3>
-  <p class="vendor-cat">Beauty & Cosmetics</p>
-  <p class="vendor-loc">Adenike (LAUTECH area) / Ibadan (Iyana Agbala, Iwo Road)</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">Hair accessories and beauty products.</p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2349032099178?text=Hello%20I%20found%20Glorious%20Essence%20Store%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20hair%20accessories%20and%20beauty%20items.%20Please%20share%20your%20catalog%20and%20prices.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-<div class="vendor-card" id="Toyo Scents & Luxe Hair">
-  <img class="vendor-img" src="Images/Toyo scents and Luxe Hair.jpg" alt="Toyo Scents and Luxe Hair">
-
-  <span class="vendor-tag verified">✔ Verified · Under G, Ogbomosho</span>
-
-  <h3>Toyo Scents & Luxe Hair</h3>
-  <p class="vendor-cat">Beauty · Wigs & Perfumes</p>
-  <p class="vendor-loc">Under G, Nurudeen Street, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Slay the day with quality wigs and captivating perfumes.
-  </p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2347088792461?text=Hello%20I%20found%20Toyo%20Scents%20%26%20Luxe%20Hair%20on%20OjaHub%20and%20I%E2%80%99m%20interested.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-  </div>
-
-
-
-  
-
-  <!-- FOOD VENDORS -->
-  <h3 class="vendor-group-title">Food Vendors</h3>
-  <div class="vendor-grid">
-
-
-
-
-    <div class="vendor-card" id="Chef Rahma Gourmet Kitchen">
-  <img class="vendor-img" src="Images/Chef Rahma gourmet kitchen .jpg" alt="Chef Rahma Gourmet Kitchen">
-
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-
-  <h3>Chef Rahma Gourmet Kitchen</h3>
-  <p class="vendor-cat">Food · Cooked Meals</p>
-  <p class="vendor-loc">Abaa, Olubeere, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Your craving, our inspiration 🤗👩‍🍳
-  </p>
-
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2348107429358?text=Hello%20I%20found%20Chef%20Rahma%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20place%20an%20order.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-<div class="vendor-card" id="bees-cafe-bistro">
-  <img class="vendor-img" src="Images/Bee’s cafe and bistro (bees treat).jpeg" alt="Bee’s Cafe and Bistro">
-
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-
-  <h3>Bee’s Cafe and Bistro (Bee’s Treat)</h3>
-  <p class="vendor-cat">Food · Cooked Meals & Fast Food</p>
-  <p class="vendor-loc">Adjacent G71 Filling Station, Under G, Ogbomosho</p>
-
-  <div class="vendor-meta">
-    <span class="vendor-chip">Replies on WhatsApp</span>
-    <span class="vendor-chip price">Price on request</span>
-  </div>
-
-  <p class="vendor-desc">
-    Your go-to spot for rich, satisfying meals, creamy parfaits, and tasty fast food — served fresh daily in LAUTECH, Ogbomosho.
-  </p>
-
-  <a class="small-btn" target="_blank" rel="noopener"
-     href="https://wa.me/2348051564639?text=Hello%20I%20found%20Bee%E2%80%99s%20Cafe%20and%20Bistro%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20place%20an%20order.%20Please%20share%20your%20menu%20and%20prices.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-
-
-
-
-    <div class="vendor-card" id="Yorhnee Creations">
-      <img class="vendor-img" src="Images/yorhnee.jpg" alt="Yorhnee Creations">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Yorhnee Creations</h3>
+      <h3>Bee’s Treat</h3>
       <p class="vendor-cat">Food · Cooked Meals</p>
-      <p class="vendor-loc">Ogbomosho</p>
+      <p class="vendor-loc">Under G, Ogbomosho</p>
       <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Affordable food services and meal-related offerings from a registered local brand.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348136966242?text=Hello%20I%20found%20Yorhnee%20Creations%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20food%20services.%20Please%20share%20more%20details.%20Thank%20you.">
+        <span class="vendor-chip">Replies on WhatsApp</span>
+        <span class="vendor-chip price">Price on request</span>
+      </div>
+      <a class="small-btn" target="_blank" rel="noopener"
+        href="https://wa.me/2348051564639?text=Hello%20I%20found%20Bee%E2%80%99s%20Cafe%20and%20Bistro%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20place%20an%20order.%20Please%20share%20your%20menu%20and%20prices.%20Thank%20you.">
         Chat on WhatsApp
       </a>
     </div>
 
-    <div class="vendor-card" id="Bimmy’s Kitchen">
-      <img class="vendor-img" src="Images/bimmy.jpg" alt="Bimmy's Kitchen">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Bimmy’s Kitchen</h3>
-      <p class="vendor-cat">Food · Cooked Meals</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Fresh, flavorful meals made with care and quality ingredients.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348055894152?text=Hello%20I%20found%20Bimmy%E2%80%99s%20Kitchen%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20meals.%20Please%20share%20your%20menu%20and%20prices.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-  </div>
-
-  <!-- HOME / LIVING / OTHERS -->
-  <h3 class="vendor-group-title">Home & Living / Others</h3>
-  <div class="vendor-grid">
-
-    <div class="vendor-card" id="Akin Decor"> 
+    <div class="vendor-card">
       <img class="vendor-img" src="Images/AKIN DECOR.JPEG" alt="Akin Decor interiors">
       <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
       <h3>Akin Decor</h3>
       <p class="vendor-cat">Others · Interior Decor</p>
       <p class="vendor-loc">Ogbomosho</p>
       <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Interior decor brand focused on clean, classy and functional spaces for homes and businesses.</p>
+        <span class="vendor-chip">Replies on WhatsApp</span>
+        <span class="vendor-chip price">Price on request</span>
+      </div>
       <a class="small-btn" target="_blank"
-         href="https://wa.me/2349153461979?text=Hello%20I%20found%20Akin%20Decor%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20interior%20services.%20Please%20share%20more%20details.%20Thank%20you.">
+        href="https://wa.me/2349153461979?text=Hello%20I%20found%20Akin%20Decor%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20interior%20services.%20Please%20share%20more%20details.%20Thank%20you.">
         Chat on WhatsApp
       </a>
     </div>
-
-
-    <div class="vendor-card" id="Ebony Autos">
-  <img class="vendor-img" src="Images/bdcddc27-90ee-4934-89d7-4127d1398165 - OJO AMOS.JPEG" alt="Ebony Autos car services">
-  <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-  <h3>Ebony Autos</h3>
-  <p class="vendor-cat">Others · Auto Services</p>
-  <p class="vendor-loc">Ogbomosho</p>
-  <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-  <p class="vendor-desc">
-    Auto-related products and services for car owners, with a focus on reliable support and customer satisfaction.
-  </p>
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2347025512785?text=Hello%20I%20found%20Ebony%20Autos%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20auto%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
-    <div class="vendor-card" id="Tabby T Affairs">
-      <img class="vendor-img" src="Images/tabby.JPG" alt="Tabby T Affairs kitchen and household items">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Tabby T Affairs</h3>
-      <p class="vendor-cat">Others · Home Essentials</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Kitchen utensils and household appliances for everyday home use.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2349027017072?text=Hello%20I%20found%20Tabby%20T%20Affairs%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="Oja Oko (Local Market)">
-      <img class="vendor-img" src="Images/20251230_072919 - Joseph Michael.JPEG" alt="Oja Oko local market">
-      <span class="vendor-tag verified">✔ Verified · Ibadan</span>
-      <h3>Oja Oko (Local Market)</h3>
-      <p class="vendor-cat">Others · Farm Produce</p>
-      <p class="vendor-loc">Ibadan</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Trusted marketplace for quality farm produce and local market essentials.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2348137151407?text=Hello%20I%20found%20Oja%20Oko%20(Local%20Market)%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card" id="Hikmah Gems'N'gleam">
-      <img class="vendor-img" src="Images/gems & gleam.jpg" alt="Hikmah Gems N Gleam">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Hikmah Gems'N'gleam</h3>
-      <p class="vendor-cat">Others · Jewelry & Accessories</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-      <p class="vendor-desc">Jewelry and accessories brand offering minimalist and stylish pieces.</p>
-      <a class="small-btn" target="_blank"
-         href="https://wa.me/2349075615320?text=Hello%20I%20found%20Hikmah%20Gems%27N%27gleam%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-
-    <div class="vendor-card" id="Baniture Creatives">
-  <img class="vendor-img" src="Images/baniture.jpg" alt="Baniture Creatives event management services">
-  <span class="vendor-tag verified">✔ Verified · Ibadan / Lagos</span>
-  <h3>Baniture Creatives</h3>
-  <p class="vendor-cat">Services · Event Management</p>
-  <p class="vendor-loc">Bodija, Ibadan · Abule Egba, Lagos</p>
-  <div class="vendor-meta">
-      <span class="vendor-chip">Replies on WhatsApp</span>
-         <span class="vendor-chip price">Price on request</span>
-        </div>
-  <p class="vendor-desc">
-    Event management company offering event planning, coordination, decoration,
-    ushering, lighting and special effects.
-  </p>
-  <a class="small-btn" target="_blank"
-     href="https://wa.me/2348079041574?text=Hello%20I%20found%20Baniture%20Creatives%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20event%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-    Chat on WhatsApp
-  </a>
-</div>
-
   </div>
-
-
-  <p class="support-inline">
-  Can’t find what you need?
-  <a href="https://wa.me/2348165410790?text=Hello%20OjaHub%2C%20I%20couldn%E2%80%99t%20find%20what%20I%20need%20on%20the%20site.%20Please%20help."
-     target="_blank" rel="noopener">
-    Chat OjaHub support on WhatsApp
-  </a>.
-</p>
 </section>
 
-
-
-
-
-
-
-
-
-<!-- TRUST SECTION -->
-
+<!-- HOW -->
 <section class="section" id="how">
   <h2 class="section-title">How OjaHub works</h2>
-
   <div class="steps">
     <div class="step-card">
       <span class="step-number">1</span>
       <h3>We verify local vendors</h3>
-      <p>
-        We start with vendors we or our community can vouch for in Ogbomosho and Ibadan.
-      </p>
+      <p>We start with vendors we or our community can vouch for in Ogbomosho and Ibadan.</p>
     </div>
 
     <div class="step-card">
       <span class="step-number">2</span>
       <h3>We list their offers</h3>
-      <p>
-        You see what they sell, their category, price range and location in one place.
-      </p>
+      <p>You see what they sell, their category, and location in one place.</p>
     </div>
 
     <div class="step-card">
       <span class="step-number">3</span>
       <h3>You chat and buy</h3>
-      <p>
-        You contact them directly on WhatsApp to ask questions and buy safely.
-      </p>
+      <p>You contact them directly on WhatsApp to ask questions and buy safely.</p>
     </div>
   </div>
 </section>
-
-
 
 <!-- BUYING SAFELY -->
 <section class="section safety-section" id="buying-safely">
   <h2 class="section-title">Buying safely on OjaHub</h2>
   <p class="safety-intro">
-    OjaHub connects you to local vendors directly on WhatsApp. To stay safe and have a smooth experience,
-    please follow these simple tips before making payment or confirming delivery.
+    OjaHub connects you to local vendors directly on WhatsApp. Please follow these tips before payment or delivery.
   </p>
 
   <div class="safety-grid">
-    <div class="safety-card">
-      <span class="safety-icon">💬</span>
-      <h3>Chat vendor first</h3>
-      <p>Ask questions and confirm product/service details before you proceed.</p>
-    </div>
-
-    <div class="safety-card">
-      <span class="safety-icon">🧾</span>
-      <h3>Confirm price & delivery</h3>
-      <p>Agree on total price, delivery fee, pickup point, and timeline clearly.</p>
-    </div>
-
-    <div class="safety-card">
-      <span class="safety-icon">📸</span>
-      <h3>Ask for recent pictures/videos</h3>
-      <p>Request current photos or videos to confirm availability and condition.</p>
-    </div>
-
-    <div class="safety-card">
-      <span class="safety-icon">🛍️</span>
-      <h3>Start with small orders</h3>
-      <p>If it’s your first time buying from a vendor, start small and build trust.</p>
-    </div>
-
-    <div class="safety-card">
-      <span class="safety-icon">🆘</span>
-      <h3>Report issues to OjaHub support</h3>
-      <p>If something feels wrong or unclear, contact OjaHub support before proceeding.</p>
-    </div>
+    <div class="safety-card"><span class="safety-icon">💬</span><h3>Chat vendor first</h3><p>Ask questions and confirm product/service details.</p></div>
+    <div class="safety-card"><span class="safety-icon">🧾</span><h3>Confirm price & delivery</h3><p>Agree on total price, delivery fee and timeline clearly.</p></div>
+    <div class="safety-card"><span class="safety-icon">📸</span><h3>Ask for recent pictures/videos</h3><p>Request current photos/videos to confirm availability.</p></div>
+    <div class="safety-card"><span class="safety-icon">🛍️</span><h3>Start with small orders</h3><p>If it’s your first time buying, start small and build trust.</p></div>
+    <div class="safety-card"><span class="safety-icon">🆘</span><h3>Report issues</h3><p>If something feels wrong, contact OjaHub support before paying.</p></div>
   </div>
 
   <p class="safety-note">
-    OjaHub helps you discover local vendors, but buyers should still confirm details directly before payment.
+    OjaHub helps you discover vendors — buyers should confirm details before payment.
   </p>
 </section>
 
-
-
-<!-- FEEDBACK PAGE -->
-
-
-<!-- FEEDBACK / CUSTOMER EXPERIENCE -->
+<!-- FEEDBACK -->
 <section class="feedback" id="feedback">
   <h2>Help us improve OjaHub</h2>
-  <p>
-    We’re building OjaHub for customers and local vendors in Ogbomosho and Ibadan.
-    Please share quick feedback so we can improve your experience.
-  </p>
+  <p>Share quick feedback so we can improve your experience.</p>
 
   <div class="feedback-questions">
     <div class="feedback-q">✅ Did you find what you needed?</div>
@@ -1160,86 +319,53 @@
   </div>
 
   <div class="feedback-actions">
-    <a class="feedback-btn form-btn" target="_blank" rel="noopener"
-       href="https://forms.gle/5ZioCNtz9sG4asym9">
+    <a class="feedback-btn form-btn" target="_blank" rel="noopener" href="https://forms.gle/5ZioCNtz9sG4asym9">
       Share feedback (30 secs)
     </a>
 
     <a class="feedback-btn whatsapp-btn" target="_blank" rel="noopener"
-       href="https://wa.me/2348165410790?text=Hello%20OjaHub%2C%20I%20have%20customer%20feedback%20to%20share.">
+      href="https://wa.me/2348165410790?text=Hello%20OjaHub%2C%20I%20have%20customer%20feedback%20to%20share.">
       Send feedback on WhatsApp
     </a>
   </div>
-
-  <p class="feedback-note">
-    Your feedback helps us improve vendor quality, customer trust and overall experience.
-  </p>
-
-  <p class="feedback-help-line">
-    Can’t find what you need?
-    <a href="https://wa.me/2348165410790?text=Hello%20OjaHub%2C%20I%20couldn%E2%80%99t%20find%20what%20I%20need%20on%20the%20site.%20Please%20help."
-       target="_blank" rel="noopener">
-      Chat OjaHub support on WhatsApp
-    </a>.
-  </p>
 </section>
-
-
-
-  <p class="trust-disclaimer">
-  OjaHub helps you discover and contact local vendors. Buyers and vendors are
-  responsible for discussing prices, delivery, and payments directly. Please
-  confirm details before making payment.
-</p>
-</section>
-
 
 <!-- VENDOR FORM -->
 <section class="section" id="become-vendor">
   <h2 class="section-title">Become a vendor on OjaHub</h2>
-
   <p class="form-intro">
-    We are building a trusted local marketplace.
     If you run a reliable business in Ogbomosho or Ibadan, apply below.
   </p>
 
-  <a class="apply-btn"
-     href="https://forms.gle/uq1Hc6BfBPnRb5Hu7"
-     target="_blank"
-     rel="noopener">
-     Apply to Become an OjaHub Vendor
+  <a class="apply-btn" href="https://forms.gle/uq1Hc6BfBPnRb5Hu7" target="_blank" rel="noopener">
+    Apply to Become an OjaHub Vendor
   </a>
 
   <p class="form-note">
-    We’ll review your details and contact you on WhatsApp once your shop is approved.
-    For now, OjaHub is focusing on vendors in Ogbomosho and Ibadan only.
+    We’ll review your details and contact you on WhatsApp once approved.
   </p>
 </section>
 
 <!-- FOOTER -->
-
 <footer class="footer">
   <div class="footer-top">
     <div class="footer-brand">
-  <img src="Images/ojahub logo.PNG" alt="OjaHub" class="footer-logo-img">
-  <p>
-  OjaHub connects trusted local vendors with buyers, starting with
-  Ogbomosho and Ibadan. Built to make finding local services faster and safer.
-  <br>
-  verified vendors · Direct WhatsApp chat · No hidden charges
-</p>
-
-<p class="footer-disclaimer">
-  OjaHub currently connects buyers and vendors directly and does not process payments or deliveries.
-</p>
-</div>
+      <img src="Images/ojahub logo.PNG" alt="OjaHub" class="footer-logo-img">
+      <p>
+        OjaHub connects trusted local vendors with buyers, starting with Ogbomosho and Ibadan.
+        verified vendors · Direct WhatsApp chat · No hidden charges
+      </p>
+      <p class="footer-disclaimer">
+        OjaHub currently connects buyers and vendors directly and does not process payments or deliveries.
+      </p>
+    </div>
 
     <div class="footer-col">
       <h4>For buyers</h4>
       <ul>
-        <li><a href="#vendors">Browse vendors</a></li>
-        <li><a href="#how">How OjaHub works</a></li>
-        <li><a href="#how">Buying safely</a></li>
+        <li><a href="#categories">Browse categories</a></li>
+        <li><a href="all-vendors.html">Browse all vendors</a></li>
+        <li><a href="#buying-safely">Buying safely</a></li>
       </ul>
     </div>
 
@@ -1247,16 +373,17 @@
       <h4>For vendors</h4>
       <ul>
         <li><a href="#become-vendor">Join as a vendor</a></li>
-        <li><a href="#become-vendor">Who can join?</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help." target="_blank">
-  Chat OjaHub Support
-</a></li>
+        <li>
+          <a href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help." target="_blank" rel="noopener">
+            Chat OjaHub Support
+          </a>
+        </li>
         <li><a href="#">Email (coming soon)</a></li>
       </ul>
     </div>
@@ -1267,9 +394,7 @@
   </div>
 </footer>
 
-   
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

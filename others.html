@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home & Living / Others - OjaHub</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS (reuse same as fashion page) -->
+  <link rel="stylesheet" href="fashion.css" />
+  <link rel="stylesheet" href="nav.css" />
+</head>
+
+<body>
+
+  <!-- TOP NAV (Bootstrap) -->
+  <header class="topnav">
+    <nav class="navbar navbar-expand-lg navbar-dark ojahub-navbar">
+      <div class="container-fluid px-3">
+
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="Images/ojahub_logo_orange_trim@2x.png" class="nav-logo" alt="OjaHub">
+        </a>
+
+        <!-- Hamburger -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#ojahubNav"
+          aria-controls="ojahubNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="ojahubNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <!-- Categories dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                <li><a class="dropdown-item" href="food.html">Food Vendors</a></li>
+                <li><a class="dropdown-item" href="fashion.html">Fashion & Clothing</a></li>
+                <li><a class="dropdown-item" href="beauty.html">Beauty & Cosmetics</a></li>
+                <li><a class="dropdown-item" href="phones.html">Phones & Gadgets</a></li>
+                <li><a class="dropdown-item" href="services.html">Services & Repairs</a></li>
+                <li><a class="dropdown-item" href="others.html">Home & Living / Others</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="index.html#vendors">Vendors</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#become-vendor">For Vendors</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help."
+                target="_blank" rel="noopener">
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <!-- Right side actions -->
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">♡ Favorites</button>
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">👤 Profile</button>
+
+            <a class="btn btn-warning fw-bold" href="index.html#become-vendor">List Your Business</a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE WRAP -->
+  <main class="page">
+
+    <a class="backlink" href="index.html">← Back to Home</a>
+
+    <div class="pagehead">
+      <div>
+        <h1>Home &amp; Living / Others</h1>
+        <p>Browse home essentials and other vendors listed on OjaHub.</p>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="searchbar">
+      <span class="searchicon">🔎</span>
+      <input id="searchInput" type="search" placeholder="Search vendors..." aria-label="Search others vendors" />
+    </div>
+
+    <!-- MAIN GRID -->
+    <section class="layout">
+
+      <!-- LEFT: vendor list -->
+      <div class="list">
+        <div class="vendor-grid" id="vendorGrid">
+
+          <!-- 1) Akin Decor -->
+          <article class="vendor-mini"
+            data-name="Akin Decor"
+            data-city="Ogbomosho"
+            data-cat="Others · Interior Decor"
+            data-loc="Ogbomosho"
+            data-desc="Interior decor brand focused on clean, classy and functional spaces for homes and businesses."
+            data-whatsapp="https://wa.me/2349153461979?text=Hello%20I%20found%20Akin%20Decor%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20interior%20services.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/AKIN DECOR.JPEG">
+            <img class="thumb" src="Images/AKIN DECOR.JPEG" alt="Akin Decor interiors" />
+            <div class="mini-info">
+              <h3>Akin Decor</h3>
+              <p class="mini-meta">• Others · Interior Decor</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 2) Ebony Autos -->
+          <article class="vendor-mini"
+            data-name="Ebony Autos"
+            data-city="Ogbomosho"
+            data-cat="Others · Auto Services"
+            data-loc="Ogbomosho"
+            data-desc="Auto-related products and services for car owners, with a focus on reliable support and customer satisfaction."
+            data-whatsapp="https://wa.me/2347025512785?text=Hello%20I%20found%20Ebony%20Autos%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20auto%20services.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/bdcddc27-90ee-4934-89d7-4127d1398165 - OJO AMOS.JPEG">
+            <img class="thumb" src="Images/bdcddc27-90ee-4934-89d7-4127d1398165 - OJO AMOS.JPEG" alt="Ebony Autos car services" />
+            <div class="mini-info">
+              <h3>Ebony Autos</h3>
+              <p class="mini-meta">• Others · Auto Services</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 3) Tabby T Affairs -->
+          <article class="vendor-mini"
+            data-name="Tabby T Affairs"
+            data-city="Ogbomosho"
+            data-cat="Others · Home Essentials"
+            data-loc="Ogbomosho"
+            data-desc="Kitchen utensils and household appliances for everyday home use."
+            data-whatsapp="https://wa.me/2349027017072?text=Hello%20I%20found%20Tabby%20T%20Affairs%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/tabby.JPG">
+            <img class="thumb" src="Images/tabby.JPG" alt="Tabby T Affairs kitchen and household items" />
+            <div class="mini-info">
+              <h3>Tabby T Affairs</h3>
+              <p class="mini-meta">• Others · Home Essentials</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 4) Oja Oko (Local Market) -->
+          <article class="vendor-mini"
+            data-name="Oja Oko (Local Market)"
+            data-city="Ibadan"
+            data-cat="Others · Farm Produce"
+            data-loc="Ibadan"
+            data-desc="Trusted marketplace for quality farm produce and local market essentials."
+            data-whatsapp="https://wa.me/2348137151407?text=Hello%20I%20found%20Oja%20Oko%20(Local%20Market)%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/20251230_072919 - Joseph Michael.JPEG">
+            <img class="thumb" src="Images/20251230_072919 - Joseph Michael.JPEG" alt="Oja Oko local market" />
+            <div class="mini-info">
+              <h3>Oja Oko (Local Market)</h3>
+              <p class="mini-meta">• Others · Farm Produce</p>
+              <p class="mini-loc">Ibadan</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 5) Hikmah Gems'N'gleam -->
+          <article class="vendor-mini"
+            data-name="Hikmah Gems'N'gleam"
+            data-city="Ogbomosho"
+            data-cat="Others · Jewelry & Accessories"
+            data-loc="Ogbomosho"
+            data-desc="Jewelry and accessories brand offering minimalist and stylish pieces."
+            data-whatsapp="https://wa.me/2349075615320?text=Hello%20I%20found%20Hikmah%20Gems%27N%27gleam%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/gems & gleam.jpg">
+            <img class="thumb" src="Images/gems & gleam.jpg" alt="Hikmah Gems N Gleam" />
+            <div class="mini-info">
+              <h3>Hikmah Gems'N'gleam</h3>
+              <p class="mini-meta">• Others · Jewelry & Accessories</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 6) Baniture Creatives -->
+          <article class="vendor-mini"
+            data-name="Baniture Creatives"
+            data-city="Ibadan / Lagos"
+            data-cat="Services · Event Management"
+            data-loc="Bodija, Ibadan · Abule Egba, Lagos"
+            data-desc="Event management company offering event planning, coordination, decoration, ushering, lighting and special effects."
+            data-whatsapp="https://wa.me/2348079041574?text=Hello%20I%20found%20Baniture%20Creatives%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20event%20services.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/baniture.jpg">
+            <img class="thumb" src="Images/baniture.jpg" alt="Baniture Creatives event management services" />
+            <div class="mini-info">
+              <h3>Baniture Creatives</h3>
+              <p class="mini-meta">• Services · Event Management</p>
+              <p class="mini-loc">Ibadan · Lagos</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+
+
+          <!-- Valentina Eniola Balogun (Importation) -->
+<article class="vendor-mini"
+  data-name="Imported by Ennyola"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Importation"
+  data-loc="Fish Bar Street, Awa Hostel (Opp. Al-Taofeek Mosque), Under G"
+  data-desc="Importation from China."
+  data-whatsapp="https://wa.me/2347015347032?text=Hello%20I%20found%20Imported%20by%20Ennyola%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20importation.%20Please%20share%20how%20it%20works%20and%20your%20charges.%20Thank%20you."
+  data-img="Images/Imported by Ennyola .jpeg"
+  data-hero="Images/Imported by Ennyola .jpeg">
+  <img class="thumb" src="Images/Imported by Ennyola .jpeg" alt="Imported by Ennyola" />
+  <div class="mini-info">
+    <h3>Imported by Ennyola</h3>
+    <p class="mini-meta">• Others · Importation</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- JAYSHOTIT -->
+<article class="vendor-mini"
+  data-name="JAYSHOTIT 📸"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Photography"
+  data-loc="Adenike Area, Oyo, Ogbomosho"
+  data-desc="Lifestyle photography: studio and outdoor shoots."
+  data-whatsapp="https://wa.me/2348115864916?text=Hello%20I%20found%20JAYSHOTIT%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20photoshoot.%20Please%20share%20your%20packages%20and%20prices.%20Thank%20you."
+  data-img="Images/JAYSHOTIT 📸.jpeg"
+  data-hero="Images/JAYSHOTIT 📸.jpeg">
+  <img class="thumb" src="Images/JAYSHOTIT 📸.jpeg" alt="JAYSHOTIT" />
+  <div class="mini-info">
+    <h3>JAYSHOTIT 📸</h3>
+    <p class="mini-meta">• Others · Photography</p>
+    <p class="mini-loc">Adenike, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Matade.shotit -->
+<article class="vendor-mini"
+  data-name="Matade.shotit"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Videography"
+  data-loc="Adenike, LAUTECH, Ogbomosho"
+  data-desc="Mobile videography: clean visuals and cinematic storytelling."
+  data-whatsapp="https://wa.me/2347048106631?text=Hello%20I%20found%20Matade.shotit%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20video%20shoot.%20Please%20share%20your%20packages%20and%20prices.%20Thank%20you."
+  data-img="Images/Matade.shotit .jpeg"
+  data-hero="Images/Matade.shotit .jpeg">
+  <img class="thumb" src="Images/Matade.shotit .jpeg" alt="Matade.shotit" />
+  <div class="mini-info">
+    <h3>Matade.shotit</h3>
+    <p class="mini-meta">• Others · Videography</p>
+    <p class="mini-loc">Adenike, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Shaped body secret (kept neutral description) -->
+<article class="vendor-mini"
+  data-name="Shaped body secret"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Others · Body Care"
+  data-loc="Ogbomosho (delivers to all cities)"
+  data-desc="Body care products. Contact on WhatsApp for details."
+  data-whatsapp="https://wa.me/2349132674734?text=Hello%20I%20found%20Shaped%20body%20secret%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20your%20product%20list%20and%20prices.%20Thank%20you."
+  data-img="Images/Shaped body secret .jpeg"
+  data-hero="Images/Shaped body secret .jpeg">
+  <img class="thumb" src="Images/Shaped body secret .jpeg" alt="Shaped body secret" />
+  <div class="mini-info">
+    <h3>Shaped body secret</h3>
+    <p class="mini-meta">• Others · Body Care</p>
+    <p class="mini-loc">Ogbomosho (delivers)</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+        </div>
+
+        <!-- Promo banner -->
+        <div class="promo">
+          <div class="promo-text">
+            <h4>Support local businesses</h4>
+            <p>Find trusted vendors in <b>Ogbomosho</b> and <b>Ibadan</b></p>
+          </div>
+          <a class="promo-btn" href="index.html#vendors">Browse All Vendors ▾</a>
+        </div>
+
+        <!-- Support inline -->
+        <p class="support-inline" style="margin:0; color:#374151; font-weight:600;">
+          Can’t find what you need?
+          <a href="https://wa.me/2348165410790?text=Hello%20OjaHub%2C%20I%20couldn%E2%80%99t%20find%20what%20I%20need%20on%20the%20site.%20Please%20help."
+             target="_blank" rel="noopener">
+            Chat OjaHub support on WhatsApp
+          </a>.
+        </p>
+
+      </div>
+
+      <!-- RIGHT: selected vendor detail -->
+      <aside class="detail" id="detailPanel">
+        <div class="detail-hero">
+          <img id="detailHeroImg" src="Images/AKIN DECOR.JPEG" alt="Vendor preview" />
+        </div>
+
+        <div class="detail-body">
+          <h2 id="detailName">Akin Decor</h2>
+
+          <div class="detail-verified">
+            <span class="badge-verified">✔ Verified</span>
+            <span class="dot">·</span>
+            <span id="detailCity">Ogbomosho</span>
+          </div>
+
+          <p class="detail-cat" id="detailCat">Others · Interior Decor</p>
+
+          <p class="detail-loc">
+            <span class="muted">Location:</span>
+            <span id="detailLoc">Ogbomosho</span>
+          </p>
+
+          <hr class="sep" />
+
+          <p class="detail-desc" id="detailDesc">
+            Interior decor brand focused on clean, classy and functional spaces for homes and businesses.
+          </p>
+
+          <div class="detail-chips">
+            <span class="chip ok">✔ Replies on WhatsApp</span>
+            <span class="chip ghost">Price on request</span>
+          </div>
+
+          <a id="detailWhatsApp" class="whatsapp-btn" target="_blank" rel="noopener"
+             href="https://wa.me/2349153461979?text=Hello%20I%20found%20Akin%20Decor%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20interior%20services.%20Please%20share%20more%20details.%20Thank%20you.">
+            <span class="wa-icon">🟢</span>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <!-- JS: click vendors + search + scroll -->
+  <script>
+    const cards = Array.from(document.querySelectorAll(".vendor-mini"));
+    const searchInput = document.getElementById("searchInput");
+
+    const detailHeroImg = document.getElementById("detailHeroImg");
+    const detailName = document.getElementById("detailName");
+    const detailCity = document.getElementById("detailCity");
+    const detailCat = document.getElementById("detailCat");
+    const detailLoc = document.getElementById("detailLoc");
+    const detailDesc = document.getElementById("detailDesc");
+    const detailWhatsApp = document.getElementById("detailWhatsApp");
+    const detailPanel = document.getElementById("detailPanel");
+
+    function setActive(card, shouldScroll = false) {
+      cards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      detailHeroImg.src = card.dataset.hero || "";
+      detailName.textContent = card.dataset.name || "";
+      detailCity.textContent = card.dataset.city || "";
+      detailCat.textContent = card.dataset.cat || "";
+      detailLoc.textContent = card.dataset.loc || "";
+      detailDesc.textContent = card.dataset.desc || "";
+      detailWhatsApp.href = card.dataset.whatsapp || "#";
+
+      if (shouldScroll) {
+        detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => setActive(card, true));
+    });
+
+    if (cards[0]) setActive(cards[0], false);
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const text = (card.dataset.name + " " + card.dataset.cat + " " + card.dataset.loc).toLowerCase();
+        card.style.display = text.includes(q) ? "" : "none";
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

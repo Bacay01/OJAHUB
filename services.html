@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services & Repairs - OjaHub</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Page CSS (reuse same CSS you used for fashion page) -->
+  <link rel="stylesheet" href="fashion.css" />
+  <link rel="stylesheet" href="nav.css">
+</head>
+
+<body>
+
+  <!-- TOP NAV (Bootstrap) -->
+  <header class="topnav">
+    <nav class="navbar navbar-expand-lg navbar-dark ojahub-navbar">
+      <div class="container-fluid px-3">
+
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="Images/ojahub_logo_orange_trim@2x.png" class="nav-logo" alt="OjaHub">
+        </a>
+
+        <!-- Hamburger -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#ojahubNav"
+          aria-controls="ojahubNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="ojahubNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <!-- Categories dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                <li><a class="dropdown-item" href="food.html">Food Vendors</a></li>
+                <li><a class="dropdown-item" href="fashion.html">Fashion & Clothing</a></li>
+                <li><a class="dropdown-item" href="beauty.html">Beauty & Cosmetics</a></li>
+                <li><a class="dropdown-item" href="phones.html">Phones & Gadgets</a></li>
+                <li><a class="dropdown-item" href="services.html">Services & Repairs</a></li>
+                <li><a class="dropdown-item" href="others.html">Home & Living / Others</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="index.html#vendors">Vendors</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#become-vendor">For Vendors</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help."
+                target="_blank" rel="noopener">
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <!-- Right side actions -->
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">♡ Favorites</button>
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">👤 Profile</button>
+
+            <a class="btn btn-warning fw-bold" href="index.html#become-vendor">List Your Business</a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE WRAP -->
+  <main class="page">
+
+    <a class="backlink" href="index.html">← Back to Home</a>
+
+    <div class="pagehead">
+      <div>
+        <h1>Services &amp; Repairs</h1>
+        <p>Browse service vendors listed on OjaHub.</p>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="searchbar">
+      <span class="searchicon">🔎</span>
+      <input id="searchInput" type="search" placeholder="Search services..." aria-label="Search services vendors" />
+    </div>
+
+    <!-- MAIN GRID (left list + right details) -->
+    <section class="layout">
+
+      <!-- LEFT: vendor list -->
+      <div class="list">
+        <div class="vendor-grid" id="vendorGrid">
+
+          <!-- 1) TIJ Laundry -->
+          <article class="vendor-mini"
+            data-name="TIJ Laundry"
+            data-city="Ogbomosho"
+            data-cat="Services · Laundry"
+            data-loc="Ogbomosho"
+            data-desc="Reliable laundry service for clean, fresh, and well-ironed clothing."
+            data-whatsapp="https://wa.me/2349033728795?text=Hello%20I%20found%20TIJ%20Laundry%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20laundry%20service.%20Please%20share%20your%20prices%20and%20pickup%20options.%20Thank%20you."
+            data-hero="Images/TIJ LAUDRY.JPG">
+            <img class="thumb" src="Images/TIJ LAUDRY.JPG" alt="TIJ Laundry service" />
+            <div class="mini-info">
+              <h3>TIJ Laundry</h3>
+              <p class="mini-meta">• Services · Laundry</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 2) Achievers Business Services -->
+          <article class="vendor-mini"
+            data-name="Achievers Business Services"
+            data-city="Ogbomosho"
+            data-cat="Services · Business Support"
+            data-loc="Ogbomosho"
+            data-desc="Business support services including registration help and documentation support."
+            data-whatsapp="https://wa.me/2348104812467?text=Hello%20I%20found%20Achievers%20Business%20Services%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/achiever.jpg">
+            <img class="thumb" src="Images/achiever.jpg" alt="Achievers Business Services" />
+            <div class="mini-info">
+              <h3>Achievers Business Services</h3>
+              <p class="mini-meta">• Services · Business Support</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 3) Pinexa Labs -->
+          <article class="vendor-mini"
+            data-name="Pinexa Labs"
+            data-city="Ogbomosho"
+            data-cat="Services · Web &amp; Digital Systems"
+            data-loc="Hajj Faith, Under G, Ogbomosho"
+            data-desc="We build websites and digital systems designed to help businesses grow and succeed online — from corporate websites and eCommerce platforms to secure management systems."
+            data-whatsapp="https://wa.me/2348123378919?text=Hello%20I%20found%20Pinexa%20Labs%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20digital%20services.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/Pinexa Labs.jpeg">
+            <img class="thumb" src="Images/Pinexa Labs.jpeg" alt="Pinexa Labs" />
+            <div class="mini-info">
+              <h3>Pinexa Labs</h3>
+              <p class="mini-meta">• Services · Web &amp; Digital Systems</p>
+              <p class="mini-loc">Under G, Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Promo banner -->
+        <div class="promo">
+          <div class="promo-text">
+            <h4>Support local businesses</h4>
+            <p>Find trusted vendors in <b>Ogbomosho</b> and <b>Ibadan</b></p>
+          </div>
+          <a class="promo-btn" href="index.html#vendors">Browse All Vendors ▾</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: selected vendor detail -->
+      <aside class="detail" id="detailPanel">
+        <div class="detail-hero">
+          <img id="detailHeroImg" src="Images/TIJ LAUDRY.JPG" alt="Vendor preview" />
+        </div>
+
+        <div class="detail-body">
+          <h2 id="detailName">TIJ Laundry</h2>
+
+          <div class="detail-verified">
+            <span class="badge-verified">✔ Verified</span>
+            <span class="dot">·</span>
+            <span id="detailCity">Ogbomosho</span>
+          </div>
+
+          <p class="detail-cat" id="detailCat">Services · Laundry</p>
+
+          <p class="detail-loc">
+            <span class="muted">Location:</span>
+            <span id="detailLoc">Ogbomosho</span>
+          </p>
+
+          <hr class="sep" />
+
+          <p class="detail-desc" id="detailDesc">
+            Reliable laundry service for clean, fresh, and well-ironed clothing.
+          </p>
+
+          <div class="detail-chips">
+            <span class="chip ok">✔ Replies on WhatsApp</span>
+            <span class="chip ghost">Price on request</span>
+          </div>
+
+          <a id="detailWhatsApp" class="whatsapp-btn" target="_blank" rel="noopener"
+            href="https://wa.me/2349033728795?text=Hello%20I%20found%20TIJ%20Laundry%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20laundry%20service.%20Please%20share%20your%20prices%20and%20pickup%20options.%20Thank%20you.">
+            <span class="wa-icon">🟢</span>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <!-- JS: click vendors + search + scroll to right card -->
+  <script>
+    const cards = Array.from(document.querySelectorAll(".vendor-mini"));
+    const searchInput = document.getElementById("searchInput");
+
+    const detailHeroImg = document.getElementById("detailHeroImg");
+    const detailName = document.getElementById("detailName");
+    const detailCity = document.getElementById("detailCity");
+    const detailCat = document.getElementById("detailCat");
+    const detailLoc = document.getElementById("detailLoc");
+    const detailDesc = document.getElementById("detailDesc");
+    const detailWhatsApp = document.getElementById("detailWhatsApp");
+    const detailPanel = document.getElementById("detailPanel");
+
+    function setActive(card, shouldScroll = false) {
+      cards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      detailHeroImg.src = card.dataset.hero || "";
+      detailName.textContent = card.dataset.name || "";
+      detailCity.textContent = card.dataset.city || "";
+      detailCat.textContent = card.dataset.cat || "";
+      detailLoc.textContent = card.dataset.loc || "";
+      detailDesc.textContent = card.dataset.desc || "";
+      detailWhatsApp.href = card.dataset.whatsapp || "#";
+
+      if (shouldScroll) {
+        detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => setActive(card, true));
+    });
+
+    if (cards[0]) setActive(cards[0], false);
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const text = (card.dataset.name + " " + card.dataset.cat + " " + card.dataset.loc).toLowerCase();
+        card.style.display = text.includes(q) ? "" : "none";
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fashion & Clothing - OjaHub</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <!-- Bootstrap (optional, mainly for icons/spacing if you want) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="fashion.css" />
+  <link rel="stylesheet" href="nav.css">
+</head>
+
+<body>
+
+  <!-- TOP NAV (Bootstrap) -->
+<header class="topnav">
+  <nav class="navbar navbar-expand-lg navbar-dark ojahub-navbar">
+    <div class="container-fluid" >
+
+      <!-- Brand -->
+  <a class="navbar-brand d-flex align-items-center" href="index.html">
+  <img src="Images/ojahub_logo_orange_trim@2x.png" class="nav-logo" alt="OjaHub">
+</a>
+
+       
+       </a>
+      <!-- Hamburger -->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#ojahubNav"
+        aria-controls="ojahubNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="ojahubNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+          <!-- Categories dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="food.html">Food Vendors</a></li>
+              <li><a class="dropdown-item" href="fashion.html">Fashion & Clothing</a></li>
+              <li><a class="dropdown-item" href="beauty.html">Beauty & Cosmetics</a></li>
+              <li><a class="dropdown-item" href="phones.html">Phones & Gadgets</a></li>
+              <li><a class="dropdown-item" href="services.html">Services & Repairs</a></li>
+              <li><a class="dropdown-item" href="others.html">Home & Living / Others</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="index.html#vendors">Vendors</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#become-vendor">For Vendors</a></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help."
+              target="_blank" rel="noopener">
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right side actions -->
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">♡ Favorites</button>
+          <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">👤 Profile</button>
+
+          <a class="btn btn-warning fw-bold" href="index.html#become-vendor">List Your Business</a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <!-- PAGE WRAP -->
+  <main class="page">
+
+    <a class="backlink" href="index.html">← Back to Home</a>
+
+    <div class="pagehead">
+      <div>
+        <h1>Fashion &amp; Clothing</h1>
+        <p>Browse fashion vendors listed on OjaHub.</p>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="searchbar">
+      <span class="searchicon">🔎</span>
+      <input id="searchInput" type="search" placeholder="Search fashion vendors..." aria-label="Search fashion vendors" />
+    </div>
+
+    <!-- MAIN GRID (left list + right details) -->
+    <section class="layout">
+      <!-- LEFT: vendor list -->
+      <div class="list">
+        <div class="vendor-grid" id="vendorGrid">
+
+          <!-- CARD 1 -->
+          <article class="vendor-mini" data-name="Trendy Luxe By Chen"
+                   data-verified="Verified"
+                   data-city="Ogbomosho"
+                   data-cat="Fashion · Clothing Brand"
+                   data-loc="Yoaco Phase 2, Dreamz Hotel Junction"
+                   data-desc="Stylish and quality clothing for modern fashion lovers. Trendy, comfortable, and confidently made."
+                   data-whatsapp="https://wa.me/2348072670507?text=Hello%20I%20saw%20Trendy%20Luxe%20By%20Chen%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+                   data-img="Images/chen 2.JPG"
+                   data-hero="Images/chen 2.JPG">
+            <img class="thumb" src="Images/chen 2.JPG" alt="Trendy Luxe By Chen" />
+            <div class="mini-info">
+              <h3>Trendy Luxe By Chen</h3>
+              <p class="mini-meta">• Fashion · Clothing Brand</p>
+              <p class="mini-loc">Yoaco Phase 2 (Dreamz Hotel Junction)</p>
+              <div class="mini-chip">
+                <span class="chip ok">✔ Replies on WhatsApp</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="vendor-mini" data-name="The Flourijay Vault"
+                   data-verified="Verified"
+                   data-city="Ibadan / Ogbomosho"
+                   data-cat="Fashion · Accessories"
+                   data-loc="Under G, Ogbomosho / Ibadan"
+                   data-desc="A fashion accessories brand offering stylish and quality pieces that complete your look."
+                   data-whatsapp="https://wa.me/2348087489412?text=Hello%20I%20saw%20The%20Flourijay%20Vault%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+                   data-img="Images/flourijay.jpeg"
+                   data-hero="Images/flourijay.jpeg">
+            <img class="thumb" src="Images/flourijay.jpeg" alt="The Flourijay Vault" />
+            <div class="mini-info">
+              <h3>The Flourijay Vault</h3>
+              <p class="mini-meta">• Fashion · Accessories</p>
+              <p class="mini-loc">Under G, Ogbomosho / Ibadan</p>
+              <div class="mini-chip">
+                <span class="chip ok">✔ Replies on WhatsApp</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="vendor-mini" data-name="Fits by precious"
+                   data-verified="Verified"
+                   data-city="Ogbomosho"
+                   data-cat="Fashion & Clothing"
+                   data-loc="Ogbomosho"
+                   data-desc="Curated women’s fashion brand offering trendy, affordable and stylish clothing for everyday confidence."
+                   data-whatsapp="https://wa.me/2347015657810?text=Hello%20I%20found%20Fits%20by%20precious%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+                   data-img="Images/Fits by precious.jpg"
+                   data-hero="Images/Fits by precious.jpg">
+            <img class="thumb" src="Images/Fits by precious.jpg" alt="Fits by precious" />
+            <div class="mini-info">
+              <h3>Fits by precious</h3>
+              <p class="mini-meta">• Fashion & Clothing</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip">
+                <span class="chip ok">✔ Replies on WhatsApp</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4 -->
+          <article class="vendor-mini" data-name="Shebba Couture"
+                   data-verified="Verified"
+                   data-city="Ibadan"
+                   data-cat="Fashion · Ready-to-wear"
+                   data-loc="Adenuga Street, Ibadan"
+                   data-desc="Ready-to-wear fashion pieces made for comfort, style, and confidence."
+                   data-whatsapp="https://wa.me/2348149218062?text=Hello%20I%20saw%20Shebba%20Couture%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you."
+                   data-img="Images/shebba 2.JPG"
+                   data-hero="Images/shebba 2.JPG">
+            <img class="thumb" src="Images/shebba 2.JPG" alt="Shebba Couture" />
+            <div class="mini-info">
+              <h3>Shebba Couture</h3>
+              <p class="mini-meta">• Fashion · Ready-to-wear</p>
+              <p class="mini-loc">Adenuga Street, Ibadan</p>
+              <div class="mini-chip">
+                <span class="chip ok">✔ Replies on WhatsApp</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5 -->
+          <article class="vendor-mini" data-name="The Girly_Co"
+                   data-verified="Verified"
+                   data-city="Ogbomosho"
+                   data-cat="Fashion · Clothing"
+                   data-loc="Ogbomosho"
+                   data-desc="Carefully sourced graded thrift wears including crop tops, denim and shorts."
+                   data-whatsapp="https://wa.me/2349128581721?text=Hello%20I%20found%20The%20Gorly_Co%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+                   data-img="Images/GIRLYCO.jpg"
+                   data-hero="Images/GIRLYCO.jpg">
+            <img class="thumb" src="Images/GIRLYCO.jpg" alt="The Girly_Co" />
+            <div class="mini-info">
+              <h3>The Girly_Co</h3>
+              <p class="mini-meta">• Fashion · Clothing</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip">
+                <span class="chip ok">✔ Replies on WhatsApp</span>
+              </div>
+            </div>
+          </article>
+
+
+
+
+
+          <!-- CARD 6 -->
+<article class="vendor-mini" data-name="Faceless Emerald"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing"
+  data-loc="Ogbomosho"
+  data-desc="Ready-to-wear and custom dresses with a focus on stylish, well-finished outfits."
+  data-whatsapp="https://wa.me/2348106870883?text=Hello%20I%20found%20Faceless%20Emerald%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/FACELESS.JPG" data-hero="Images/FACELESS.JPG">
+  <img class="thumb" src="Images/FACELESS.JPG" alt="Faceless Emerald" />
+  <div class="mini-info">
+    <h3>Faceless Emerald</h3>
+    <p class="mini-meta">• Fashion & Clothing</p>
+    <p class="mini-loc">Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 7 -->
+<article class="vendor-mini" data-name="Confidence Touch"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing"
+  data-loc="Ogbomosho"
+  data-desc="Creative fashion brand combining fashion design and handcrafted pieces."
+  data-whatsapp="https://wa.me/2348150467588?text=Hello%20I%20found%20Confidence%20Touch%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/Confidence Touch .jpg" data-hero="Images/Confidence Touch .jpg">
+  <img class="thumb" src="Images/Confidence Touch .jpg" alt="Confidence Touch" />
+  <div class="mini-info">
+    <h3>Confidence Touch</h3>
+    <p class="mini-meta">• Fashion & Clothing</p>
+    <p class="mini-loc">Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 8 -->
+<article class="vendor-mini" data-name="Shop_with_mide (SWM)"
+  data-verified="Verified" data-city="Ogbomosho / Ibadan"
+  data-cat="Fashion · Style, Scent & Accessories"
+  data-loc="Under G, Ogbomosho / Ibadan"
+  data-desc="Where style meets scent & sparkle."
+  data-whatsapp="https://wa.me/2348036234997?text=Hello%20I%20found%20Shop%20With%20Mide%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+  data-img="Images/fcd3c9e1-5ddb-4acd-974e-9a75fe162c38 - Fathia Busari.JPEG"
+  data-hero="Images/fcd3c9e1-5ddb-4acd-974e-9a75fe162c38 - Fathia Busari.JPEG">
+  <img class="thumb" src="Images/fcd3c9e1-5ddb-4acd-974e-9a75fe162c38 - Fathia Busari.JPEG" alt="Shop_with_mide (SWM)" />
+  <div class="mini-info">
+    <h3>Shop_with_mide (SWM)</h3>
+    <p class="mini-meta">• Fashion · Style, Scent & Accessories</p>
+    <p class="mini-loc">Under G, Ogbomosho / Ibadan</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 9 -->
+<article class="vendor-mini" data-name="Omo Owo Ventures"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing"
+  data-loc="Ogbomosho"
+  data-desc="Quality football jerseys and fashion items available at affordable prices."
+  data-whatsapp="https://wa.me/2348139632529?text=Hello%20I%20found%20Omo%20Owo%20Ventures%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/Omo owo.jpg" data-hero="Images/Omo owo.jpg">
+  <img class="thumb" src="Images/Omo owo.jpg" alt="Omo Owo Ventures" />
+  <div class="mini-info">
+    <h3>Omo Owo Ventures</h3>
+    <p class="mini-meta">• Fashion & Clothing</p>
+    <p class="mini-loc">Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 10 -->
+<article class="vendor-mini" data-name="Source Wears"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing · Jersey & Casual Wears"
+  data-loc="Behind Le Harve Hotel, Under G Area, Ogbomosho"
+  data-desc="Deals in quality jersey wears, white shirts and inner tees for everyday style and sports lovers."
+  data-whatsapp="https://wa.me/2348074167103?text=Hello%20I%20found%20Source%20Wears%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/source wears.jpeg" data-hero="Images/source wears.jpeg">
+  <img class="thumb" src="Images/source wears.jpeg" alt="Source Wears" />
+  <div class="mini-info">
+    <h3>Source Wears</h3>
+    <p class="mini-meta">• Fashion & Clothing · Jersey & Casual Wears</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 11 -->
+<article class="vendor-mini" data-name="Tianah’s Empire"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing"
+  data-loc="Ogbomosho"
+  data-desc="Fashionable clothing store for stylish everyday looks and trusted fashion picks."
+  data-whatsapp="https://wa.me/2348085154210?text=Hello%20I%20found%20Tianah%E2%80%99s%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/IMG_0276 - Oluwadolabomi Sharon.JPEG"
+  data-hero="Images/IMG_0276 - Oluwadolabomi Sharon.JPEG">
+  <img class="thumb" src="Images/IMG_0276 - Oluwadolabomi Sharon.JPEG" alt="Tianah’s Empire" />
+  <div class="mini-info">
+    <h3>Tianah’s Empire</h3>
+    <p class="mini-meta">• Fashion & Clothing</p>
+    <p class="mini-loc">Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 12 -->
+<article class="vendor-mini" data-name="Mhidey Empire"
+  data-verified="Verified" data-city="Ibadan"
+  data-cat="Fashion & Clothing"
+  data-loc="Ibadan"
+  data-desc="Fashion brand focused on quality clothing and stylish customer-ready pieces."
+  data-whatsapp="https://wa.me/2349078719710?text=Hello%20I%20found%20Mhidey%20Empire%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20items.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/Mhidey Empire.jpg" data-hero="Images/Mhidey Empire.jpg">
+  <img class="thumb" src="Images/Mhidey Empire.jpg" alt="Mhidey Empire" />
+  <div class="mini-info">
+    <h3>Mhidey Empire</h3>
+    <p class="mini-meta">• Fashion & Clothing</p>
+    <p class="mini-loc">Ibadan</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 13 -->
+<article class="vendor-mini" data-name="CAPVERSE"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing"
+  data-loc="Ogbomosho"
+  data-desc="Quality cap brand offering stylish cap designs for different looks at affordable prices."
+  data-whatsapp="https://wa.me/2349076837639?text=Hello%20I%20found%20CAPVERSE%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+  data-img="Images/Cap verse.jpg" data-hero="Images/Cap verse.jpg">
+  <img class="thumb" src="Images/Cap verse.jpg" alt="CAPVERSE" />
+  <div class="mini-info">
+    <h3>CAPVERSE</h3>
+    <p class="mini-meta">• Fashion & Clothing</p>
+    <p class="mini-loc">Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 14 -->
+<article class="vendor-mini" data-name="Success Stitches"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion & Clothing · Fashion Design"
+  data-loc="Behind Alaska's House, Randa Area, Ogbomosho"
+  data-desc="Fashion design (custom outfits and tailoring)."
+  data-whatsapp="https://wa.me/2348169097729?text=Hello%20I%20found%20Success%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20fashion%20design%20services.%20Please%20share%20your%20styles%20and%20starting%20prices.%20Thank%20you."
+  data-img="Images/success stitches.jpeg" data-hero="Images/success stitches.jpeg">
+  <img class="thumb" src="Images/success stitches.jpeg" alt="Success Stitches" />
+  <div class="mini-info">
+    <h3>Success Stitches</h3>
+    <p class="mini-meta">• Fashion & Clothing · Fashion Design</p>
+    <p class="mini-loc">Randa Area, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 15 -->
+<article class="vendor-mini" data-name="Bella Stitches ‘n’ Clothings"
+  data-verified="Verified" data-city="Under G, Ogbomosho"
+  data-cat="Fashion · Corporate & Custom Fits"
+  data-loc="Under G, Ogbomosho"
+  data-desc="Specialized in corporate and custom-made fits for women to help them slay confidently."
+  data-whatsapp="https://wa.me/2348147512130?text=Hello%20I%20found%20Bella%20Stitches%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+  data-img="Images/Bella Stitches ‘n’ clothings .jpg"
+  data-hero="Images/Bella Stitches ‘n’ clothings .jpg">
+  <img class="thumb" src="Images/Bella Stitches ‘n’ clothings .jpg" alt="Bella Stitches ‘n’ Clothings" />
+  <div class="mini-info">
+    <h3>Bella Stitches ‘n’ Clothings</h3>
+    <p class="mini-meta">• Fashion · Corporate & Custom Fits</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 16 -->
+<article class="vendor-mini" data-name="Abike’s Collection"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion · Unisex Wears & Accessories"
+  data-loc="Stallite Area, Ogbomosho"
+  data-desc="Unisex wears, bags, shoes, caps, sneakers, slides and accessories."
+  data-whatsapp="https://wa.me/2348061437324?text=Hello%20I%20found%20Abike%E2%80%99s%20Collection%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+  data-img="Images/8b174f53-0aa3-4d9e-b821-43eff866a7e6 - Opeyemi Oke.JPEG"
+  data-hero="Images/8b174f53-0aa3-4d9e-b821-43eff866a7e6 - Opeyemi Oke.JPEG">
+  <img class="thumb" src="Images/8b174f53-0aa3-4d9e-b821-43eff866a7e6 - Opeyemi Oke.JPEG" alt="Abike’s Collection" />
+  <div class="mini-info">
+    <h3>Abike’s Collection</h3>
+    <p class="mini-meta">• Fashion · Unisex Wears & Accessories</p>
+    <p class="mini-loc">Stallite Area, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- CARD 17 -->
+<article class="vendor-mini" data-name="Japheth Sport Collection"
+  data-verified="Verified" data-city="Ogbomosho"
+  data-cat="Fashion · Sports Wears & Boots"
+  data-loc="Adenike, Ogbomosho"
+  data-desc="Football boots and sports collections for wholesalers and retailers."
+  data-whatsapp="https://wa.me/2349131540978?text=Hello%20I%20found%20Japheth%20Sport%20Collection%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+  data-img="Images/IMG-20260121-WA0056 - Japhet Sunday.JPEG"
+  data-hero="Images/IMG-20260121-WA0056 - Japhet Sunday.JPEG">
+  <img class="thumb" src="Images/IMG-20260121-WA0056 - Japhet Sunday.JPEG" alt="Japheth Sport Collection" />
+  <div class="mini-info">
+    <h3>Japheth Sport Collection</h3>
+    <p class="mini-meta">• Fashion · Sports Wears & Boots</p>
+    <p class="mini-loc">Adenike, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+        </div>
+
+        <!-- Promo banner like your screenshot -->
+        <div class="promo">
+          <div class="promo-text">
+            <h4>Support local businesses</h4>
+            <p>Find trusted vendors in <b>Ogbomosho</b> and <b>Ibadan</b></p>
+          </div>
+          <a class="promo-btn" href="index.html#vendors">Browse All Vendors ▾</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: selected vendor detail -->
+      <aside class="detail" id="detailPanel">
+        <div class="detail-hero">
+          <img id="detailHeroImg" src="Images/chen 2.JPG" alt="Vendor preview" />
+        </div>
+
+        <div class="detail-body">
+          <h2 id="detailName">Trendy Luxe By Chen</h2>
+
+          <div class="detail-verified">
+            <span class="badge-verified">✔ Verified</span>
+            <span class="dot">·</span>
+            <span id="detailCity">Ogbomosho</span>
+          </div>
+
+          <p class="detail-cat" id="detailCat">Fashion · Clothing Brand</p>
+
+          <p class="detail-loc">
+            <span class="muted">Location:</span>
+            <span id="detailLoc">Yoaco Phase 2, Dreamz Hotel Junction</span>
+          </p>
+
+          <hr class="sep" />
+
+          <p class="detail-desc" id="detailDesc">
+            Stylish and quality clothing for modern fashion lovers. Trendy, comfortable, and confidently made.
+          </p>
+
+          <div class="detail-chips">
+            <span class="chip ok">✔ Replies on WhatsApp</span>
+            <span class="chip ghost">Price on request</span>
+          </div>
+
+          <a id="detailWhatsApp" class="whatsapp-btn" target="_blank" rel="noopener"
+             href="https://wa.me/2348072670507?text=Hello%20I%20saw%20Trendy%20Luxe%20By%20Chen%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
+            <span class="wa-icon">🟢</span>
+            Chat on Whatsapp
+          </a>
+        </div>
+
+
+
+
+
+        
+      </aside>
+    </section>
+  </main>
+
+  <!-- JS (small) for clicking vendors + searching -->
+  <script>
+  const cards = Array.from(document.querySelectorAll(".vendor-mini"));
+  const searchInput = document.getElementById("searchInput");
+
+  const detailHeroImg = document.getElementById("detailHeroImg");
+  const detailName = document.getElementById("detailName");
+  const detailCity = document.getElementById("detailCity");
+  const detailCat = document.getElementById("detailCat");
+  const detailLoc = document.getElementById("detailLoc");
+  const detailDesc = document.getElementById("detailDesc");
+  const detailWhatsApp = document.getElementById("detailWhatsApp");
+
+  const detailPanel = document.getElementById("detailPanel");
+
+  function setActive(card, shouldScroll = false) {
+    cards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+
+    detailHeroImg.src = card.dataset.hero || card.dataset.img || "";
+    detailName.textContent = card.dataset.name || "";
+    detailCity.textContent = card.dataset.city || "";
+    detailCat.textContent = card.dataset.cat || "";
+    detailLoc.textContent = card.dataset.loc || "";
+    detailDesc.textContent = card.dataset.desc || "";
+    detailWhatsApp.href = card.dataset.whatsapp || "#";
+
+    // ✅ Move user to the full card on the right
+    if (shouldScroll) {
+      detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => setActive(card, true));
+  });
+
+  // default active = first (no scroll on page load)
+  if (cards[0]) setActive(cards[0], false);
+
+  // search filter
+  searchInput.addEventListener("input", () => {
+    const q = searchInput.value.toLowerCase().trim();
+    cards.forEach(card => {
+      const text = (card.dataset.name + " " + card.dataset.cat + " " + card.dataset.loc).toLowerCase();
+      card.style.display = text.includes(q) ? "" : "none";
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

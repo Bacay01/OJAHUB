@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beauty & Cosmetics - OjaHub</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Page CSS (reuse same CSS you used for fashion page) -->
+  <link rel="stylesheet" href="fashion.css" />
+  <link rel="stylesheet" href="nav.css">
+</head>
+
+<body>
+
+  <!-- TOP NAV (same navbar you’re using already) -->
+  <header class="topnav">
+    <nav class="navbar navbar-expand-lg navbar-dark ojahub-navbar">
+      <div class="container-fluid px-3">
+
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="Images/ojahub_logo_orange_trim@2x.png" class="nav-logo" alt="OjaHub">
+        </a>
+
+        <!-- Hamburger -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#ojahubNav"
+          aria-controls="ojahubNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="ojahubNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <!-- Categories dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                <li><a class="dropdown-item" href="food.html">Food Vendors</a></li>
+                <li><a class="dropdown-item" href="fashion.html">Fashion & Clothing</a></li>
+                <li><a class="dropdown-item" href="beauty.html">Beauty & Cosmetics</a></li>
+                <li><a class="dropdown-item" href="phones.html">Phones & Gadgets</a></li>
+                <li><a class="dropdown-item" href="services.html">Services & Repairs</a></li>
+                <li><a class="dropdown-item" href="others.html">Home & Living / Others</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="index.html#vendors">Vendors</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#become-vendor">For Vendors</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help."
+                target="_blank" rel="noopener">
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <!-- Right side actions -->
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">♡ Favorites</button>
+            <button class="btn btn-sm btn-outline-light" type="button" disabled title="Coming soon">👤 Profile</button>
+
+            <a class="btn btn-warning fw-bold" href="index.html#become-vendor">List Your Business</a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE WRAP -->
+  <main class="page">
+
+    <a class="backlink" href="index.html">← Back to Home</a>
+
+    <div class="pagehead">
+      <div>
+        <h1>Beauty &amp; Cosmetics</h1>
+        <p>Browse beauty vendors listed on OjaHub.</p>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="searchbar">
+      <span class="searchicon">🔎</span>
+      <input id="searchInput" type="search" placeholder="Search beauty vendors..." aria-label="Search beauty vendors" />
+    </div>
+
+    <!-- MAIN GRID (left list + right details) -->
+    <section class="layout">
+
+      <!-- LEFT: vendor list -->
+      <div class="list">
+        <div class="vendor-grid" id="vendorGrid">
+
+          <!-- 1) Nk’s Aurum -->
+          <article class="vendor-mini"
+            data-name="Nk’s Aurum"
+            data-city="Ogbomosho"
+            data-cat="Beauty &amp; Cosmetics"
+            data-loc="Ogbomosho"
+            data-desc="Beauty and fragrance brand focused on quality self-care and wellness products."
+            data-whatsapp="https://wa.me/2348133261691?text=Hello%20I%20found%20Nk%E2%80%99s%20Aurum%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/NK'S AURUM.jpg">
+            <img class="thumb" src="Images/NK'S AURUM.jpg" alt="Nk’s Aurum" />
+            <div class="mini-info">
+              <h3>Nk’s Aurum</h3>
+              <p class="mini-meta">• Beauty & Cosmetics</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 2) LGBeauty -->
+          <article class="vendor-mini"
+            data-name="LGBeauty"
+            data-city="Ogbomosho"
+            data-cat="Beauty &amp; Cosmetics"
+            data-loc="Ogbomosho"
+            data-desc="Makeup artist and nail technician offering beauty services and glam looks."
+            data-whatsapp="https://wa.me/2348139579411?text=Hello%20I%20found%20LGBeauty%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20beauty%20services.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/LGBeauty .jpg">
+            <img class="thumb" src="Images/LGBeauty .jpg" alt="LGBeauty" />
+            <div class="mini-info">
+              <h3>LGBeauty</h3>
+              <p class="mini-meta">• Beauty & Cosmetics</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 3) Everythingbykemy -->
+          <article class="vendor-mini"
+            data-name="Everythingbykemy"
+            data-city="Ogbomosho"
+            data-cat="Beauty &amp; Cosmetics"
+            data-loc="Ogbomosho"
+            data-desc="One-stop shop for girlie essentials, beauty products and personalized gift items."
+            data-whatsapp="https://wa.me/2347012490848?text=Hello%20I%20found%20Everythingbykemy%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/Everythingbykemy .jpg">
+            <img class="thumb" src="Images/Everythingbykemy .jpg" alt="Everythingbykemy" />
+            <div class="mini-info">
+              <h3>Everythingbykemy</h3>
+              <p class="mini-meta">• Beauty & Cosmetics</p>
+              <p class="mini-loc">Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 4) Owoglo Oriflame -->
+          <article class="vendor-mini"
+            data-name="Owoglo Oriflame"
+            data-city="Ibadan"
+            data-cat="Beauty &amp; Cosmetics"
+            data-loc="Ibadan"
+            data-desc="Oriflame skincare and beauty products with options for different skin types, including natural-based products."
+            data-whatsapp="https://wa.me/2349038668585?text=Hello%20I%20found%20Owoglo%20Oriflame%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you."
+            data-hero="Images/IMG-20251125-WA0009 - Gloria Temitope Owojori.JPEG">
+            <img class="thumb" src="Images/IMG-20251125-WA0009 - Gloria Temitope Owojori.JPEG" alt="Owoglo Oriflame" />
+            <div class="mini-info">
+              <h3>Owoglo Oriflame</h3>
+              <p class="mini-meta">• Beauty & Cosmetics</p>
+              <p class="mini-loc">Ibadan</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 5) Glorious Essence Store -->
+          <article class="vendor-mini"
+            data-name="Glorious Essence Store"
+            data-city="Ogbomosho / Ibadan"
+            data-cat="Beauty &amp; Cosmetics"
+            data-loc="Adenike (LAUTECH area) / Ibadan (Iyana Agbala, Iwo Road)"
+            data-desc="Hair accessories and beauty products."
+            data-whatsapp="https://wa.me/2349032099178?text=Hello%20I%20found%20Glorious%20Essence%20Store%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20hair%20accessories%20and%20beauty%20items.%20Please%20share%20your%20catalog%20and%20prices.%20Thank%20you."
+            data-hero="Images/Glorious essence store.jpeg">
+            <img class="thumb" src="Images/Glorious essence store.jpeg" alt="Glorious Essence Store" />
+            <div class="mini-info">
+              <h3>Glorious Essence Store</h3>
+              <p class="mini-meta">• Beauty & Cosmetics</p>
+              <p class="mini-loc">Ogbomosho / Ibadan</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+          <!-- 6) Toyo Scents & Luxe Hair -->
+          <article class="vendor-mini"
+            data-name="Toyo Scents &amp; Luxe Hair"
+            data-city="Under G, Ogbomosho"
+            data-cat="Beauty · Wigs &amp; Perfumes"
+            data-loc="Under G, Nurudeen Street, Ogbomosho"
+            data-desc="Slay the day with quality wigs and captivating perfumes."
+            data-whatsapp="https://wa.me/2347088792461?text=Hello%20I%20found%20Toyo%20Scents%20%26%20Luxe%20Hair%20on%20OjaHub%20and%20I%E2%80%99m%20interested."
+            data-hero="Images/Toyo scents and Luxe Hair.jpg">
+            <img class="thumb" src="Images/Toyo scents and Luxe Hair.jpg" alt="Toyo Scents & Luxe Hair" />
+            <div class="mini-info">
+              <h3>Toyo Scents &amp; Luxe Hair</h3>
+              <p class="mini-meta">• Beauty · Wigs & Perfumes</p>
+              <p class="mini-loc">Under G, Ogbomosho</p>
+              <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+            </div>
+          </article>
+
+
+
+          <!-- Hair by jummy -->
+<article class="vendor-mini"
+  data-name="Hair by jummy"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Beauty · Hair / Wigs"
+  data-loc="Iyana Sobe (Kere)"
+  data-desc="Hairstylist and wig vendor."
+  data-whatsapp="https://wa.me/2348168178684?text=Hello%20I%20found%20Hair%20by%20jummy%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20your%20services%20and%20prices.%20Thank%20you."
+  data-img="Images/Hair by jummy.jpeg"
+  data-hero="Images/Hair by jummy.jpeg">
+  <img class="thumb" src="Images/Hair by jummy.jpeg" alt="Hair by jummy" />
+  <div class="mini-info">
+    <h3>Hair by jummy</h3>
+    <p class="mini-meta">• Beauty · Hair / Wigs</p>
+    <p class="mini-loc">Iyana Sobe (Kere)</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Fiyin luxe wigs -->
+<article class="vendor-mini"
+  data-name="Fiyin luxe wigs"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Beauty · Wigs"
+  data-loc="Botanical Garden, Unity Estate"
+  data-desc="Wig vendor."
+  data-whatsapp="https://wa.me/2348132133364?text=Hello%20I%20found%20Fiyin%20luxe%20wigs%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20available%20wigs%20and%20prices.%20Thank%20you."
+  data-img="Images/Fiyin luxe wigs .jpeg"
+  data-hero="Images/Fiyin luxe wigs .jpeg">
+  <img class="thumb" src="Images/Fiyin luxe wigs .jpeg" alt="Fiyin luxe wigs" />
+  <div class="mini-info">
+    <h3>Fiyin luxe wigs</h3>
+    <p class="mini-meta">• Beauty · Wigs</p>
+    <p class="mini-loc">Unity Estate</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+<!-- Slayed by Anjie -->
+<article class="vendor-mini"
+  data-name="Slayed by Anjie"
+  data-verified="Verified"
+  data-city="Ogbomosho"
+  data-cat="Beauty · Makeup"
+  data-loc="Agbeke Shopping Complex (Opp. Nurudeen), Under G"
+  data-desc="Professional makeup artist (soft glam, birthday glam, events, photoshoots)."
+  data-whatsapp="https://wa.me/2348136329941?text=Hello%20I%20found%20Slayed%20by%20Anjie%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20makeup%20session.%20Please%20share%20your%20price%20list%20and%20availability.%20Thank%20you."
+  data-img="Images/Slayed by Anjie .jpeg"
+  data-hero="Images/Slayed by Anjie .jpeg">
+  <img class="thumb" src="Images/Slayed by Anjie .jpeg" alt="Slayed by Anjie" />
+  <div class="mini-info">
+    <h3>Slayed by Anjie</h3>
+    <p class="mini-meta">• Beauty · Makeup</p>
+    <p class="mini-loc">Under G, Ogbomosho</p>
+    <div class="mini-chip"><span class="chip ok">✔ Replies on WhatsApp</span></div>
+  </div>
+</article>
+
+        </div>
+
+        <!-- Promo banner -->
+        <div class="promo">
+          <div class="promo-text">
+            <h4>Support local businesses</h4>
+            <p>Find trusted vendors in <b>Ogbomosho</b> and <b>Ibadan</b></p>
+          </div>
+          <a class="promo-btn" href="index.html#vendors">Browse All Vendors ▾</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: selected vendor detail -->
+      <aside class="detail" id="detailPanel">
+        <div class="detail-hero">
+          <img id="detailHeroImg" src="Images/NK'S AURUM.jpg" alt="Vendor preview" />
+        </div>
+
+        <div class="detail-body">
+          <h2 id="detailName">Nk’s Aurum</h2>
+
+          <div class="detail-verified">
+            <span class="badge-verified">✔ Verified</span>
+            <span class="dot">·</span>
+            <span id="detailCity">Ogbomosho</span>
+          </div>
+
+          <p class="detail-cat" id="detailCat">Beauty &amp; Cosmetics</p>
+
+          <p class="detail-loc">
+            <span class="muted">Location:</span>
+            <span id="detailLoc">Ogbomosho</span>
+          </p>
+
+          <hr class="sep" />
+
+          <p class="detail-desc" id="detailDesc">
+            Beauty and fragrance brand focused on quality self-care and wellness products.
+          </p>
+
+          <div class="detail-chips">
+            <span class="chip ok">✔ Replies on WhatsApp</span>
+            <span class="chip ghost">Price on request</span>
+          </div>
+
+          <a id="detailWhatsApp" class="whatsapp-btn" target="_blank" rel="noopener"
+            href="https://wa.me/2348133261691?text=Hello%20I%20found%20Nk%E2%80%99s%20Aurum%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
+            <span class="wa-icon">🟢</span>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <!-- JS: click vendors + search + scroll to right card -->
+  <script>
+    const cards = Array.from(document.querySelectorAll(".vendor-mini"));
+    const searchInput = document.getElementById("searchInput");
+
+    const detailHeroImg = document.getElementById("detailHeroImg");
+    const detailName = document.getElementById("detailName");
+    const detailCity = document.getElementById("detailCity");
+    const detailCat = document.getElementById("detailCat");
+    const detailLoc = document.getElementById("detailLoc");
+    const detailDesc = document.getElementById("detailDesc");
+    const detailWhatsApp = document.getElementById("detailWhatsApp");
+    const detailPanel = document.getElementById("detailPanel");
+
+    function setActive(card, shouldScroll = false) {
+      cards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      detailHeroImg.src = card.dataset.hero || "";
+      detailName.textContent = card.dataset.name || "";
+      detailCity.textContent = card.dataset.city || "";
+      detailCat.textContent = card.dataset.cat || "";
+      detailLoc.textContent = card.dataset.loc || "";
+      detailDesc.textContent = card.dataset.desc || "";
+      detailWhatsApp.href = card.dataset.whatsapp || "#";
+
+      if (shouldScroll) {
+        detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => setActive(card, true));
+    });
+
+    if (cards[0]) setActive(cards[0], false);
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const text = (card.dataset.name + " " + card.dataset.cat + " " + card.dataset.loc).toLowerCase();
+        card.style.display = text.includes(q) ? "" : "none";
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
