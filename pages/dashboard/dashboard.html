@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Vendor Dashboard - OjaHub</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <!-- Header placeholder -->
+    <div id="header"></div>
+
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="vendor-mini-card">
+          <img
+            class="vendor-avatar"
+            id="vendorImage"
+            src=""
+            alt="Vendor logo"
+          />
+          <div>
+            <h3 id="businessName">Loading...</h3>
+            <p id="vendorEmail">Loading...</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-links">
+          <a href="../../pages/dashboard/dashboard.html" class="active"
+            >Dashboard</a
+          >
+          <a href="../../pages/my_product/my_product.html">My Products</a>
+          <a href="../../pages/profile_settings/profile_settings.html"
+            >Profile Settings</a
+          >
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="welcome-text">
+              Welcome back, <span id="welcomeName"></span> 👋
+            </p>
+            <h1>Vendor Dashboard</h1>
+          </div>
+          <a href="../../add_product_page.html" class="primary-btn"
+            >+ Add Product</a
+          >
+        </header>
+
+        <section class="overview-grid">
+          <div class="overview-card">
+            <p class="label">Business Name</p>
+            <h3 id="businessNameCard">Loading...</h3>
+          </div>
+          <div class="overview-card">
+            <p class="label">Category</p>
+            <h3 id="category">Loading...</h3>
+          </div>
+          <div class="overview-card">
+            <p class="label">City</p>
+            <h3 id="city">Loading...</h3>
+          </div>
+          <div class="overview-card">
+            <p class="label">WhatsApp</p>
+            <a href="#" id="whatsappLink" target="_blank">Loading...</a>
+          </div>
+        </section>
+
+        <section class="details-section">
+          <div class="details-card">
+            <h2>Business Details</h2>
+            <div class="details-row">
+              <span>Owner Name</span>
+              <strong id="ownerName">Loading...</strong>
+            </div>
+            <div class="details-row">
+              <span>Phone Number</span>
+              <strong id="phone">Loading...</strong>
+            </div>
+            <div class="details-row">
+              <span>State</span>
+              <strong id="state">Loading...</strong>
+            </div>
+            <div class="details-row">
+              <span>Address</span>
+              <strong id="address">Loading...</strong>
+            </div>
+            <div class="details-row">
+              <span>Sub-category</span>
+              <strong id="subCategory">Loading...</strong>
+            </div>
+          </div>
+
+          <div class="details-card">
+            <h2>Business Description</h2>
+            <p class="description-text" id="description">Loading...</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script src="../../main.js"></script>
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

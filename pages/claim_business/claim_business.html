@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Claim Business</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="claim_business.css" />
+  </head>
+  <body>
+    <!-- Header placeholder -->
+    <div id="header"></div>
+    <div class="claim-your-business-container">
+      <div class="claim-box">
+        <h1>Claim Your Business</h1>
+        <p class="small" id="businessTitle">Loading...</p>
+
+        <form id="claimForm">
+          <div class="group">
+            <h3>Business Info</h3>
+
+            <div class="grid">
+              <input
+                type="text"
+                id="businessName"
+                placeholder="Business Name"
+                class="full"
+                readonly
+              />
+
+              <input type="text" id="ownerName" placeholder="Owner Name" />
+
+              <input type="email" id="email" placeholder="Email Address" />
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Create Password"
+              />
+
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Enter Registered Phone Number"
+                required
+              />
+
+              <!-- <input type="tel" id="whatsapp" placeholder="WhatsApp Number"> -->
+
+              <input type="file" id="imageFile" accept="image/*" class="full" />
+            </div>
+          </div>
+
+          <div class="group">
+            <h3>Business Details</h3>
+
+            <div class="grid">
+              <input
+                type="text"
+                id="category"
+                placeholder="Category"
+                readonly
+              />
+
+              <input type="text" id="subCategory" placeholder="Sub Category" />
+
+              <textarea
+                id="description"
+                placeholder="Business Description"
+                class="full"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="group">
+            <h3>Location</h3>
+
+            <div class="grid">
+              <input type="text" id="city" placeholder="City" />
+
+              <input type="text" id="state" placeholder="State" />
+
+              <input
+                type="text"
+                id="address"
+                placeholder="Full Address"
+                class="full"
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="claim-your-business-btn">
+            Claim Business
+          </button>
+
+          <p id="msg"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
+
+    <script type="module" src="claim_business.js"></script>
+    <script src="../../main.js"></script>
+  </body>
+</html>

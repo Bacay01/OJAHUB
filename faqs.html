@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQs - OjaHub</title>
+
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- FONT AWESOME -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- YOUR CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* SECTION */
+      .faq-section {
+        padding: 100px 0;
+        background: #f9fafb;
+      }
+
+      .faq-heading {
+        padding: 7rem 0 4rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #f3f4f6;
+        text-align: center;
+      }
+
+      .faq-heading span {
+        color: #ff6b00;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .faq-heading h2 {
+        font-size: 2.3rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .faq-heading p {
+        color: #6c757d;
+        font-size: 1rem;
+        width: 40%;
+        margin: 0 auto;
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .faq-heading p {
+          width: 90%;
+        }
+      }
+
+      /* HEADER */
+      .faq-tag {
+        color: #ff7a00;
+        font-size: 12px;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+
+      .faq-header h2 {
+        font-size: 40px;
+        font-weight: 700;
+        margin: 10px 0;
+      }
+
+      .faq-sub {
+        color: #6b7280;
+        max-width: 500px;
+        margin: auto;
+      }
+
+      /* LIST */
+      .faq-list {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 1rem 1rem 0 1rem;
+      }
+
+      /* ITEM */
+      .faq-item {
+        background: #fff;
+        border-radius: 12px;
+        padding: 18px 20px;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      /* QUESTION */
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+      }
+
+      /* ICON */
+      .faq-icon {
+        transition: 0.3s;
+      }
+
+      /* ANSWER */
+      .faq-answer {
+        margin-top: 12px;
+        color: #6b7280;
+        display: none;
+      }
+
+      /* ACTIVE STATE */
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+      }
+
+      /* CTA */
+      .faq-cta-box {
+        max-width: 1120px;
+        margin: 40px auto 0;
+        padding: 48px 20px;
+        background: #fff7f1;
+        border: 1px solid #f3e3d6;
+        border-radius: 18px;
+        text-align: center;
+      }
+
+      .faq-cta-box h4 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 8px;
+      }
+
+      .faq-cta-box p {
+        font-size: 15px;
+        color: #6b7280;
+        margin-bottom: 22px;
+      }
+
+      .faq-cta-btn {
+        display: inline-block;
+        background: #f97316;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 12px 24px;
+        border-radius: 999px;
+        transition: 0.3s ease;
+      }
+
+      .faq-cta-btn:hover {
+        background: #ea580c;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header placeholder -->
+    <div id="header"></div>
+
+    <div class="faq-heading">
+      <span class="section-label">FAQ</span>
+      <h2>Frequently Asked Question</h2>
+      <p>
+        Find answers to common questions about buying, selling, payments,
+        delivery, account setup, and how our marketplace works.
+      </p>
+    </div>
+
+    <!-- PAGE -->
+    <div class="faq-list">
+      <!-- ITEM -->
+      <div class="faq-item active">
+        <div class="faq-question">
+          What is OjaHub?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          OjaHub is a vendor marketplace that connects buyers with trusted local
+          vendors across categories like food, fashion, beauty, gadgets, and
+          services. We make it easy to discover and contact vendors directly.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          Is OjaHub free to use?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          Yes! Browsing vendors, viewing profiles, and contacting them via
+          WhatsApp is completely free for buyers.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How do I contact a vendor?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          Simply find a vendor you're interested in, visit their profile, and
+          click the 'Chat on WhatsApp' button. You'll be connected directly with
+          the vendor.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          Does OjaHub handle payments?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          No. OjaHub is a directory and discovery platform. All transactions,
+          payments, and deliveries happen directly between you and the vendor.
+          We recommend discussing all terms before making payments.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How do I know if a vendor is trustworthy?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          Look for verified badges, ratings, and reviews on vendor profiles. We
+          also recommend reading our 'Buying Safely on OjaHub' guide for tips on
+          safe transactions.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          Can list my business on OjaHub?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely! Click 'List Your Business' to submit your business
+          details. Our team will review your submission and get your profile
+          live
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          What categories are available?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          We currently support Food Vendors, Fashion & Clothing, Beauty &
+          Cosmetics, Phone & Gadgets, Services & Repair, and Home & Living. More
+          categories are being added regularly
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How do i report a vendor?
+          <span class="faq-icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+          If you've had a bad experience, please contact us via WhatsApp or
+          email with the vendor's name and details. We take reports seriously
+          and will investigate.
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="faq-cta-section">
+      <div class="container">
+        <div class="faq-cta-box">
+          <h4>Still have questions?</h4>
+          <p>We're here to help. Reach out to us anytime.</p>
+
+          <a href="#" class="faq-cta-btn"> Chat with Us on WhatsApp </a>
+        </div>
+      </div>
+    </section>
+
+    <br />
+    <br /><br />
+
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+    <script src="main.js"></script>
+
+    <script>
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      faqItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          // close others
+          faqItems.forEach((i) => {
+            if (i !== item) {
+              i.classList.remove("active");
+            }
+          });
+
+          // toggle current
+          item.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>

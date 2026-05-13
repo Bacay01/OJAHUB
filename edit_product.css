@@ -1,0 +1,33 @@
+/*
+  edit_product.css
+  ─────────────────────────────────────────────
+  Extends add_product.css for the edit page.
+  Link AFTER add_product.css in edit_product.html.
+*/
+
+/* ── Draft status badge (mirrors badge-instock) ── */
+.badge-draft {
+  background: #fef9c3;
+  color: #a16207;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── Existing images strip heading ── */
+#existingImagesStrip p {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ── Existing thumbnails get a subtle coloured border
+      so they're visually distinct from newly added ones ── */
+#existingThumbContainer .ap-thumb {
+  border-color: var(--oja-blue);
+}

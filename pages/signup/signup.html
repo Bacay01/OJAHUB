@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Signup - OjaHub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge">FOR VENDORS</div>
+      <h1>List Your Business<br /><span>on OjaHub</span></h1>
+      <p class="hero-sub">
+        Join hundreds of vendors connecting with customers every day.<br />It's
+        free, fast, and easy to get started.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-hero">
+          <strong>500+</strong><span>Active Vendors</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-hero">
+          <strong>Free</strong><span>To Register</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-hero">
+          <strong>Start selling</strong><span>immediately</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="steps-section">
+      <p class="steps-label">THE PROCESS</p>
+      <h2>How to Get Listed</h2>
+      <div class="steps-track">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-connector"></div>
+          <div class="step-body">
+            <h4>Fill Out the Form</h4>
+            <p>Provide your business name, details, and contact info below.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-connector"></div>
+          <div class="step-body">
+            <h4>We Review & Set Up</h4>
+            <p>Our team verifies your listing and gets your profile live.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-connector last"></div>
+          <div class="step-body">
+            <h4>Start Getting Customers</h4>
+            <p>Customers in your city can now discover and reach you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="form-section">
+      <div class="form-shell">
+        <div class="form-header">
+          <h2>Register Your Business</h2>
+          <p>Fill in your details to create your vendor profile</p>
+        </div>
+
+        <form id="signupForm">
+          <!-- BUSINESS INFO -->
+          <fieldset class="form-block">
+            <legend>
+              <!-- <span class="block-icon">🏪</span> -->
+              Business Info
+            </legend>
+            <div class="input-grid">
+              <div class="field">
+                <label for="businessName">Business Name</label>
+                <input
+                  type="text"
+                  id="businessName"
+                  placeholder="e.g Mama's Kitchen"
+                />
+              </div>
+              <div class="field">
+                <label for="imageFile">Business Logo</label>
+                <div class="file-wrapper">
+                  <input type="file" id="imageFile" accept="image/*" />
+                  <div class="file-label">
+                    <span class="file-icon">📁</span>
+                    <span class="file-text">Choose image file</span>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="ownerName">Owner Name</label>
+                <input type="text" id="ownerName" placeholder="e.g John Doe" />
+              </div>
+              <div class="field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" />
+              </div>
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="e.g 08012345678" />
+              </div>
+
+              <!-- PASSWORD -->
+              <div class="field">
+                <label for="password">Password</label>
+                <div class="password-wrap" id="passwordWrap">
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    class="pw-toggle"
+                    id="togglePassword"
+                    aria-label="Toggle password visibility"
+                  >
+                    <!-- monkey SVG — eyes covered / visible via CSS class -->
+                    <svg
+                      class="monkey-icon"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <!-- head -->
+                      <circle cx="24" cy="26" r="16" fill="#c8722a" />
+                      <!-- ears -->
+                      <circle cx="8" cy="28" r="5" fill="#c8722a" />
+                      <circle cx="40" cy="28" r="5" fill="#c8722a" />
+                      <circle cx="8" cy="28" r="3" fill="#e8a87c" />
+                      <circle cx="40" cy="28" r="3" fill="#e8a87c" />
+                      <!-- face -->
+                      <ellipse cx="24" cy="30" rx="11" ry="9" fill="#e8a87c" />
+                      <!-- nostrils -->
+                      <circle cx="21.5" cy="30" r="1.2" fill="#c8722a" />
+                      <circle cx="26.5" cy="30" r="1.2" fill="#c8722a" />
+                      <!-- mouth -->
+                      <path
+                        d="M20 34 Q24 37 28 34"
+                        stroke="#c8722a"
+                        stroke-width="1.2"
+                        fill="none"
+                        stroke-linecap="round"
+                      />
+
+                      <!-- EYES OPEN (shown when pw visible / not typing) -->
+                      <g class="eyes-open">
+                        <ellipse
+                          cx="18"
+                          cy="22"
+                          rx="3.5"
+                          ry="3.5"
+                          fill="white"
+                        />
+                        <circle cx="18" cy="22" r="2" fill="#1a1a1a" />
+                        <circle cx="19" cy="21" r="0.8" fill="white" />
+                        <ellipse
+                          cx="30"
+                          cy="22"
+                          rx="3.5"
+                          ry="3.5"
+                          fill="white"
+                        />
+                        <circle cx="30" cy="22" r="2" fill="#1a1a1a" />
+                        <circle cx="31" cy="21" r="0.8" fill="white" />
+                      </g>
+
+                      <!-- HANDS COVERING EYES (shown when typing OR pw hidden) -->
+                      <g class="eyes-covered">
+                        <!-- left hand -->
+                        <ellipse cx="17" cy="22" rx="6" ry="5" fill="#c8722a" />
+                        <circle cx="12.5" cy="19" r="2.2" fill="#c8722a" />
+                        <circle cx="15" cy="17.5" r="2.2" fill="#c8722a" />
+                        <circle cx="18" cy="17" r="2.2" fill="#c8722a" />
+                        <circle cx="21" cy="17.5" r="2.2" fill="#c8722a" />
+                        <!-- right hand -->
+                        <ellipse cx="31" cy="22" rx="6" ry="5" fill="#c8722a" />
+                        <circle cx="35.5" cy="19" r="2.2" fill="#c8722a" />
+                        <circle cx="33" cy="17.5" r="2.2" fill="#c8722a" />
+                        <circle cx="30" cy="17" r="2.2" fill="#c8722a" />
+                        <circle cx="27" cy="17.5" r="2.2" fill="#c8722a" />
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- BUSINESS DETAILS -->
+          <fieldset class="form-block">
+            <legend>
+              <!-- <span class="block-icon">📋</span> -->
+              Business Details
+            </legend>
+            <div class="input-grid">
+              <div class="field">
+                <label for="category">Category</label>
+                <select id="category">
+                  <option value="">Select category</option>
+                  <option>Food Vendors</option>
+                  <option>Fashion & Clothing</option>
+                  <option>Beauty & Cosmetic</option>
+                  <option>Phone & Gadgets</option>
+                  <option>Services & Repair</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="subCategory">Sub-category</label>
+                <input
+                  type="text"
+                  id="subCategory"
+                  placeholder="e.g Cakes, Shoes"
+                />
+              </div>
+              <div class="field full">
+                <label for="description">Business Description</label>
+                <textarea
+                  id="description"
+                  placeholder="Briefly describe what you sell or offer…"
+                ></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- LOCATION -->
+          <fieldset class="form-block">
+            <legend>
+              <!-- <span class="block-icon">📍</span> -->
+              Location
+            </legend>
+            <div class="input-grid">
+              <div class="field">
+                <label for="city">City</label>
+                <input type="text" id="city" placeholder="e.g Ogbomoso" />
+              </div>
+              <div class="field">
+                <label for="state">State</label>
+                <input type="text" id="state" placeholder="e.g Oyo State" />
+              </div>
+              <div class="field full">
+                <label for="address">Full Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  placeholder="Enter your business address"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- CONTACT -->
+          <fieldset class="form-block">
+            <legend>
+              <!-- <span class="block-icon">💬</span> -->
+              Contact
+            </legend>
+            <div class="input-grid">
+              <div class="field">
+                <label for="whatsapp">WhatsApp Number</label>
+                <div class="input-prefix-wrap">
+                  <span class="input-prefix">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="16"
+                      height="16"
+                      fill="#25D366"
+                    >
+                      <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                      />
+                    </svg>
+                  </span>
+                  <input
+                    type="tel"
+                    id="whatsapp"
+                    placeholder="e.g 08012345678"
+                    class="has-prefix"
+                  />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- TERMS -->
+          <div class="terms-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" />
+              <span class="check-box"></span>
+              <span
+                >I agree to the terms and confirm that my details are
+                correct</span
+              >
+            </label>
+          </div>
+
+          <!-- SUBMIT -->
+          <button type="submit" class="submit-btn">
+            <span>Create My Vendor Account</span>
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </button>
+
+          <p class="login-redirect">
+            Already have an account?
+            <a href="../login/login.html">Sign in here</a>
+          </p>
+        </form>
+
+        <!-- TRUST NOTE -->
+        <div class="trust-note">
+          <div class="trust-icons">
+            <span title="Secure">🔒</span>
+            <span title="Free">🆓</span>
+            <span title="Verified">✅</span>
+            <span title="Support">🤝</span>
+          </div>
+          <p class="trust-title">Your information is safe with us</p>
+          <p class="trust-body">
+            OjaHub does not sell or share your personal data with third parties.
+            Your details are used solely to set up and manage your vendor
+            profile. Registration is completely free — no hidden fees, no
+            surprises. Our team reviews every listing to maintain a trusted
+            marketplace for both vendors and customers.
+          </p>
+          <div class="trust-tags">
+            <span>🔐 Secure & Safe</span>
+            <span>📵 No Spam</span>
+            <span>💸 Always Free</span>
+            <span>🇳🇬 Made for Nigeria</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="../../main.js"></script>
+    <script type="module" src="signup.js"></script>
+  </body>
+</html>

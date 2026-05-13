@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Products - OjaHub</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="my_product.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- ── PAGE SHELL ── -->
+    <div class="mp-page">
+      <!-- Top action bar -->
+      <div class="mp-topbar">
+        <button class="mp-back-btn" onclick="goBack()">
+          <i class="bi bi-arrow-left"></i>
+          <span>Back to Dashboard</span>
+        </button>
+
+        <div class="mp-topbar-center">
+          <h1 class="mp-page-title">My Products</h1>
+        </div>
+
+        <button
+          class="mp-add-btn"
+          onclick="window.location.href = '../../add_product_page.html'"
+        >
+          <i class="bi bi-plus-lg"></i>
+          <span>Add Product</span>
+        </button>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="mp-stats-strip" id="statsStrip">
+        <div class="mp-stat">
+          <span class="mp-stat-num" id="totalCount">—</span>
+          <span class="mp-stat-label">Total Products</span>
+        </div>
+        <div class="mp-stat-divider"></div>
+        <div class="mp-stat">
+          <span class="mp-stat-num" id="publishedCount">—</span>
+          <span class="mp-stat-label">Published</span>
+        </div>
+        <div class="mp-stat-divider"></div>
+        <div class="mp-stat">
+          <span class="mp-stat-num" id="draftCount">—</span>
+          <span class="mp-stat-label">Drafts</span>
+        </div>
+      </div>
+
+      <!-- Products grid -->
+      <div class="mp-grid" id="productsContainer">
+        <!-- Skeleton loaders shown while fetching -->
+        <div class="mp-skeleton"></div>
+        <div class="mp-skeleton"></div>
+        <div class="mp-skeleton"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+      function goBack() {
+        window.location.href = "/ojahub_v2/pages/dashboard/dashboard.html";
+      }
+    </script>
+
+    <script src="../../main.js"></script>
+    <script type="module" src="my_product.js"></script>
+  </body>
+</html>

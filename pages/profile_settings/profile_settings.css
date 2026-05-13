@@ -1,0 +1,426 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap");
+
+/* ---- Base ---- */
+body {
+  background: #f3f5f9;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  color: #1a1e2e;
+}
+
+/* ---- Page layout ---- */
+.ps-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 7rem 1.25rem 3rem;
+}
+
+/* ---- Back button ---- */
+.ps-back {
+  margin-bottom: 1.25rem;
+}
+
+.ps-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  color: #1a5cff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.15s;
+}
+
+.ps-back-btn:hover {
+  opacity: 0.75;
+}
+
+/* ---- Page title ---- */
+.ps-title-block {
+  margin-bottom: 1.75rem;
+}
+
+.ps-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 5px;
+  color: #0f1422;
+}
+
+.ps-subtitle {
+  font-size: 14px;
+  color: #6b7590;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ---- Cards ---- */
+.ps-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e4e8f0;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.ps-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid #f0f2f7;
+}
+
+.ps-card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+/* ---- Section icon ---- */
+.ps-section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e8eeff;
+  color: #1a5cff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.ps-section-icon--amber {
+  background: #fff3e0;
+  color: #e67e00;
+}
+
+.ps-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: #0f1422;
+}
+
+.ps-section-desc {
+  font-size: 13px;
+  color: #7a85a0;
+  margin: 0;
+}
+
+/* ---- Form fields ---- */
+.ps-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 540px) {
+  .ps-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ps-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-field label,
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #3d4562;
+  margin-bottom: 6px;
+}
+
+.ps-field input,
+.ps-field textarea,
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 9px;
+  border: 1.5px solid #dde2ee;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1a1e2e;
+  background: #fafbfd;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ps-field input:focus,
+.ps-field textarea:focus,
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #1a5cff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(26, 92, 255, 0.1);
+}
+
+.ps-field textarea,
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ---- Profile image section ---- */
+.ps-image-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.ps-logo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.preview-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 3px solid #1a5cff;
+  background: #e8eeff;
+}
+
+/* default empty state */
+.preview-img:not([src]),
+.preview-img[src=""] {
+  background: #d8e2ff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a5cff' opacity='0.35'%3E%3Cpath d='M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z'/%3E%3C/svg%3E")
+    center/50% no-repeat;
+}
+
+.ps-camera-btn {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #1a5cff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: background 0.15s;
+}
+
+.ps-camera-btn:hover {
+  background: #0040e6;
+}
+
+.ps-upload-zone {
+  flex: 1;
+  min-width: 180px;
+  border: 2px dashed #cdd4e8;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+  text-align: center;
+}
+
+.ps-upload-zone:hover {
+  border-color: #1a5cff;
+  background: #f0f4ff;
+}
+
+.ps-upload-icon {
+  font-size: 24px;
+  color: #1a5cff;
+  margin-bottom: 6px;
+}
+
+.ps-upload-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1e2e;
+}
+
+.ps-upload-hint {
+  font-size: 12px;
+  color: #9aa1b8;
+  margin-top: 2px;
+}
+
+.ps-hidden-file {
+  display: none;
+}
+
+/* ---- Cover image section ---- */
+.ps-cover-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px dashed #cdd4e8;
+  cursor: pointer;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.18s;
+}
+
+.ps-cover-wrap:hover {
+  border-color: #1a5cff;
+}
+
+.preview-cover {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.preview-cover:not([src]),
+.preview-cover[src=""] {
+  display: none;
+}
+
+.ps-cover-upload-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  color: #7a85a0;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.ps-cover-upload-overlay i {
+  font-size: 26px;
+  color: #1a5cff;
+  margin-bottom: 4px;
+}
+
+.ps-cover-wrap:hover .ps-cover-upload-overlay {
+  color: #1a5cff;
+}
+
+/* hide overlay when cover is loaded */
+.ps-cover-wrap.has-image .ps-cover-upload-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Highlights grid ---- */
+.ps-card-highlights .ps-card-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ps-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #eef0f7;
+  border-top: 1px solid #eef0f7;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .ps-highlights-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ps-highlight-item {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  gap: 6px;
+}
+
+.ps-highlight-icon {
+  font-size: 22px;
+  color: #1a5cff;
+  margin-bottom: 2px;
+}
+
+.ps-highlight-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f1422;
+}
+
+.ps-highlight-desc {
+  font-size: 12px;
+  color: #7a85a0;
+  line-height: 1.5;
+}
+
+/* ---- Submit ---- */
+.ps-submit-row {
+  margin-top: 0.5rem;
+}
+
+.ps-submit-btn,
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    transform 0.1s;
+  letter-spacing: 0.01em;
+}
+
+.ps-submit-btn:hover,
+button[type="submit"]:hover {
+  background: #e56800;
+}
+
+.ps-submit-btn:active,
+button[type="submit"]:active {
+  transform: scale(0.99);
+}
+
+.ps-loading {
+  text-align: center;
+  font-size: 14px;
+  color: #7a85a0;
+  margin-top: 10px;
+  min-height: 20px;
+}
+
+/* ---- Topbar (kept for JS compatibility) ---- */
+.topbar {
+  display: none;
+}

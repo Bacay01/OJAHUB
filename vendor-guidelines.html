@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Guidelines - OjaHub</title>
+
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- YOUR CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .guidelines-hero {
+        background: #f3f4f6;
+        padding: 7rem 0 3rem 0;
+      }
+
+      .guidelines-tag {
+        color: #ff7a00;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+
+      .guidelines-title {
+        font-size: 42px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 15px;
+      }
+
+      .guidelines-subtext {
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 16px;
+        color: #6b7280;
+        line-height: 1.6;
+      }
+
+      .guidelines-content {
+        padding: 60px 20px;
+        background: #ffffff;
+      }
+
+      .guidelines-grid {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+      }
+
+      .guidelines-column {
+        flex: 1;
+        max-width: 500px;
+      }
+
+      .guidelines-heading {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .guidelines-heading.do {
+        color: #16a34a;
+      }
+
+      .guidelines-heading.dont {
+        color: #dc2626;
+      }
+
+      /* CARDS */
+      .guideline-card {
+        padding: 16px 18px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      /* GREEN */
+      .guideline-card.do {
+        background: #e7f8ee;
+        color: #065f46;
+      }
+
+      /* RED */
+      .guideline-card.dont {
+        background: #fdecec;
+        color: #7f1d1d;
+      }
+
+      /* .guidelines-extra {
+  padding: 40px 20px;
+} */
+
+      /* VIOLATION BOX */
+      .guidelines-violation {
+        padding: 40px 20px;
+      }
+
+      .guidelines-violation .container {
+        background: #f5eee8;
+        border-radius: 14px;
+        padding: 35px 20px;
+        max-width: 950px;
+      }
+
+      .violation-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 8px;
+      }
+
+      .violation-text {
+        font-size: 13px;
+        color: #6b7280;
+        max-width: 620px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .guidelines-title {
+          font-size: 35px;
+        }
+
+        .guidelines-grid {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .guidelines-column {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header placeholder -->
+    <div id="header"></div>
+
+    <!-- HERO SECTION -->
+    <section class="guidelines-hero">
+      <div class="container text-center">
+        <p class="guidelines-tag">VENDOR STANDARDS</p>
+
+        <h1 class="guidelines-title">Vendor Guidelines</h1>
+
+        <p class="guidelines-subtext">
+          To keep OjaHub a safe and trusted marketplace, all vendors are
+          expected to follow these guidelines.
+        </p>
+      </div>
+    </section>
+
+    <section class="guidelines-content">
+      <div class="container">
+        <div class="guidelines-grid">
+          <!-- DO -->
+          <div class="guidelines-column">
+            <h4 class="guidelines-heading do">✔ Do's</h4>
+
+            <div class="guideline-card do">
+              Provide accurate and honest business information
+            </div>
+
+            <div class="guideline-card do">
+              Respond to customer inquiries promptly via WhatsApp
+            </div>
+
+            <div class="guideline-card do">
+              Deliver products/services as described and agreed
+            </div>
+
+            <div class="guideline-card do">
+              Maintain respectful and professional communication
+            </div>
+
+            <div class="guideline-card do">
+              Update your profile when your services or location change
+            </div>
+
+            <div class="guideline-card do">
+              Encourage satisfied customers to leave reviews
+            </div>
+          </div>
+
+          <!-- DON'T -->
+          <div class="guidelines-column">
+            <h4 class="guidelines-heading dont">✖ Don'ts</h4>
+
+            <div class="guideline-card dont">
+              Misrepresent your products, services, or pricing
+            </div>
+
+            <div class="guideline-card dont">
+              Ignore or delay responding to customer messages
+            </div>
+
+            <div class="guideline-card dont">
+              Use abusive or threatening language with customers
+            </div>
+
+            <div class="guideline-card dont">
+              Request unnecessary personal information from buyers
+            </div>
+
+            <div class="guideline-card dont">
+              Engage in fraudulent or deceptive practices
+            </div>
+
+            <div class="guideline-card dont">
+              Spam buyers with unsolicited messages
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIOLATION BOX -->
+    <section class="guidelines-violation">
+      <div class="container text-center">
+        <h4 class="violation-title">Violation of Guidelines</h4>
+
+        <p class="violation-text">
+          Vendors who violate these guidelines may have their profiles suspended
+          or permanently removed from OjaHub. We are committed to maintaining a
+          safe and trustworthy community.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
+    <script src="main.js"></script>
+  </body>
+</html>

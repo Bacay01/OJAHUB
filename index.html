@@ -1,400 +1,769 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JGCNKEBFWZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JGCNKEBFWZ');
-  </script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none';"> -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Ojahub V2</title>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OjaHub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      media="print"
+      onload="this.media = 'all'"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      />
+    </noscript>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" as="image" href="images/hero-img-1.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header placeholder -->
+    <div id="header"></div>
 
-<body>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+      <div class="hero-container">
+        <!-- LEFT SIDE -->
+        <div class="hero-left">
+          <div class="hero-badge anim anim-up">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2563eb"
+              stroke-width="2.5"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Your trusted marketplace
+          </div>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top ojahub-nav">
-  <div class="container-fluid px-3">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-      <img src="Images/ojahub logo.PNG" alt="OjaHub" class="brand-logo">
-      <small class="text-secondary d-none d-sm-inline">Trusted vendors near you</small>
-    </a>
+          <h1 class="hero-headline anim anim-up" id="heroHeadline">
+            <span id="typedText"></span><span id="cursor">|</span>
+          </h1>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+          <p class="hero-description anim anim-up">
+            OjaHub connects you with reliable vendors for food, fashion, beauty,
+            gadgets, and services — all in one place.
+          </p>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
-        <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
-        <li class="nav-item"><a class="nav-link" href="#why">Why OjaHub</a></li>
-        <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
-        <li class="nav-item"><a class="nav-link" href="#become-vendor">For vendors</a></li>
-      </ul>
+          <div class="search-wrapper anim anim-up">
+            <div class="search-box">
+              <div class="search-input-area">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search vendors, services, products..."
+                />
 
-      <form class="d-flex ms-lg-3 mt-3 mt-lg-0" role="search" action="all-vendors.html">
-        <input class="form-control me-2" type="search" placeholder="Search vendors…" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+                <div class="search-divider"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <p class="tagline">Trusted vendors & services</p>
-    <h1>Find trusted local services near you — instantly.</h1>
+                <select id="categorySelect">
+                  <option value="all">All Categories</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="food">Food</option>
+                  <option value="beauty">Beauty</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="phones">Phone</option>
+                  <option value="services">Services</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
 
-    <p class="hero-sub">
-      Laundry, phone repairs, food vendors, fashion, beauty & more in Ogbomosho and Ibadan.
-      Browse providers and chat on WhatsApp in seconds.
-    </p>
+              <button class="search-btn" id="searchBtn">Search</button>
+            </div>
+          </div>
 
-    <div class="hero-buttons">
-      <a href="#categories" class="btn primary-btn">Browse categories</a>
-      <a href="all-vendors.html" class="btn secondary-btn">Browse all vendors</a>
-    </div>
+          <!-- <div class="hero-search">
+            <div class="search-input-wrap">
+              <svg
+                class="search-icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#999"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search vendors e.g. 'caterer'"
+                class="search-input"
+              />
+            </div>
+            <button class="search-btn">Search</button>
+          </div> -->
 
-    <p class="hero-small">
-      Verified vendors · Direct WhatsApp chat · No stress
-    </p>
-  </div>
+          <div class="hero-ctas anim anim-left delay-1">
+            <a href="categories.html" class="btn-primary"
+              >Browse Vendors <span class="btn-arrow">→</span></a
+            >
+            <a href="pages/signup/signup.html" class="btn-outline"
+              >Become a Vendor</a
+            >
+          </div>
 
-  <div class="hero-card">
-    <h3>Vendors near you (demo)</h3>
-    <ul>
-      <li><span class="dot fashion"></span>Trendy Luxe By Chen · Wears</li>
-      <li><span class="dot phone"></span>Wealth Phone & Gadgets · Phones</li>
-      <li><span class="dot fashion"></span>The Flourijay Vault · Accessories</li>
-    </ul>
-    <p class="hero-note">Tap vendor to chat on WhatsApp.</p>
-  </div>
-</section>
+          <div class="hero-trust-icons anim anim-left delay-1">
+            <div class="trust-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2563eb"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span>Trusted<br />Vendors</span>
+            </div>
+            <div class="trust-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2563eb"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>Near You<br />Always</span>
+            </div>
+            <div class="trust-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2563eb"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
+              <span>Quality<br />Assured</span>
+            </div>
+            <div class="trust-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2563eb"
+                stroke-width="2"
+              >
+                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              <span>Fast &amp; Easy<br />Experience</span>
+            </div>
+          </div>
 
-<!-- CATEGORIES -->
-<section class="section" id="categories">
-  <h2 class="section-title">Popular categories</h2>
+          <div class="hero-social-proof anim anim-left delay-1">
+            <div class="avatars">
+              <img
+                src="images/profile-img-1.png"
+                alt="User"
+                class="avatar"
+                loading="lazy"
+              />
+              <img
+                src="images/profile-img-2.png"
+                alt="User"
+                class="avatar"
+                loading="lazy"
+              />
+              <img
+                src="images/profile-img-3.png"
+                alt="User"
+                class="avatar"
+                loading="lazy"
+              />
+              <img
+                src="images/profile-img-4.png"
+                alt="User"
+                class="avatar"
+                loading="lazy"
+              />
+            </div>
+            <p class="social-proof-text">
+              Join thousands of happy users and vendors growing and winning
+              together.
+            </p>
+          </div>
+        </div>
 
-  <div class="category-grid">
-    <a class="category-card category-link" href="food.html">
-      <div class="category-icon">🍛</div>
-      <h3>Food Vendors</h3>
-      <p>Affordable local meals, snacks and student-friendly food services.</p>
-    </a>
+        <!-- RIGHT SIDE — IMAGE CAROUSEL -->
+        <div class="hero-right anim anim-up">
+          <div class="carousel-wrapper">
+            <div id="carouselTrack">
+              <div class="carousel-slide active">
+                <img
+                  src="images/hero-img-1.png"
+                  alt="OjaHub Vendor"
+                  fetchpriority="high"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="images/hero-img-2.png"
+                  loading="lazy"
+                  alt="OjaHub Vendor"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="images/hero-img-3.png"
+                  loading="lazy"
+                  alt="Marketplace Vendor"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="images/hero-img-4.png"
+                  loading="lazy"
+                  alt="Marketplace Products"
+                />
+              </div>
+            </div>
 
-    <a class="category-card category-link" href="phones.html">
-      <div class="category-icon">📱</div>
-      <h3>Phones & Gadgets</h3>
-      <p>Phone shops, gadgets, chargers, cases and repairs.</p>
-    </a>
+            <!-- Carousel Dots -->
+            <div class="carousel-dots" id="carouselDots">
+              <button class="dot active" data-index="0"></button>
+              <button class="dot" data-index="1"></button>
+              <button class="dot" data-index="2"></button>
+              <button class="dot" data-index="3"></button>
+            </div>
 
-    <a class="category-card category-link" href="fashion.html">
-      <div class="category-icon">👗</div>
-      <h3>Fashion & Clothing</h3>
-      <p>Clothes, shoes, bags and everyday outfits.</p>
-    </a>
-
-    <a class="category-card category-link" href="beauty.html">
-      <div class="category-icon">🧴</div>
-      <h3>Beauty & Cosmetics</h3>
-      <p>Skincare, makeup, perfumes and self-care items.</p>
-    </a>
-
-    <a class="category-card category-link" href="services.html">
-      <div class="category-icon">🛠</div>
-      <h3>Services & Repairs</h3>
-      <p>Laundry, printing, business support, repairs and more.</p>
-    </a>
-
-    <a class="category-card category-link" href="others.html">
-      <div class="category-icon">🏠</div>
-      <h3>Home & Living / Others</h3>
-      <p>Decor, home essentials, auto services, events & more.</p>
-    </a>
-  </div>
-</section>
-
-<!-- WHY -->
-<section class="section" id="why">
-  <h2 class="section-title">Why use OjaHub?</h2>
-
-  <div class="why-grid">
-    <div class="why-card">
-      <h3>No random online sellers</h3>
-      <p>We focus on real people and real businesses you can reach easily.</p>
-    </div>
-
-    <div class="why-card">
-      <h3>Verified local vendors</h3>
-      <p>We start with vendors we can vouch for in Ogbomosho and Ibadan.</p>
-    </div>
-
-    <div class="why-card">
-      <h3>Direct WhatsApp communication</h3>
-      <p>Chat, ask questions and agree on details before you buy.</p>
-    </div>
-
-    <div class="why-card">
-      <h3>Support small businesses</h3>
-      <p>Your money stays in your community and helps local vendors grow.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED (SHORT) -->
-<section class="section" id="featured">
-  <div class="section-head-row">
-    <div>
-      <h2 class="section-title">Featured local vendors</h2>
-      <p class="section-subtitle">A few trusted picks. Want more? Browse all vendors.</p>
-    </div>
-    <a class="btn btn-outline-primary" href="all-vendors.html">Browse all vendors</a>
-  </div>
-
-  <div class="featured-grid">
-    <!-- 6 MAX (keep landing page light) -->
-    <div class="vendor-card">
-      <img class="vendor-img" src="Images/TIJ LAUDRY.JPG" alt="TIJ Laundry service">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>TIJ Laundry</h3>
-      <p class="vendor-cat">Services · Laundry</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-        <span class="vendor-chip">Replies on WhatsApp</span>
-        <span class="vendor-chip price">Price on request</span>
+            <!-- Floating badge -->
+            <div class="floating-badge">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ff7a00"
+                stroke-width="2.5"
+              >
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div>
+                <strong>Quality vendors.</strong>
+                <span>Great services. Right around you.</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <a class="small-btn" target="_blank"
-        href="https://wa.me/2349033728795?text=Hello%20I%20found%20TIJ%20Laundry%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20book%20a%20laundry%20service.%20Please%20share%20your%20prices%20and%20pickup%20options.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
+    </section>
+    <!-- ===== END HERO SECTION ===== -->
 
-    <div class="vendor-card">
-      <img class="vendor-img" src="Images/wealth 1.JPG" alt="Wealth Phone and Gadgets">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Wealth Phone & Gadgets</h3>
-      <p class="vendor-cat">Phones & Gadgets</p>
-      <p class="vendor-loc">Stadium Road, Ogbomosho</p>
-      <div class="vendor-meta">
-        <span class="vendor-chip">Replies on WhatsApp</span>
-        <span class="vendor-chip price">Price on request</span>
+    <!-- ── Ticker Strip ── -->
+    <style>
+      .ticker-wrap {
+        width: 100%;
+        background: #0f172a;
+        padding: 14px 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .ticker-wrap::before,
+      .ticker-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 80px;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .ticker-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, #0f172a, transparent);
+      }
+      .ticker-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, #0f172a, transparent);
+      }
+
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: ticker-scroll 32s linear infinite;
+      }
+      .ticker-track:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes ticker-scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .ticker-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 36px;
+        white-space: nowrap;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: #cbd5e1;
+      }
+      .ticker-item .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #f97316;
+        flex-shrink: 0;
+      }
+      .ticker-item strong {
+        color: #ffffff;
+        font-weight: 600;
+      }
+      .ticker-item .badge {
+        background: #f97316;
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 2px 7px;
+        border-radius: 20px;
+        text-transform: uppercase;
+      }
+    </style>
+
+    <div class="ticker-wrap" role="marquee" aria-label="Platform highlights">
+      <div class="ticker-track">
+        <div class="ticker-item">
+          <span class="dot"></span><strong>1,200+</strong> verified vendors
+          across Nigeria
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Find food, fashion &amp; beauty vendors
+          <strong>near you</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span><span class="badge">New</span>&nbsp; Gadget
+          vendors now on OjaHub
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Trusted by
+          <strong>10,000+ happy customers</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>List your business — it's
+          <strong>free to start</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Browse vendors in
+          <strong>Ibadan, Ogbomosho &amp; Beyond</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Quality assured.
+          <strong>Fast &amp; easy</strong> experience
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span><span class="badge">Hot</span>&nbsp; Fashion
+          vendors trending this week
+        </div>
+
+        <!-- Duplicate set for seamless loop -->
+        <div class="ticker-item">
+          <span class="dot"></span><strong>1,200+</strong> verified vendors
+          across Nigeria
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Find food, fashion &amp; beauty vendors
+          <strong>near you</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span><span class="badge">New</span>&nbsp; Gadget
+          vendors now on OjaHub
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Trusted by
+          <strong>10,000+ happy customers</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>List your business — it's
+          <strong>free to start</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Browse vendors in
+          <strong>Ibadan, Lagos &amp; Abuja</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span>Quality assured.
+          <strong>Fast &amp; easy</strong> experience
+        </div>
+        <div class="ticker-item">
+          <span class="dot"></span><span class="badge">Hot</span>&nbsp; Fashion
+          vendors trending this week
+        </div>
       </div>
-      <a class="small-btn" target="_blank"
-        href="https://wa.me/2348148422364?text=Hello%20I%20saw%20Wealth%20Phone%20%26%20Gadgets%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
     </div>
+    <!-- ── End Ticker ── -->
 
-    <div class="vendor-card">
-      <img class="vendor-img" src="Images/chen 2.JPG" alt="Trendy Luxe By Chen products">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Trendy Luxe By Chen</h3>
-      <p class="vendor-cat">Fashion · Clothing Brand</p>
-      <p class="vendor-loc">Yoaco Phase 2</p>
-      <div class="vendor-meta">
-        <span class="vendor-chip">Replies on WhatsApp</span>
-        <span class="vendor-chip price">Price on request</span>
-      </div>
-      <a class="small-btn" target="_blank"
-        href="https://wa.me/2348072670507?text=Hello%20I%20saw%20Trendy%20Luxe%20By%20Chen%20on%20OjaHub%20and%20I%E2%80%99m%20interested.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
+    <!--CATEGORY -->
 
-    <div class="vendor-card">
-      <img class="vendor-img" src="Images/NK'S AURUM.jpg" alt="Nk's Aurum beauty products">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Nk’s Aurum</h3>
-      <p class="vendor-cat">Beauty & Cosmetics</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-        <span class="vendor-chip">Replies on WhatsApp</span>
-        <span class="vendor-chip price">Price on request</span>
-      </div>
-      <a class="small-btn" target="_blank"
-        href="https://wa.me/2348133261691?text=Hello%20I%20found%20Nk%E2%80%99s%20Aurum%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20products.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
+    <section class="category-section">
+      <div class="container">
+        <!-- HEADER -->
+        <div class="category-header anim anim-up">
+          <p class="section-tag">Categories</p>
+          <h2>Browse by Category</h2>
+          <p>Find the right vendor for whatever you need</p>
+        </div>
 
-    <div class="vendor-card">
-      <img class="vendor-img" src="Images/Bee’s cafe and bistro (bees treat).jpeg" alt="Bee’s Cafe and Bistro">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Bee’s Treat</h3>
-      <p class="vendor-cat">Food · Cooked Meals</p>
-      <p class="vendor-loc">Under G, Ogbomosho</p>
-      <div class="vendor-meta">
-        <span class="vendor-chip">Replies on WhatsApp</span>
-        <span class="vendor-chip price">Price on request</span>
-      </div>
-      <a class="small-btn" target="_blank" rel="noopener"
-        href="https://wa.me/2348051564639?text=Hello%20I%20found%20Bee%E2%80%99s%20Cafe%20and%20Bistro%20on%20OjaHub%20and%20I%E2%80%99d%20like%20to%20place%20an%20order.%20Please%20share%20your%20menu%20and%20prices.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="vendor-card">
-      <img class="vendor-img" src="Images/AKIN DECOR.JPEG" alt="Akin Decor interiors">
-      <span class="vendor-tag verified">✔ Verified · Ogbomosho</span>
-      <h3>Akin Decor</h3>
-      <p class="vendor-cat">Others · Interior Decor</p>
-      <p class="vendor-loc">Ogbomosho</p>
-      <div class="vendor-meta">
-        <span class="vendor-chip">Replies on WhatsApp</span>
-        <span class="vendor-chip price">Price on request</span>
-      </div>
-      <a class="small-btn" target="_blank"
-        href="https://wa.me/2349153461979?text=Hello%20I%20found%20Akin%20Decor%20on%20OjaHub%20and%20I%E2%80%99m%20interested%20in%20your%20interior%20services.%20Please%20share%20more%20details.%20Thank%20you.">
-        Chat on WhatsApp
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- HOW -->
-<section class="section" id="how">
-  <h2 class="section-title">How OjaHub works</h2>
-  <div class="steps">
-    <div class="step-card">
-      <span class="step-number">1</span>
-      <h3>We verify local vendors</h3>
-      <p>We start with vendors we or our community can vouch for in Ogbomosho and Ibadan.</p>
-    </div>
-
-    <div class="step-card">
-      <span class="step-number">2</span>
-      <h3>We list their offers</h3>
-      <p>You see what they sell, their category, and location in one place.</p>
-    </div>
-
-    <div class="step-card">
-      <span class="step-number">3</span>
-      <h3>You chat and buy</h3>
-      <p>You contact them directly on WhatsApp to ask questions and buy safely.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BUYING SAFELY -->
-<section class="section safety-section" id="buying-safely">
-  <h2 class="section-title">Buying safely on OjaHub</h2>
-  <p class="safety-intro">
-    OjaHub connects you to local vendors directly on WhatsApp. Please follow these tips before payment or delivery.
-  </p>
-
-  <div class="safety-grid">
-    <div class="safety-card"><span class="safety-icon">💬</span><h3>Chat vendor first</h3><p>Ask questions and confirm product/service details.</p></div>
-    <div class="safety-card"><span class="safety-icon">🧾</span><h3>Confirm price & delivery</h3><p>Agree on total price, delivery fee and timeline clearly.</p></div>
-    <div class="safety-card"><span class="safety-icon">📸</span><h3>Ask for recent pictures/videos</h3><p>Request current photos/videos to confirm availability.</p></div>
-    <div class="safety-card"><span class="safety-icon">🛍️</span><h3>Start with small orders</h3><p>If it’s your first time buying, start small and build trust.</p></div>
-    <div class="safety-card"><span class="safety-icon">🆘</span><h3>Report issues</h3><p>If something feels wrong, contact OjaHub support before paying.</p></div>
-  </div>
-
-  <p class="safety-note">
-    OjaHub helps you discover vendors — buyers should confirm details before payment.
-  </p>
-</section>
-
-<!-- FEEDBACK -->
-<section class="feedback" id="feedback">
-  <h2>Help us improve OjaHub</h2>
-  <p>Share quick feedback so we can improve your experience.</p>
-
-  <div class="feedback-questions">
-    <div class="feedback-q">✅ Did you find what you needed?</div>
-    <div class="feedback-q">✅ Was the vendor responsive?</div>
-    <div class="feedback-q">✅ How can OjaHub improve?</div>
-  </div>
-
-  <div class="feedback-actions">
-    <a class="feedback-btn form-btn" target="_blank" rel="noopener" href="https://forms.gle/5ZioCNtz9sG4asym9">
-      Share feedback (30 secs)
-    </a>
-
-    <a class="feedback-btn whatsapp-btn" target="_blank" rel="noopener"
-      href="https://wa.me/2348165410790?text=Hello%20OjaHub%2C%20I%20have%20customer%20feedback%20to%20share.">
-      Send feedback on WhatsApp
-    </a>
-  </div>
-</section>
-
-<!-- VENDOR FORM -->
-<section class="section" id="become-vendor">
-  <h2 class="section-title">Become a vendor on OjaHub</h2>
-  <p class="form-intro">
-    If you run a reliable business in Ogbomosho or Ibadan, apply below.
-  </p>
-
-  <a class="apply-btn" href="https://forms.gle/nys91TaDDKKLV6vY9" target="_blank" rel="noopener">
-    Apply to Become an OjaHub Vendor
-  </a>
-
-  <p class="form-note">
-    We’ll review your details and contact you on WhatsApp once approved.
-  </p>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <img src="Images/ojahub logo.PNG" alt="OjaHub" class="footer-logo-img">
-      <p>
-        OjaHub connects trusted local vendors with buyers, starting with Ogbomosho and Ibadan.
-        verified vendors · Direct WhatsApp chat · No hidden charges
-      </p>
-      <p class="footer-disclaimer">
-        OjaHub currently connects buyers and vendors directly and does not process payments or deliveries.
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h4>For buyers</h4>
-      <ul>
-        <li><a href="#categories">Browse categories</a></li>
-        <li><a href="all-vendors.html">Browse all vendors</a></li>
-        <li><a href="#buying-safely">Buying safely</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>For vendors</h4>
-      <ul>
-        <li><a href="#become-vendor">Join as a vendor</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li>
-          <a href="https://wa.me/2348165410790?text=Hello%20OjaHub%20Support,%20I%20need%20help." target="_blank" rel="noopener">
-            Chat OjaHub Support
+        <!-- CARDS -->
+        <div class="category-grid">
+          <a
+            href="marketplace.html?category=food"
+            class="category-card anim anim-up"
+          >
+            <div class="icon-box">🍽️</div>
+            <h3>Food</h3>
+            <p>
+              Restaurants, caterers, snacks, home chefs and everything delicious
+              near you.
+            </p>
+            <p>28 vendors</p>
+            <span class="category-link">Browse category →</span>
           </a>
-        </li>
-        <li><a href="#">Email (coming soon)</a></li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="footer-bottom">
-    <p>© 2026 OjaHub. All rights reserved.</p>
-  </div>
-</footer>
+          <a
+            href="marketplace.html?category=fashion"
+            class="category-card anim anim-up"
+          >
+            <div class="icon-box">👗</div>
+            <h3>Fashion</h3>
+            <p>
+              Clothing vendors, tailors, accessories and personal style brands
+              in one place.
+            </p>
+            <p>27 vendors</p>
+            <span class="category-link">Browse category →</span>
+          </a>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
+          <a
+            href="marketplace.html?category=beauty"
+            class="category-card anim anim-up"
+          >
+            <div class="icon-box">💄</div>
+            <h3>Beauty</h3>
+            <p>
+              Discover makeup artists, skincare experts, salons and beauty
+              specialists.
+            </p>
+            <p>47 vendors</p>
+            <span class="category-link">Browse category →</span>
+          </a>
+
+          <a
+            href="marketplace.html?category=phones"
+            class="category-card anim anim-up"
+          >
+            <div class="icon-box">📱</div>
+            <h3>Phones</h3>
+            <p>
+              Phone sellers, gadgets, repairs and accessories from verified
+              vendors.
+            </p>
+            <p>10 vendors</p>
+            <span class="category-link">Browse category →</span>
+          </a>
+
+          <a
+            href="marketplace.html?category=services"
+            class="category-card anim anim-up"
+          >
+            <div class="icon-box">🛠️</div>
+            <h3>Services</h3>
+            <p>
+              Professional services for events, repairs, design, logistics and
+              more.
+            </p>
+            <p>11 vendors</p>
+            <span class="category-link">Browse category →</span>
+          </a>
+
+          <a
+            href="marketplace.html?category=others"
+            class="category-card anim anim-up"
+          >
+            <div class="icon-box">📦</div>
+            <h3>Other</h3>
+            <p>
+              Explore unique businesses and listings that fall outside standard
+              categories.
+            </p>
+            <p>38 vendors</p>
+            <span class="category-link">Browse category →</span>
+          </a>
+        </div>
+        <!-- VIEW ALL -->
+        <div class="view-all anim anim-up">
+          <a href="categories.html">View All Categories →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Vendors Section -->
+    <section class="section">
+      <div class="featured-header anim anim-zoom delay-2">
+        <p class="section-tag">Top Vendors</p>
+        <h2>Featured Vendors</h2>
+        <p>Trusted businesses people are connecting with</p>
+      </div>
+
+      <div class="section-header anim anim-zoom delay-2">
+        <p>A few trusted picks. Want more? Browse all vendors.</p>
+        <a href="marketplace.html" class="btn-outline">Browse all vendors</a>
+      </div>
+
+      <!-- Give your grid an id and remove all hardcoded cards -->
+      <div class="vendor-grid" id="vendorGrid"></div>
+
+      <!-- Add AFTER your existing <script src="main.js"></script> -->
+      <script type="module" src="featured-vendors.js"></script>
+    </section>
+
+    <!-- How it Works -->
+
+    <section class="how-it-works">
+      <div class="container">
+        <!-- HEADER -->
+        <div class="simple-process anim anim-zoom delay-1">
+          <p class="section-tag">Simple Process</p>
+          <h2>How Oja Hub Works</h2>
+          <p class="section-subtitle">
+            A simple step-by-step guide to finding, connecting, and working with
+            vendors.
+          </p>
+        </div>
+
+        <!-- STEPS -->
+        <div class="how-steps">
+          <!-- STEP 1 -->
+          <div class="how-step anim anim-zoom delay-1">
+            <div class="how-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <span class="step-label">Step 1</span>
+            <h3>Search or Browse</h3>
+            <p>Find vendors by category or search for what you need</p>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="how-step anim anim-zoom delay-1">
+            <div class="how-icon">
+              <i class="fa-regular fa-eye"></i>
+            </div>
+            <span class="step-label">Step 2</span>
+            <h3>View Vendor Details</h3>
+            <p>Check their services, reviews, and business info.</p>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="how-step anim anim-zoom delay-1">
+            <div class="how-icon">
+              <i class="fa-regular fa-comment-dots"></i>
+            </div>
+            <span class="step-label">Step 3</span>
+            <h3>Chat on WhatsApp</h3>
+            <p>Contact the vendor directly and get what you need fast.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY USE OJAHUB -->
+
+    <section class="why-section">
+      <div class="container">
+        <!-- HEADER -->
+        <div class="why-header anim anim-zoom delay-1">
+          <p class="section-tag">Why Choose Us</p>
+          <h2>Why Use Oja Hub?</h2>
+          <p class="section-subtitle">
+            We make it easy to connect with reliable vendors, saving you time
+            and ensuring quality service.
+          </p>
+        </div>
+
+        <!-- CARDS -->
+        <div class="why-grid">
+          <!-- CARD 1 -->
+          <div class="why-card anim anim-zoom delay-1">
+            <div class="why-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3>Verified Vendors</h3>
+            <p>We highlight trusted and reliable businesses</p>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="why-card anim anim-zoom delay-1">
+            <div class="why-icon">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3>Fast & Easy</h3>
+            <p>No stress — find and contact vendors in minutes</p>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="why-card anim anim-zoom delay-1">
+            <div class="why-icon">
+              <i class="fa-regular fa-comment-dots"></i>
+            </div>
+            <h3>Direct Communication</h3>
+            <p>Chat instantly via WhatsApp — no middleman</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRWOSE AND LIST -->
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-grid">
+          <!-- LEFT CARD -->
+          <div class="cta-card cta-blue anim anim-fade-up delay-2">
+            <h2>Ready to Find the Right Vendor?</h2>
+            <p>
+              Explore trusted local businesses, discover reliable services, and
+              connect with vendors that match your needs quickly and easily.
+            </p>
+
+            <a href="marketplace.html" class="cta-btn-white">
+              Browse Vendors <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- RIGHT CARD -->
+          <div class="cta-card cta-orange anim anim-fade-up delay-2">
+            <h2>Do You Own a Business?</h2>
+            <p>
+              Showcase your business on Oja Hub, reach more customers, and grow
+              your visibility within your local community.
+            </p>
+
+            <a href="pages/signup/signup.html" class="cta-btn-white">
+              List Your Business <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP US IMPROVE OJA HUB -->
+    <section class="help-us-improve">
+      <div class="container text-center">
+        <p class="section-tag anim anim-zoom delay-1">Feedback</p>
+        <h2 class="section-title anim anim-zoom delay-1">
+          Help Us Improve OjaHub
+        </h2>
+        <p class="section-subtitle anim anim-zoom delay-1">
+          Your experience matters. Share quick feedback to help us improve how
+          buyers and vendors connect.
+        </p>
+
+        <!-- OPTIONS -->
+        <div class="feedback-options">
+          <div class="feedback-card anim anim-zoom delay-1 active">
+            <i class="fas fa-check-circle"></i>
+            <p>I found what I needed</p>
+          </div>
+
+          <div class="feedback-card anim anim-zoom delay-1">
+            <i class="fas fa-user-check"></i>
+            <p>Vendor was responsive</p>
+          </div>
+
+          <div class="feedback-card anim anim-zoom delay-1">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>Needs improvement</p>
+          </div>
+        </div>
+
+        <!-- EXTRA MESSAGE -->
+        <textarea
+          id="feedbackMessage"
+          placeholder="Add more details..."
+        ></textarea>
+
+        <!-- BUTTON -->
+        <button class="feedback-btn anim anim-zoom delay-1">
+          <i class="fa-brands fa-whatsapp"></i>
+          Send Feedback
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+    <script src="main.js"></script>
+    <script type="module" src="featured-vendors.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const categorySelect = document.getElementById("categorySelect");
+      const searchBtn = document.getElementById("searchBtn");
+
+      function goToMarketplace() {
+        const query = searchInput.value.trim();
+        const category = categorySelect.value;
+
+        const params = new URLSearchParams();
+        if (query) params.set("q", query);
+        if (category && category !== "all") params.set("category", category);
+
+        window.location.href = `marketplace.html?${params.toString()}`;
+      }
+
+      searchBtn.addEventListener("click", goToMarketplace);
+
+      searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") goToMarketplace();
+      });
+    </script>
+  </body>
 </html>
