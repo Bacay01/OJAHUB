@@ -103,10 +103,16 @@ function getVendorImage(data) {
 
 // ── Detect base path ──────────────────────────────────────
 function getBasePath() {
-  const isGitHub =
-    window.location.hostname !== "127.0.0.1" &&
-    window.location.hostname !== "localhost";
-  return isGitHub ? "/ojahub_v2" : "";
+  const isLocalhost =
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "localhost";
+  const isCustomDomain =
+    window.location.hostname === "ojahubapp.com" ||
+    window.location.hostname === "www.ojahubapp.com";
+
+  if (isLocalhost) return ""; // localhost → no prefix
+  if (isCustomDomain) return ""; // ojahubapp.com → no prefix
+  return "/ojahub_v2"; // GitHub Pages subdomain → needs prefix
 }
 
 // ── Build one vendor card ─────────────────────────────────
