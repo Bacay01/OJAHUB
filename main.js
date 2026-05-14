@@ -387,7 +387,7 @@ document.addEventListener("componentsLoaded", () => {
 
   // SET LOGO
   const logoImg = document.getElementById("logo-img");
-  if (logoImg) logoImg.src = r + "images/ojahub-logo.png";
+  if (logoImg) logoImg.src = r + "Images/ojahub-logo.png";
 
   const links = {
     "nav-home": r + "/index.html",
