@@ -17,16 +17,22 @@ async function loadComponent(elementId, filePath) {
   }
 }
 
-const isGitHub =
-  window.location.hostname !== "127.0.0.1" &&
-  window.location.hostname !== "localhost";
+const isLocalhost =
+  window.location.hostname === "127.0.0.1" ||
+  window.location.hostname === "localhost";
 
-const componentBase = isGitHub
-  ? "/ojahub_v2/pages/components/"
-  : (() => {
+const isCustomDomain =
+  window.location.hostname === "ojahubapp.com" ||
+  window.location.hostname === "www.ojahubapp.com";
+
+const componentBase = isLocalhost
+  ? (() => {
       const depth = window.location.pathname.split("/").filter(Boolean).length;
       return "../".repeat(Math.max(0, depth - 1)) + "pages/components/";
-    })();
+    })()
+  : isCustomDomain
+    ? "/pages/components/" // ✅ custom domain — files are at root
+    : "/ojahub_v2/pages/components/"; // GitHub Pages subdomain fallback
 
 Promise.all([
   loadComponent("header", componentBase + "header.html"),
@@ -374,11 +380,10 @@ function initNavbar() {
 document.addEventListener("componentsLoaded", () => {
   initNavbar();
 
-  const r =
-    window.location.hostname !== "127.0.0.1" &&
-    window.location.hostname !== "localhost"
-      ? "/ojahub_v2"
-      : "";
+  // ✅ Custom domain → no prefix needed (files are at root)
+  // ✅ GitHub Pages subdomain → needs /ojahub_v2 prefix
+  // ✅ Localhost → no prefix
+  const r = isCustomDomain ? "" : isLocalhost ? "" : "/ojahub_v2";
 
   // SET LOGO
   const logoImg = document.getElementById("logo-img");
