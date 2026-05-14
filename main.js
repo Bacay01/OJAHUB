@@ -386,16 +386,16 @@ document.addEventListener("componentsLoaded", () => {
   const r = isCustomDomain ? "" : isLocalhost ? "" : "/ojahub_v2";
 
   // SET LOGO
-  const logoImg = document.getElementById("logo-img");
-  if (logoImg) {
-    if (isCustomDomain) {
-      logoImg.src = "/Images/ojahub-logo.png";
-    } else if (isLocalhost) {
-      logoImg.src = "Images/ojahub-logo.png";
-    } else {
-      logoImg.src = "/ojahub_v2/Images/ojahub-logo.png";
-    }
-  }
+  // const logoImg = document.getElementById("logo-img");
+  // if (logoImg) {
+  //   if (isCustomDomain) {
+  //     logoImg.src = "/Images/ojahub-logo.png";
+  //   } else if (isLocalhost) {
+  //     logoImg.src = "Images/ojahub-logo.png";
+  //   } else {
+  //     logoImg.src = "/ojahub_v2/Images/ojahub-logo.png";
+  //   }
+  // }
 
   const links = {
     "nav-home": r + "/index.html",
