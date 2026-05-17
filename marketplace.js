@@ -4,6 +4,8 @@ import {
   getFirestore,
   collection,
   getDocs,
+  addDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 // 🔥 CONFIG
@@ -19,6 +21,43 @@ const firebaseConfig = {
 // 🔥 INIT
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+// 🔥 TRACK VENDOR VIEW
+async function trackVendorView(vendorId, vendorName) {
+  try {
+    await addDoc(collection(db, "vendor_views"), {
+      vendorId,
+      vendorName,
+      timestamp: serverTimestamp(),
+    });
+  } catch (error) {
+    console.log("Vendor tracking error:", error);
+  }
+}
+
+// 🔥 TRACK WHATSAPP CLICK
+async function trackWhatsappClick(vendorId, vendorName) {
+  try {
+    await addDoc(collection(db, "whatsapp_clicks"), {
+      vendorId,
+      vendorName,
+      timestamp: serverTimestamp(),
+    });
+  } catch (error) {
+    console.log("WhatsApp tracking error:", error);
+  }
+}
+
+// 🔥 TRACK SEARCHES
+async function trackSearch(keyword) {
+  try {
+    await addDoc(collection(db, "searches"), {
+      keyword,
+      timestamp: serverTimestamp(),
+    });
+  } catch (error) {
+    console.log("Search tracking error:", error);
+  }
+}
 
 // 🔥 DOM REFS (set in DOMContentLoaded)
 let vendorList;
@@ -178,6 +217,8 @@ async function loadVendors() {
     let html = "";
 
     vendors.forEach((data) => {
+
+      if (data.isActive === false) return;
       // Match products to this vendor
       const vendorProducts = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
@@ -359,6 +400,7 @@ function attachViewDetails() {
 
 function openVendorDetail(card) {
   const vendorName = card.dataset.name || "";
+  trackVendorView(card.dataset.id, vendorName);
   const rawPhone = (card.dataset.whatsapp || "").replace(/\D/g, "");
   let phone = rawPhone;
   if (phone.startsWith("0")) phone = "234" + phone.substring(1);
@@ -385,6 +427,9 @@ function openVendorDetail(card) {
   // ── WhatsApp link
   if (phone) {
     detailWhatsapp.href = "https://wa.me/" + phone;
+    detailWhatsapp.onclick = () => {
+  trackWhatsappClick(card.dataset.id, vendorName);
+};
     detailWhatsapp.classList.remove("hidden");
     detailWhatsapp.innerHTML =
       '<i class="fa-brands fa-whatsapp"></i> Contact Vendor';
@@ -515,10 +560,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── Search
   if (searchInput) {
-    searchInput.addEventListener("input", () => {
-      activeQuery = searchInput.value.trim().toLowerCase();
-      applyFilters();
-    });
+    searchInput.addEventListener("input", async () => {
+  activeQuery = searchInput.value.trim().toLowerCase();
+
+  applyFilters();
+
+  if (activeQuery.length > 2) {
+    trackSearch(activeQuery);
+  }
+});
   }
 
   // ── Sort
