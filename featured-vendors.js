@@ -176,7 +176,7 @@ function buildCard(data) {
   );
 }
 
-// ── Update category counts on homepage ───────────────────
+// ── Update category counts on homepage ────────────────────
 function updateCategoryCounts(vendors) {
   const categoryCounts = {};
   vendors.forEach((v) => {
@@ -200,7 +200,6 @@ function updateCategoryCounts(vendors) {
     if (!link) return;
 
     const paragraphs = link.querySelectorAll("p");
-    // second <p> is the count (index 1)
     const countEl = paragraphs[1];
     if (!countEl) return;
 
@@ -209,7 +208,7 @@ function updateCategoryCounts(vendors) {
   });
 }
 
-// ── Main: fetch vendors + products, render ───────────────
+// ── Main: fetch vendors + products, render ────────────────
 async function loadFeaturedVendors() {
   const grid = document.getElementById("vendorGrid");
   if (!grid) return;
@@ -230,17 +229,36 @@ async function loadFeaturedVendors() {
     const vendors = [];
     vendorSnapshot.forEach((d) => vendors.push({ id: d.id, ...d.data() }));
 
-    // UPDATE CATEGORY COUNTS
-    updateCategoryCounts(vendors);
+    // ── DEDUPLICATE claimed vs manually-added vendors ──────
+    // When a vendor claims their business, a new doc is created
+    // with ownerUid. The old manual doc still exists → duplicate.
+    // We keep the claimed version (has ownerUid) over the manual one.
+    const seen = new Map();
+    vendors.forEach((vendor) => {
+      const key = (vendor.businessName || "").trim().toLowerCase();
+      if (!seen.has(key)) {
+        seen.set(key, vendor);
+      } else {
+        const existing = seen.get(key);
+        // Prefer the claimed version
+        if (vendor.ownerUid && !existing.ownerUid) {
+          seen.set(key, vendor);
+        }
+      }
+    });
+    const deduped = Array.from(seen.values());
 
-    if (vendors.length === 0) {
+    // UPDATE CATEGORY COUNTS (use deduped list)
+    updateCategoryCounts(deduped);
+
+    if (deduped.length === 0) {
       grid.innerHTML =
         '<p style="grid-column:1/-1;text-align:center;color:#999;padding:40px 0">No vendors yet.</p>';
       return;
     }
 
     // Count products per vendor
-    vendors.forEach((vendor) => {
+    deduped.forEach((vendor) => {
       vendor._productCount = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
         const bName = (vendor.businessName || "").trim().toLowerCase();
@@ -254,14 +272,14 @@ async function loadFeaturedVendors() {
     });
 
     // Sort by product count descending, then A-Z
-    vendors.sort((a, b) => {
+    deduped.sort((a, b) => {
       if (b._productCount !== a._productCount)
         return b._productCount - a._productCount;
       return (a.businessName || "").localeCompare(b.businessName || "");
     });
 
     // Take top 9
-    const featured = vendors.slice(0, Math.min(9, vendors.length));
+    const featured = deduped.slice(0, Math.min(9, deduped.length));
     grid.innerHTML = featured.map(buildCard).join("");
 
     // Re-run intersection observer so cards animate in

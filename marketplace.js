@@ -5,7 +5,7 @@ import {
   collection,
   getDocs,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 // 🔥 CONFIG
@@ -21,6 +21,7 @@ const firebaseConfig = {
 // 🔥 INIT
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
 // 🔥 TRACK VENDOR VIEW
 async function trackVendorView(vendorId, vendorName) {
   try {
@@ -77,18 +78,16 @@ let activeQuery = "";
 
 // ─────────────────────────────────────────────
 // 🎨 INITIALS AVATAR GENERATOR
-// Returns a data: URL SVG avatar showing business
-// name initials. Colour is deterministic per name.
 // ─────────────────────────────────────────────
 const AVATAR_PALETTE = [
-  ["#FF6D00", "#fff"], // OjaHub orange  / white text
-  ["#1565C0", "#fff"], // deep blue      / white text
-  ["#2E7D32", "#fff"], // forest green   / white text
-  ["#6A1B9A", "#fff"], // purple         / white text
-  ["#AD1457", "#fff"], // deep pink      / white text
-  ["#00838F", "#fff"], // teal           / white text
-  ["#E65100", "#fff"], // burnt orange   / white text
-  ["#283593", "#fff"], // indigo         / white text
+  ["#FF6D00", "#fff"],
+  ["#1565C0", "#fff"],
+  ["#2E7D32", "#fff"],
+  ["#6A1B9A", "#fff"],
+  ["#AD1457", "#fff"],
+  ["#00838F", "#fff"],
+  ["#E65100", "#fff"],
+  ["#283593", "#fff"],
 ];
 
 function getInitials(name) {
@@ -116,7 +115,6 @@ function makeAvatarUrl(businessName) {
   var bg = colorPair[0];
   var fg = colorPair[1];
 
-  // Single string concat — no array join breaking SVG attributes
   var svg =
     '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240">' +
     '<rect width="400" height="240" fill="' +
@@ -138,7 +136,6 @@ function makeAvatarUrl(businessName) {
     '" fill-opacity="0.45" text-anchor="middle">OjaHub Marketplace</text>' +
     "</svg>";
 
-  // Use btoa (base64) — never throws URI errors unlike encodeURIComponent
   try {
     return "data:image/svg+xml;base64," + btoa(svg);
   } catch (e) {
@@ -177,9 +174,27 @@ async function loadVendors() {
     const vendors = [];
     vendorSnapshot.forEach((d) => vendors.push({ id: d.id, ...d.data() }));
 
-    // Sort: category → then A-Z
-    vendors.sort((a, b) => {
-      // Count products per vendor
+    // ── DEDUPLICATE claimed vs manually-added vendors ──────────
+    // When a vendor claims their business, a new doc is created
+    // with ownerUid. The old manual doc still exists → duplicate.
+    // We keep the claimed version (has ownerUid) over the manual one.
+    const seen = new Map();
+    vendors.forEach((vendor) => {
+      const key = (vendor.businessName || "").trim().toLowerCase();
+      if (!seen.has(key)) {
+        seen.set(key, vendor);
+      } else {
+        const existing = seen.get(key);
+        // Prefer the claimed version
+        if (vendor.ownerUid && !existing.ownerUid) {
+          seen.set(key, vendor);
+        }
+      }
+    });
+    const deduped = Array.from(seen.values());
+
+    // ── Sort: vendors with products first, then category, then A-Z
+    deduped.sort((a, b) => {
       const productsA = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
         const bName = (a.businessName || "").trim().toLowerCase();
@@ -202,23 +217,20 @@ async function loadVendors() {
         );
       }).length;
 
-      // Vendors with products rank first
       if (productsB !== productsA) return productsB - productsA;
 
-      // Then by category
       const catA = (a.category || "").toLowerCase();
       const catB = (b.category || "").toLowerCase();
       if (catA !== catB) return catA.localeCompare(catB);
 
-      // Then A-Z
       return (a.businessName || "").localeCompare(b.businessName || "");
     });
 
     let html = "";
 
-    vendors.forEach((data) => {
-
+    deduped.forEach((data) => {
       if (data.isActive === false) return;
+
       // Match products to this vendor
       const vendorProducts = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
@@ -401,6 +413,7 @@ function attachViewDetails() {
 function openVendorDetail(card) {
   const vendorName = card.dataset.name || "";
   trackVendorView(card.dataset.id, vendorName);
+
   const rawPhone = (card.dataset.whatsapp || "").replace(/\D/g, "");
   let phone = rawPhone;
   if (phone.startsWith("0")) phone = "234" + phone.substring(1);
@@ -408,7 +421,6 @@ function openVendorDetail(card) {
   const categoryLabel = card.dataset.category || "Vendor";
 
   // ── Hero image: use stored image, or generate avatar as fallback
-  // Avatar SVG is a data: URL so it never fails to load — no onerror needed
   const storedImage = card.dataset.image;
   detailImg.src = storedImage || makeAvatarUrl(vendorName);
   detailImg.alt = vendorName;
@@ -424,17 +436,31 @@ function openVendorDetail(card) {
   detailDesc.innerHTML =
     "<p>" + (card.dataset.desc || "No description available.") + "</p>";
 
-  // ── WhatsApp link
-  if (phone) {
-    detailWhatsapp.href = "https://wa.me/" + phone;
-    detailWhatsapp.onclick = () => {
-  trackWhatsappClick(card.dataset.id, vendorName);
-};
-    detailWhatsapp.classList.remove("hidden");
-    detailWhatsapp.innerHTML =
-      '<i class="fa-brands fa-whatsapp"></i> Contact Vendor';
-  } else {
-    detailWhatsapp.classList.add("hidden");
+  // ── Fancy info tags
+  const tagsWrap = document.getElementById("vendorDetailTags");
+  if (tagsWrap) {
+    const hasWA = phone.length > 0;
+    tagsWrap.innerHTML =
+      '<span class="vd-tag vd-tag--category">' +
+      '<i class="fa-solid fa-tag"></i> ' +
+      categoryLabel +
+      "</span>" +
+      (card.dataset.location
+        ? '<span class="vd-tag vd-tag--location">' +
+          '<i class="fa-solid fa-location-dot"></i> ' +
+          card.dataset.location +
+          "</span>"
+        : "") +
+      (hasWA
+        ? '<span class="vd-tag vd-tag--wa">' +
+          '<i class="fa-brands fa-whatsapp"></i> Replies on WhatsApp' +
+          "</span>"
+        : '<span class="vd-tag vd-tag--no-wa">' +
+          '<i class="fa-solid fa-comment-slash"></i> No WhatsApp' +
+          "</span>") +
+      '<span class="vd-tag vd-tag--verified">' +
+      '<i class="fa-solid fa-circle-check"></i> Verified Vendor' +
+      "</span>";
   }
 
   // ── Claim button
@@ -561,14 +587,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── Search
   if (searchInput) {
     searchInput.addEventListener("input", async () => {
-  activeQuery = searchInput.value.trim().toLowerCase();
-
-  applyFilters();
-
-  if (activeQuery.length > 2) {
-    trackSearch(activeQuery);
-  }
-});
+      activeQuery = searchInput.value.trim().toLowerCase();
+      applyFilters();
+      if (activeQuery.length > 2) {
+        trackSearch(activeQuery);
+      }
+    });
   }
 
   // ── Sort
@@ -587,7 +611,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── Handle ?category= and ?q= from URL (e.g. coming from homepage)
+  // ── Handle ?category= and ?q= from URL
   const urlParams = new URLSearchParams(window.location.search);
   const urlCategory = (urlParams.get("category") || "all").toLowerCase();
   const urlQuery = (urlParams.get("q") || "").toLowerCase();
@@ -608,11 +632,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (searchInput) searchInput.value = urlQuery;
   }
 
-  // ── Auto-open a vendor if ?vendor=ID came from homepage ──
+  // ── Auto-open a vendor if ?vendor=ID came from homepage
   const vendorIdFromUrl = urlParams.get("vendor");
 
   if (vendorIdFromUrl) {
-    // loadVendors() is async — wait for it, then find & open the card
     loadVendors().then(() => {
       const card = document.querySelector(
         '.vendor-card[data-id="' + vendorIdFromUrl + '"]',
