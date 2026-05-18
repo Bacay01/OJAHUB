@@ -198,23 +198,13 @@ async function loadVendors() {
       const productsA = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
         const bName = (a.businessName || "").trim().toLowerCase();
-        return (
-          p.vendorId === a.id ||
-          pVendor === bName ||
-          pVendor.includes(bName) ||
-          bName.includes(pVendor)
-        );
+        return p.vendorId === a.id || pVendor === bName;
       }).length;
 
       const productsB = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
         const bName = (b.businessName || "").trim().toLowerCase();
-        return (
-          p.vendorId === b.id ||
-          pVendor === bName ||
-          pVendor.includes(bName) ||
-          bName.includes(pVendor)
-        );
+        return p.vendorId === b.id || pVendor === bName;
       }).length;
 
       if (productsB !== productsA) return productsB - productsA;
@@ -236,10 +226,8 @@ async function loadVendors() {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
         const bName = (data.businessName || "").trim().toLowerCase();
         return (
-          p.vendorId === data.id ||
-          pVendor === bName ||
-          pVendor.includes(bName) ||
-          bName.includes(pVendor)
+          p.vendorId === data.id || // ✅ exact ID match (most reliable)
+          pVendor === bName // ✅ exact name match only
         );
       });
 

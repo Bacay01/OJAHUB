@@ -4945,3 +4945,59 @@ body {
   color: #6a1b9a;
   border: 1.5px solid #ce93d8;
 }
+
+/* ═══════════════════════════════════════════
+   PAGE TRANSITION LOADER
+   ═══════════════════════════════════════════ */
+#oja-loader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+#oja-loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.oja-loader-logo {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #1565c0;
+  letter-spacing: -0.5px;
+}
+
+.oja-loader-logo span {
+  color: #e65100;
+}
+
+.oja-loader-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3.5px solid #f0f0f0;
+  border-top-color: #ff6d00;
+  border-radius: 50%;
+  animation: oja-spin 0.7s linear infinite;
+}
+
+.oja-loader-text {
+  font-size: 13px;
+  color: #999;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+}
+
+@keyframes oja-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

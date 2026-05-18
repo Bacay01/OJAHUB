@@ -262,12 +262,7 @@ async function loadFeaturedVendors() {
       vendor._productCount = products.filter((p) => {
         const pVendor = (p.vendorName || "").trim().toLowerCase();
         const bName = (vendor.businessName || "").trim().toLowerCase();
-        return (
-          p.vendorId === vendor.id ||
-          pVendor === bName ||
-          pVendor.includes(bName) ||
-          bName.includes(pVendor)
-        );
+        return p.vendorId === vendor.id || pVendor === bName;
       }).length;
     });
 

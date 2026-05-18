@@ -1,4 +1,55 @@
 // ===============================
+// PAGE TRANSITION LOADER
+// ===============================
+(function () {
+  // Create loader element
+  const loader = document.createElement("div");
+  loader.id = "oja-loader";
+  loader.innerHTML =
+    '<div class="oja-loader-logo">Oja<span>Hub</span></div>' +
+    '<div class="oja-loader-spinner"></div>' +
+    '<p class="oja-loader-text">Loading...</p>';
+  document.documentElement.appendChild(loader);
+
+  // Fade out once page is fully loaded
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.remove(), 400);
+    }, 300); // brief minimum display so it doesn't just flash
+  });
+
+  // Show loader on every internal link click
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href) return;
+
+    // Skip: external links, anchors, mailto, tel, javascript
+    if (
+      href.startsWith("http") ||
+      href.startsWith("#") ||
+      href.startsWith("mailto") ||
+      href.startsWith("tel") ||
+      href.startsWith("javascript") ||
+      link.target === "_blank"
+    )
+      return;
+
+    // Show loader before navigating
+    const fresh = document.createElement("div");
+    fresh.id = "oja-loader";
+    fresh.innerHTML =
+      '<div class="oja-loader-logo">Oja<span>Hub</span></div>' +
+      '<div class="oja-loader-spinner"></div>' +
+      '<p class="oja-loader-text">Loading...</p>';
+    document.documentElement.appendChild(fresh);
+  });
+})();
+
+// ===============================
 // LOAD HEADER & FOOTER (ROBUST)
 // ===============================
 
