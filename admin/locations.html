@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Locations - OjaHub Admin</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <style>
+      /* ── Width constraint ── */
+      .admin-main {
+        min-width: 0;
+        overflow-x: hidden;
+      }
+      .admin-content {
+        flex: unset !important;
+        max-width: 1100px !important;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      /* ── Stat strip: 4 cols → 2 → 2 ── */
+      .loc-stat-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      /* ── Charts: 2 cols → 1 col ── */
+      .loc-chart-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+
+      /* ── Location card grid ── */
+      .loc-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .loc-card {
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition:
+          box-shadow 0.18s,
+          border-color 0.18s;
+      }
+
+      .loc-card:hover {
+        border-color: var(--oja-orange);
+        box-shadow: 0 4px 16px rgba(255, 109, 0, 0.08);
+      }
+
+      .loc-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .loc-card-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      .loc-card-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-primary);
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .loc-card-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+      }
+
+      .loc-metric {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .loc-metric-value {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+
+      .loc-metric-label {
+        font-size: 10.5px;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .loc-bar-wrap {
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .loc-bar {
+        height: 100%;
+        border-radius: 2px;
+        background: var(--oja-orange);
+        transition: width 0.5s ease;
+      }
+
+      /* ── Skeleton cards ── */
+      .loc-card-skeleton {
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .skeleton-cell {
+        height: 12px;
+        border-radius: 6px;
+        background: var(--border);
+        animation: shimmer 1.4s infinite;
+        display: block;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
+      }
+
+      /* ── Table controls ── */
+      .loc-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .loc-search-wrap {
+        position: relative;
+        flex: 1;
+        min-width: 140px;
+      }
+
+      .loc-search-wrap i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-size: 12px;
+        pointer-events: none;
+      }
+
+      .loc-search {
+        width: 100%;
+        padding: 8px 12px 8px 32px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: 13px;
+        box-sizing: border-box;
+        transition: border-color 0.18s;
+      }
+
+      .loc-search:focus {
+        outline: none;
+        border-color: var(--oja-orange);
+      }
+
+      .loc-export-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        transition:
+          border-color 0.18s,
+          background 0.18s,
+          color 0.18s;
+      }
+
+      .loc-export-btn:hover {
+        border-color: var(--oja-orange);
+        background: var(--oja-orange-lt);
+        color: var(--oja-orange-dk);
+      }
+
+      .loc-export-btn i {
+        font-size: 12px;
+      }
+
+      .loc-results-label {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      /* ── Conversion rate cell ── */
+      .conv-rate {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 6px;
+      }
+
+      .conv-rate.high {
+        background: var(--oja-green-lt);
+        color: var(--oja-green);
+      }
+      .conv-rate.mid {
+        background: var(--oja-orange-lt);
+        color: var(--oja-orange);
+      }
+      .conv-rate.low {
+        background: var(--bg);
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .loc-stat-strip {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .loc-chart-grid {
+          grid-template-columns: 1fr;
+        }
+        .loc-cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .loc-stat-strip {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .loc-cards-grid {
+          grid-template-columns: 1fr;
+        }
+        .loc-controls {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+        }
+        .loc-search-wrap {
+          max-width: 100%;
+        }
+        .loc-export-btn {
+          justify-content: center;
+        }
+        .loc-results-label {
+          display: none;
+        }
+
+        /* Hide Vendors + Conversion cols on mobile */
+        .admin-table thead th:nth-child(2),
+        .admin-table tbody td:nth-child(2),
+        .admin-table thead th:nth-child(5),
+        .admin-table tbody td:nth-child(5) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .loc-stat-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="adminSidebarMount"></div>
+    <div class="admin-shell">
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <div class="admin-topbar-left">
+            <button class="admin-hamburger" id="adminHamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-topbar-title">
+              <h1 data-topbar-title>Locations</h1>
+              <p data-topbar-sub>Performance breakdown by vendor city</p>
+            </div>
+          </div>
+          <span class="admin-live-badge">
+            <span class="admin-live-dot"></span> Live
+          </span>
+        </header>
+
+        <main class="admin-content">
+          <!-- ── Stat strip ── -->
+          <div class="loc-stat-strip" id="locStatStrip">
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Total Locations</span>
+                <div class="admin-stat-card-icon blue">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statTotalLoc">—</div>
+            </div>
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Top Location</span>
+                <div class="admin-stat-card-icon orange">
+                  <i class="fa-solid fa-trophy"></i>
+                </div>
+              </div>
+              <div
+                class="admin-stat-card-value"
+                id="statTopLoc"
+                style="font-size: 1.2rem"
+              >
+                —
+              </div>
+            </div>
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Total Views</span>
+                <div class="admin-stat-card-icon purple">
+                  <i class="fa-solid fa-eye"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statTotalViewsLoc">—</div>
+            </div>
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Total WA Clicks</span>
+                <div class="admin-stat-card-icon green">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statTotalWALoc">—</div>
+            </div>
+          </div>
+
+          <!-- ── Charts ── -->
+          <div class="loc-chart-grid">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div>
+                  <div class="admin-card-title">Views by Location</div>
+                  <div class="admin-card-sub">
+                    Vendor profile views per city
+                  </div>
+                </div>
+              </div>
+              <div class="admin-card-body">
+                <div class="admin-chart-container">
+                  <canvas id="locViewsChart"></canvas>
+                </div>
+                <div class="admin-empty hidden" id="locViewsEmpty">
+                  <i class="fa-solid fa-chart-bar"></i>
+                  <p>No view data yet.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div>
+                  <div class="admin-card-title">WA Clicks by Location</div>
+                  <div class="admin-card-sub">WhatsApp enquiries per city</div>
+                </div>
+              </div>
+              <div class="admin-card-body">
+                <div class="admin-chart-container">
+                  <canvas id="locWAChart"></canvas>
+                </div>
+                <div class="admin-empty hidden" id="locWAEmpty">
+                  <i class="fa-solid fa-chart-bar"></i>
+                  <p>No WhatsApp click data yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Location summary cards ── -->
+          <div class="admin-card" style="margin-bottom: 24px">
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">Location Overview</div>
+                <div class="admin-card-sub">
+                  Vendors, views and clicks at a glance
+                </div>
+              </div>
+            </div>
+            <div class="admin-card-body">
+              <!-- Skeleton cards -->
+              <div class="loc-cards-grid" id="locCardsGrid">
+                <div class="loc-card-skeleton">
+                  <div class="skeleton-cell" style="width: 60%"></div>
+                  <div
+                    class="skeleton-cell"
+                    style="width: 40%; height: 8px"
+                  ></div>
+                  <div
+                    class="skeleton-cell"
+                    style="width: 80%; height: 8px"
+                  ></div>
+                </div>
+                <div class="loc-card-skeleton">
+                  <div class="skeleton-cell" style="width: 55%"></div>
+                  <div
+                    class="skeleton-cell"
+                    style="width: 45%; height: 8px"
+                  ></div>
+                  <div
+                    class="skeleton-cell"
+                    style="width: 70%; height: 8px"
+                  ></div>
+                </div>
+                <div class="loc-card-skeleton">
+                  <div class="skeleton-cell" style="width: 65%"></div>
+                  <div
+                    class="skeleton-cell"
+                    style="width: 35%; height: 8px"
+                  ></div>
+                  <div
+                    class="skeleton-cell"
+                    style="width: 75%; height: 8px"
+                  ></div>
+                </div>
+              </div>
+              <div class="admin-empty hidden" id="locCardsEmpty">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p>No location data yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Full location table ── -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">All Locations</div>
+                <div class="admin-card-sub" id="locTableSub">Loading…</div>
+              </div>
+            </div>
+
+            <div class="admin-card-body no-pad">
+              <div class="loc-controls">
+                <div class="loc-search-wrap">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input
+                    type="search"
+                    class="loc-search"
+                    id="locSearch"
+                    placeholder="Filter locations…"
+                    autocomplete="off"
+                  />
+                </div>
+                <button type="button" class="loc-export-btn" id="locExportBtn">
+                  <i class="fa-solid fa-download"></i> Export CSV
+                </button>
+                <span class="loc-results-label" id="locResultsLabel"></span>
+              </div>
+
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>City</th>
+                      <th>Vendors</th>
+                      <th>Views</th>
+                      <th>WA Clicks</th>
+                      <th>Conversion</th>
+                    </tr>
+                  </thead>
+                  <tbody id="locTableBody">
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 120px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 60px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 100px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 60px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 140px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 60px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 90px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 60px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 110px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 60px"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="admin-empty hidden" id="locTableEmpty">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p id="locTableEmptyMsg">No locations found.</p>
+              </div>
+
+              <div class="admin-empty hidden" id="locTableError">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Could not load location data. Please refresh.</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin-auth.js"></script>
+    <script type="module" src="js/admin-layout.js"></script>
+    <script type="module" src="js/locations.js"></script>
+  </body>
+</html>

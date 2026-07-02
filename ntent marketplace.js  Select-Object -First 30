@@ -1,0 +1,10 @@
+[33mdf187aa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m add login path to main.js
+[33m692c229[m replace Browse Vendor button on nav bar with Sign In button
+[33m7c3d1ba[m feat: add page transition loader for professional UX - tighten product-to-vendor matching to prevent cross-contamination
+[33ma8339b5[m feat: improve vendor detail UI, fix WhatsApp button, and deduplicate claimed vendors
+[33m1883230[m marketplace.js(data collection update)
+[33m62dc471[m fix broken help center links
+[33m23f7d74[m fix: correct base path for vendor detail links on custom domain
+[33m86749a0[m new logo image fix
+[33m1aa0495[m logo image second fix
+[33md2a49a9[m logo image fixed

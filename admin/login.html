@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Login - OjaHub</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <div class="admin-login-page">
+      <!-- Left: brand panel -->
+      <div class="admin-login-brand">
+        <div class="admin-login-brand-inner">
+          <div class="admin-login-logo">
+            <i class="fa-regular fa-circle-dot"></i>
+            <span>OjaHub <strong>Admin</strong></span>
+          </div>
+
+          <h1 class="admin-login-headline">Marketplace<br />Intelligence</h1>
+
+          <p class="admin-login-sub">
+            Real-time visibility into vendors, products, and buyer activity
+            across OjaHub.
+          </p>
+
+          <div class="admin-login-stats">
+            <div class="admin-login-stat">
+              <span class="admin-login-stat-num">237</span>
+              <span class="admin-login-stat-label">Vendors</span>
+            </div>
+            <div class="admin-login-stat-divider"></div>
+            <div class="admin-login-stat">
+              <span class="admin-login-stat-num">99+</span>
+              <span class="admin-login-stat-label">Products</span>
+            </div>
+            <div class="admin-login-stat-divider"></div>
+            <div class="admin-login-stat">
+              <span class="admin-login-stat-num">Live</span>
+              <span class="admin-login-stat-label">Tracking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: login form -->
+      <div class="admin-login-form-wrap">
+        <form id="adminLoginForm" class="admin-login-form" autocomplete="off">
+          <div class="admin-login-form-header">
+            <h2>Console Sign In</h2>
+            <p>Restricted access. Authorized personnel only.</p>
+          </div>
+
+          <div class="admin-field">
+            <label for="email">Email</label>
+            <div class="admin-input-wrap">
+              <i class="fa-regular fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                autocomplete="username"
+              />
+            </div>
+          </div>
+
+          <div class="admin-field">
+            <label for="password">Password</label>
+            <div class="admin-input-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••••••"
+                required
+                autocomplete="current-password"
+              />
+              <button
+                type="button"
+                class="admin-pw-toggle"
+                id="pwToggle"
+                aria-label="Show password"
+              >
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="loginError" class="admin-login-error hidden">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span id="loginErrorText">Invalid email or password.</span>
+          </div>
+
+          <button type="submit" class="admin-login-btn" id="loginBtn">
+            <span class="admin-login-btn-text">Sign In</span>
+            <span class="admin-login-spinner hidden"></span>
+          </button>
+
+          <p class="admin-login-footnote">
+            This area is monitored. Unauthorized access attempts are logged.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="login.js"></script>
+  </body>
+</html>
+s

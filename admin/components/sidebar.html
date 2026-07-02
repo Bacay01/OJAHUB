@@ -1,0 +1,90 @@
+<!-- ═══════════════════════════════════════════════════════════
+     OJAHUB ADMIN — SIDEBAR COMPONENT
+     admin/components/sidebar.html
+
+     Loaded via fetch() into <div id="sidebar"></div> on every
+     protected admin page (same pattern as the public site's
+     header.html / footer.html loader in main.js).
+
+     admin-layout.js handles:
+       - highlighting the active nav link
+       - mobile drawer open/close
+       - logout button click
+═══════════════════════════════════════════════════════════ -->
+
+<aside class="admin-sidebar" id="adminSidebar">
+  <div class="admin-sidebar-header">
+    <div class="admin-sidebar-logo">
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+    <div class="admin-sidebar-title">
+      <span class="admin-sidebar-title-main">OjaHub</span>
+      <span class="admin-sidebar-title-sub">Admin Console</span>
+    </div>
+    <button
+      class="admin-sidebar-close"
+      id="sidebarCloseBtn"
+      aria-label="Close menu"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <nav class="admin-nav">
+    <p class="admin-nav-label">Overview</p>
+    <a href="index.html" class="admin-nav-link" data-page="index">
+      <i class="fa-solid fa-grip"></i> Overview
+    </a>
+    <a href="activity.html" class="admin-nav-link" data-page="activity">
+      <i class="fa-solid fa-chart-line"></i> Activity
+    </a>
+
+    <p class="admin-nav-label">Marketplace</p>
+    <a href="vendors.html" class="admin-nav-link" data-page="vendors">
+      <i class="fa-solid fa-store"></i> Vendors
+    </a>
+    <a href="products.html" class="admin-nav-link" data-page="products">
+      <i class="fa-solid fa-box"></i> Products
+    </a>
+    <a href="search.html" class="admin-nav-link" data-page="search">
+      <i class="fa-solid fa-magnifying-glass"></i> Search
+    </a>
+    <a href="categories.html" class="admin-nav-link" data-page="categories">
+      <i class="fa-solid fa-layer-group"></i> Categories
+    </a>
+    <a href="locations.html" class="admin-nav-link" data-page="locations">
+      <i class="fa-solid fa-location-dot"></i> Locations
+    </a>
+
+    <p class="admin-nav-label">Engagement</p>
+    <a href="traffic.html" class="admin-nav-link" data-page="traffic">
+      <i class="fa-solid fa-signal"></i> Traffic
+    </a>
+    <a href="whatsapp.html" class="admin-nav-link" data-page="whatsapp">
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp
+    </a>
+
+    <p class="admin-nav-label">System</p>
+    <a href="reports.html" class="admin-nav-link" data-page="reports">
+      <i class="fa-solid fa-file-export"></i> Reports
+    </a>
+  </nav>
+
+  <div class="admin-sidebar-footer">
+    <div class="admin-sidebar-user">
+      <div class="admin-sidebar-user-avatar" id="adminUserAvatar">A</div>
+      <div class="admin-sidebar-user-info">
+        <span class="admin-sidebar-user-email" id="adminUserEmail"
+          >admin@ojahub.com</span
+        >
+        <span class="admin-sidebar-user-role">Administrator</span>
+      </div>
+    </div>
+    <button class="admin-logout-btn" id="adminLogoutBtn">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
+    </button>
+  </div>
+</aside>
+
+<!-- Mobile overlay backdrop -->
+<div class="admin-sidebar-overlay" id="adminSidebarOverlay"></div>

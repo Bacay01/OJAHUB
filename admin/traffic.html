@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Traffic - OjaHub Admin</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <style>
+      /* ── Width constraint ── */
+      .admin-main {
+        min-width: 0;
+        overflow-x: hidden;
+      }
+      .admin-content {
+        flex: unset !important;
+        max-width: 1100px !important;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      /* ── Stat strip: 4 cols → 2 → 2 ── */
+      .traffic-stat-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      /* ── Period selector tabs ── */
+      .period-tabs {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .period-tab {
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        color: var(--text-secondary);
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.18s;
+        white-space: nowrap;
+      }
+
+      .period-tab:hover {
+        border-color: var(--oja-blue);
+        color: var(--oja-blue);
+      }
+      .period-tab.active {
+        background: var(--oja-blue);
+        border-color: var(--oja-blue);
+        color: #fff;
+      }
+
+      /* ── Main trend chart (tall) ── */
+      .traffic-chart-tall .admin-chart-container {
+        height: 320px;
+      }
+
+      /* ── Two-col grid: peak times + top vendors ── */
+      .traffic-bottom-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+
+      /* ── Hour-of-day heatmap bar list ── */
+      .hour-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .hour-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hour-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-muted);
+        width: 36px;
+        flex-shrink: 0;
+        text-align: right;
+      }
+
+      .hour-bar-wrap {
+        flex: 1;
+        height: 10px;
+        background: var(--border);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .hour-bar {
+        height: 100%;
+        border-radius: 5px;
+        background: var(--oja-blue);
+        transition: width 0.5s ease;
+      }
+
+      .hour-count {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-secondary);
+        width: 28px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      /* ── Top vendors by traffic ── */
+      .traffic-vendor-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.15s;
+      }
+
+      .traffic-vendor-row:last-child {
+        border-bottom: none;
+      }
+      .traffic-vendor-row:hover {
+        background: var(--bg);
+      }
+
+      .traffic-vendor-rank {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 800;
+        background: var(--bg);
+        border: 1.5px solid var(--border);
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+
+      .traffic-vendor-rank.top {
+        background: var(--oja-blue-lt);
+        border-color: var(--oja-blue-lt);
+        color: var(--oja-blue);
+      }
+
+      .traffic-vendor-name {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .traffic-vendor-primary {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .traffic-vendor-sub {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .traffic-vendor-views {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--text-secondary);
+        white-space: nowrap;
+      }
+
+      /* ── Skeleton ── */
+      .skeleton-cell {
+        height: 12px;
+        border-radius: 6px;
+        background: var(--border);
+        animation: shimmer 1.4s infinite;
+        display: block;
+      }
+
+      .vendor-row-skeleton {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
+      }
+
+      /* ── Daily breakdown table ── */
+      .traffic-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .traffic-results-label {
+        margin-left: auto;
+        font-size: 12px;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .traffic-stat-strip {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .traffic-bottom-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .traffic-stat-strip {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .traffic-chart-tall .admin-chart-container {
+          height: 220px;
+        }
+
+        /* Hide Views + WA Clicks cols in daily table on mobile */
+        .admin-table thead th:nth-child(3),
+        .admin-table tbody td:nth-child(3),
+        .admin-table thead th:nth-child(4),
+        .admin-table tbody td:nth-child(4) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .traffic-stat-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="adminSidebarMount"></div>
+    <div class="admin-shell">
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <div class="admin-topbar-left">
+            <button class="admin-hamburger" id="adminHamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-topbar-title">
+              <h1 data-topbar-title>Traffic</h1>
+              <p data-topbar-sub>Marketplace visitor trends and engagement</p>
+            </div>
+          </div>
+          <span class="admin-live-badge">
+            <span class="admin-live-dot"></span> Live
+          </span>
+        </header>
+
+        <main class="admin-content">
+          <!-- ── Stat strip ── -->
+          <div class="traffic-stat-strip" id="trafficStatStrip">
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label"
+                  >Total Views (All Time)</span
+                >
+                <div class="admin-stat-card-icon blue">
+                  <i class="fa-solid fa-eye"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statTotalViews">—</div>
+            </div>
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Views (Last 7 Days)</span>
+                <div class="admin-stat-card-icon orange">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statViews7d">—</div>
+            </div>
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Views (Last 30 Days)</span>
+                <div class="admin-stat-card-icon purple">
+                  <i class="fa-solid fa-calendar"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statViews30d">—</div>
+            </div>
+            <div class="admin-stat-card" style="opacity: 0.45">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Peak Day (Views)</span>
+                <div class="admin-stat-card-icon teal">
+                  <i class="fa-solid fa-bolt"></i>
+                </div>
+              </div>
+              <div
+                class="admin-stat-card-value"
+                id="statPeakDay"
+                style="font-size: 1.1rem"
+              >
+                —
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Main trend chart with period tabs ── -->
+          <div
+            class="admin-card traffic-chart-tall"
+            style="margin-bottom: 24px"
+          >
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">Visitor Trend</div>
+                <div class="admin-card-sub" id="trendChartSub">
+                  Vendor profile views over time
+                </div>
+              </div>
+              <div class="period-tabs" id="periodTabs">
+                <button class="period-tab active" data-days="7">7D</button>
+                <button class="period-tab" data-days="14">14D</button>
+                <button class="period-tab" data-days="30">30D</button>
+                <button class="period-tab" data-days="90">90D</button>
+              </div>
+            </div>
+            <div class="admin-card-body">
+              <div class="admin-chart-container">
+                <canvas id="trafficTrendChart"></canvas>
+              </div>
+              <div class="admin-empty hidden" id="trafficTrendEmpty">
+                <i class="fa-solid fa-chart-line"></i>
+                <p>No traffic data yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Peak hours + Top vendors ── -->
+          <div class="traffic-bottom-grid">
+            <!-- Peak activity hours -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div>
+                  <div class="admin-card-title">Peak Activity Hours</div>
+                  <div class="admin-card-sub">
+                    Views by hour of day (all time)
+                  </div>
+                </div>
+              </div>
+              <div class="admin-card-body">
+                <div class="hour-list" id="hourList">
+                  <!-- skeleton -->
+                  <div class="hour-row">
+                    <div class="skeleton-cell" style="width: 32px"></div>
+                    <div
+                      class="skeleton-cell"
+                      style="flex: 1; height: 10px; border-radius: 5px"
+                    ></div>
+                    <div class="skeleton-cell" style="width: 24px"></div>
+                  </div>
+                  <div class="hour-row">
+                    <div class="skeleton-cell" style="width: 32px"></div>
+                    <div
+                      class="skeleton-cell"
+                      style="flex: 1; height: 10px; border-radius: 5px"
+                    ></div>
+                    <div class="skeleton-cell" style="width: 24px"></div>
+                  </div>
+                  <div class="hour-row">
+                    <div class="skeleton-cell" style="width: 32px"></div>
+                    <div
+                      class="skeleton-cell"
+                      style="flex: 1; height: 10px; border-radius: 5px"
+                    ></div>
+                    <div class="skeleton-cell" style="width: 24px"></div>
+                  </div>
+                  <div class="hour-row">
+                    <div class="skeleton-cell" style="width: 32px"></div>
+                    <div
+                      class="skeleton-cell"
+                      style="flex: 1; height: 10px; border-radius: 5px"
+                    ></div>
+                    <div class="skeleton-cell" style="width: 24px"></div>
+                  </div>
+                  <div class="hour-row">
+                    <div class="skeleton-cell" style="width: 32px"></div>
+                    <div
+                      class="skeleton-cell"
+                      style="flex: 1; height: 10px; border-radius: 5px"
+                    ></div>
+                    <div class="skeleton-cell" style="width: 24px"></div>
+                  </div>
+                </div>
+                <div class="admin-empty hidden" id="hourListEmpty">
+                  <i class="fa-solid fa-clock"></i>
+                  <p>No hourly data yet.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top vendors by views -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div>
+                  <div class="admin-card-title">Most Visited Vendors</div>
+                  <div class="admin-card-sub">
+                    Ranked by total profile views
+                  </div>
+                </div>
+              </div>
+              <div class="admin-card-body no-pad">
+                <div id="topVendorSkeletons">
+                  <div class="vendor-row-skeleton">
+                    <div
+                      class="skeleton-cell"
+                      style="width: 22px; height: 22px; border-radius: 6px"
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <div class="skeleton-cell" style="width: 120px"></div>
+                      <div
+                        class="skeleton-cell"
+                        style="width: 70px; height: 9px"
+                      ></div>
+                    </div>
+                    <div class="skeleton-cell" style="width: 30px"></div>
+                  </div>
+                  <div class="vendor-row-skeleton">
+                    <div
+                      class="skeleton-cell"
+                      style="width: 22px; height: 22px; border-radius: 6px"
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <div class="skeleton-cell" style="width: 100px"></div>
+                      <div
+                        class="skeleton-cell"
+                        style="width: 60px; height: 9px"
+                      ></div>
+                    </div>
+                    <div class="skeleton-cell" style="width: 30px"></div>
+                  </div>
+                  <div class="vendor-row-skeleton">
+                    <div
+                      class="skeleton-cell"
+                      style="width: 22px; height: 22px; border-radius: 6px"
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <div class="skeleton-cell" style="width: 130px"></div>
+                      <div
+                        class="skeleton-cell"
+                        style="width: 65px; height: 9px"
+                      ></div>
+                    </div>
+                    <div class="skeleton-cell" style="width: 30px"></div>
+                  </div>
+                  <div class="vendor-row-skeleton">
+                    <div
+                      class="skeleton-cell"
+                      style="width: 22px; height: 22px; border-radius: 6px"
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <div class="skeleton-cell" style="width: 90px"></div>
+                      <div
+                        class="skeleton-cell"
+                        style="width: 55px; height: 9px"
+                      ></div>
+                    </div>
+                    <div class="skeleton-cell" style="width: 30px"></div>
+                  </div>
+                  <div class="vendor-row-skeleton">
+                    <div
+                      class="skeleton-cell"
+                      style="width: 22px; height: 22px; border-radius: 6px"
+                    ></div>
+                    <div
+                      style="
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                      "
+                    >
+                      <div class="skeleton-cell" style="width: 110px"></div>
+                      <div
+                        class="skeleton-cell"
+                        style="width: 70px; height: 9px"
+                      ></div>
+                    </div>
+                    <div class="skeleton-cell" style="width: 30px"></div>
+                  </div>
+                </div>
+                <div id="topVendorList"></div>
+                <div class="admin-empty hidden" id="topVendorEmpty">
+                  <i class="fa-solid fa-store"></i>
+                  <p>No vendor view data yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Daily breakdown table ── -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">Daily Breakdown</div>
+                <div class="admin-card-sub" id="dailyTableSub">
+                  Last 30 days
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card-body no-pad">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Day</th>
+                      <th>Views</th>
+                      <th>WA Clicks</th>
+                      <th>Searches</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dailyTableBody">
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 50px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 40px"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="admin-empty hidden" id="dailyTableEmpty">
+                <i class="fa-solid fa-calendar-days"></i>
+                <p>No daily data yet.</p>
+              </div>
+
+              <div class="admin-empty hidden" id="dailyTableError">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Could not load traffic data. Please refresh.</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin-auth.js"></script>
+    <script type="module" src="js/admin-layout.js"></script>
+    <script type="module" src="js/traffic.js"></script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Overview - OjaHub Admin</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+
+  <body>
+    <div id="adminSidebarMount"></div>
+    <div class="admin-shell">
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <div class="admin-topbar-left">
+            <button class="admin-hamburger" id="adminHamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-topbar-title">
+              <h1 data-topbar-title>Overview</h1>
+              <p data-topbar-sub>A snapshot of OjaHub marketplace health.</p>
+            </div>
+          </div>
+          <span class="admin-live-badge">
+            <span class="admin-live-dot"></span> Live
+          </span>
+        </header>
+
+        <main class="admin-content">
+          <!-- ── STAT CARDS ── -->
+          <div class="admin-grid-3" id="statCardsGrid">
+            <!-- 6 stat cards injected by overview.js -->
+          </div>
+
+          <div class="admin-section-stack">
+            <!-- ── VISITOR TREND CHART ── -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div>
+                  <h3>Visitors & WhatsApp Clicks</h3>
+                  <p>Last 7 days</p>
+                </div>
+              </div>
+              <div class="admin-card-body">
+                <div class="admin-chart-container" style="height: 280px">
+                  <canvas id="visitorTrendChart"></canvas>
+                </div>
+                <div id="visitorTrendEmpty" class="admin-empty hidden">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <p>No visitor activity yet.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── 2-COLUMN: ACTIVITY FEED + TOP VENDORS ── -->
+            <div class="admin-grid-2">
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <div>
+                    <h3>Recent Activity</h3>
+                    <p>Latest marketplace events</p>
+                  </div>
+                  <a
+                    href="activity.html"
+                    class="admin-badge blue"
+                    style="cursor: pointer"
+                  >
+                    View All
+                    <i
+                      class="fa-solid fa-arrow-right"
+                      style="font-size: 10px"
+                    ></i>
+                  </a>
+                </div>
+                <div class="admin-card-body no-pad">
+                  <div class="admin-feed" id="activityFeed">
+                    <!-- injected by overview.js -->
+                  </div>
+                  <div id="activityEmpty" class="admin-empty hidden">
+                    <i class="fa-solid fa-bolt"></i>
+                    <p>No activity yet.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <div>
+                    <h3>Top Vendors</h3>
+                    <p>By views & WhatsApp clicks</p>
+                  </div>
+                  <a
+                    href="vendors.html"
+                    class="admin-badge orange"
+                    style="cursor: pointer"
+                  >
+                    View All
+                    <i
+                      class="fa-solid fa-arrow-right"
+                      style="font-size: 10px"
+                    ></i>
+                  </a>
+                </div>
+                <div class="admin-card-body no-pad">
+                  <div class="admin-table-wrap">
+                    <table class="admin-table">
+                      <thead>
+                        <tr>
+                          <th>Vendor</th>
+                          <th>Views</th>
+                          <th>WA Clicks</th>
+                        </tr>
+                      </thead>
+                      <tbody id="topVendorsBody">
+                        <!-- injected by overview.js -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div id="topVendorsEmpty" class="admin-empty hidden">
+                    <i class="fa-solid fa-store"></i>
+                    <p>No vendor data yet.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── CATEGORY PERFORMANCE ── -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div>
+                  <h3>Category Performance</h3>
+                  <p>Views by category</p>
+                </div>
+                <a
+                  href="categories.html"
+                  class="admin-badge purple"
+                  style="cursor: pointer"
+                >
+                  View All
+                  <i
+                    class="fa-solid fa-arrow-right"
+                    style="font-size: 10px"
+                  ></i>
+                </a>
+              </div>
+              <div class="admin-card-body">
+                <div class="admin-chart-container" style="height: 260px">
+                  <canvas id="categoryChart"></canvas>
+                </div>
+                <div id="categoryEmpty" class="admin-empty hidden">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <p>No category activity yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin-auth.js"></script>
+    <script type="module" src="js/admin-layout.js"></script>
+    <script type="module" src="js/overview.js"></script>
+  </body>
+</html>

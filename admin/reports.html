@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Reports - OjaHub Admin</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <style>
+      .admin-main {
+        min-width: 0;
+        overflow-x: hidden;
+      }
+      .admin-content {
+        flex: unset !important;
+        max-width: 1100px !important;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      /* ── Dataset picker ── */
+      .rep-type-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .rep-type-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1.5px solid var(--border);
+        background: var(--admin-surface);
+        cursor: pointer;
+        font-family: inherit;
+        text-align: left;
+        transition:
+          border-color 0.15s,
+          background 0.15s,
+          box-shadow 0.15s;
+      }
+
+      .rep-type-btn:hover {
+        border-color: var(--oja-orange);
+      }
+
+      .rep-type-btn.active {
+        border-color: var(--oja-orange);
+        background: var(--oja-orange-lt);
+        box-shadow: 0 2px 10px rgba(255, 109, 0, 0.12);
+      }
+
+      .rep-type-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+        background: var(--oja-blue-lt);
+        color: var(--oja-blue);
+      }
+
+      .rep-type-btn.active .rep-type-icon {
+        background: var(--oja-orange);
+        color: #fff;
+      }
+
+      .rep-type-label {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* ── Date range bar ── */
+      .rep-range-card {
+        margin-bottom: 20px;
+      }
+
+      .rep-range-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 18px 22px;
+      }
+
+      .rep-pill {
+        padding: 8px 14px;
+        border-radius: 20px;
+        border: 1.5px solid var(--border);
+        background: var(--admin-surface);
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          background 0.15s,
+          color 0.15s;
+        white-space: nowrap;
+      }
+
+      .rep-pill:hover {
+        border-color: var(--oja-orange);
+      }
+
+      .rep-pill.active {
+        background: var(--oja-orange);
+        border-color: var(--oja-orange);
+        color: #fff;
+      }
+
+      .rep-custom-dates {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        margin-left: 4px;
+        flex-wrap: wrap;
+      }
+
+      .rep-custom-dates.visible {
+        display: flex;
+      }
+
+      .rep-date-input {
+        padding: 7px 10px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        font-family: inherit;
+        font-size: 12.5px;
+        color: var(--text-primary);
+        background: var(--admin-surface);
+      }
+
+      .rep-date-input:focus {
+        outline: none;
+        border-color: var(--oja-orange);
+      }
+
+      .rep-date-sep {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      /* ── Summary bar ── */
+      .rep-summary-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 16px 22px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .rep-summary-text {
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+
+      .rep-summary-text strong {
+        color: var(--text-primary);
+        font-weight: 800;
+      }
+
+      .rep-export-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 9px;
+        border: none;
+        background: var(--oja-orange);
+        color: #fff;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          opacity 0.15s;
+      }
+
+      .rep-export-btn:hover {
+        background: var(--oja-orange-dk);
+      }
+
+      .rep-export-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: var(--text-muted);
+      }
+
+      .rep-preview-note {
+        padding: 10px 22px;
+        font-size: 12px;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border);
+        background: #fafbfd;
+      }
+
+      /* ── Skeleton ── */
+      .skeleton-cell {
+        height: 12px;
+        border-radius: 6px;
+        background: var(--border);
+        animation: shimmer 1.4s infinite;
+        display: block;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
+      }
+
+      .conv-rate {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 6px;
+      }
+      .conv-rate.high {
+        background: var(--oja-green-lt);
+        color: var(--oja-green);
+      }
+      .conv-rate.mid {
+        background: var(--oja-orange-lt);
+        color: var(--oja-orange);
+      }
+      .conv-rate.low {
+        background: var(--admin-bg);
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+      }
+
+      @media (max-width: 900px) {
+        .rep-type-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .rep-type-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .rep-summary-bar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .rep-export-btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="adminSidebarMount"></div>
+    <div class="admin-shell">
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <div class="admin-topbar-left">
+            <button class="admin-hamburger" id="adminHamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-topbar-title">
+              <h1 data-topbar-title>Reports</h1>
+              <p data-topbar-sub>
+                Build and export a dataset for any date range
+              </p>
+            </div>
+          </div>
+          <span class="admin-live-badge">
+            <span class="admin-live-dot"></span> Live
+          </span>
+        </header>
+
+        <main class="admin-content">
+          <!-- ── Dataset picker ── -->
+          <div
+            class="admin-card-header"
+            style="padding: 0 0 12px; border: none"
+          >
+            <div>
+              <div
+                class="admin-card-title"
+                style="font-size: 15px; font-weight: 800"
+              >
+                1. Choose a dataset
+              </div>
+            </div>
+          </div>
+          <div class="rep-type-grid" id="repTypeGrid"></div>
+
+          <!-- ── Date range ── -->
+          <div class="admin-card rep-range-card">
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">2. Choose a date range</div>
+                <div class="admin-card-sub">
+                  Applies to view/click/search events. Vendor &amp; product
+                  reports filter by join date.
+                </div>
+              </div>
+            </div>
+            <div class="rep-range-row" id="repRangeRow">
+              <button class="rep-pill" data-range="today" type="button">
+                Today
+              </button>
+              <button class="rep-pill" data-range="7d" type="button">
+                Last 7 Days
+              </button>
+              <button class="rep-pill active" data-range="30d" type="button">
+                Last 30 Days
+              </button>
+              <button class="rep-pill" data-range="90d" type="button">
+                Last 90 Days
+              </button>
+              <button class="rep-pill" data-range="all" type="button">
+                All Time
+              </button>
+              <button class="rep-pill" data-range="custom" type="button">
+                Custom
+              </button>
+
+              <div class="rep-custom-dates" id="repCustomDates">
+                <input type="date" class="rep-date-input" id="repStartDate" />
+                <span class="rep-date-sep">to</span>
+                <input type="date" class="rep-date-input" id="repEndDate" />
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Preview + export ── -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">3. Preview &amp; export</div>
+                <div class="admin-card-sub" id="repRangeLabel">
+                  Last 30 days
+                </div>
+              </div>
+            </div>
+
+            <div class="rep-summary-bar">
+              <span class="rep-summary-text" id="repSummaryText">
+                Loading…
+              </span>
+              <button class="rep-export-btn" id="repExportBtn" disabled>
+                <i class="fa-solid fa-download"></i> Export CSV
+              </button>
+            </div>
+
+            <div class="rep-preview-note hidden" id="repPreviewNote"></div>
+
+            <div class="admin-card-body no-pad">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead id="repTableHead"></thead>
+                  <tbody id="repTableBody">
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 120px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 100px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="skeleton-cell" style="width: 140px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                      <td>
+                        <div class="skeleton-cell" style="width: 80px"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="admin-empty hidden" id="repTableEmpty">
+                <i class="fa-solid fa-inbox"></i>
+                <p>No data found for this dataset and date range.</p>
+              </div>
+
+              <div class="admin-empty hidden" id="repTableError">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Could not load this report. Please try again.</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin-auth.js"></script>
+    <script type="module" src="js/admin-layout.js"></script>
+    <script type="module" src="js/reports.js"></script>
+  </body>
+</html>

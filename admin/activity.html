@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Activity - OjaHub Admin</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <style>
+      /* ── Activity-page-specific styles ── */
+      .activity-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .activity-filter-group {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .activity-filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        color: var(--text-secondary);
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.18s;
+        white-space: nowrap;
+      }
+
+      .activity-filter-btn:hover {
+        border-color: var(--oja-orange);
+        color: var(--oja-orange);
+      }
+
+      .activity-filter-btn.active {
+        background: var(--oja-orange);
+        border-color: var(--oja-orange);
+        color: #fff;
+      }
+
+      .activity-count-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.25);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .activity-filter-btn:not(.active) .activity-count-badge {
+        background: var(--bg);
+        color: var(--text-secondary);
+      }
+
+      .activity-search-wrap {
+        margin-left: auto;
+        position: relative;
+      }
+
+      .activity-search-wrap i {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-size: 13px;
+        pointer-events: none;
+      }
+
+      .activity-search {
+        padding: 8px 14px 8px 34px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: 13px;
+        width: 220px;
+        transition: border-color 0.18s;
+      }
+
+      .activity-search:focus {
+        outline: none;
+        border-color: var(--oja-orange);
+      }
+
+      /* ── Full feed list ── */
+      .activity-feed-full {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .activity-feed-full .admin-feed-item {
+        border-bottom: 1px solid var(--border);
+        padding: 14px 20px;
+        transition: background 0.15s;
+      }
+
+      .activity-feed-full .admin-feed-item:last-child {
+        border-bottom: none;
+      }
+
+      .activity-feed-full .admin-feed-item:hover {
+        background: var(--bg);
+      }
+
+      /* ── Load more ── */
+      .activity-load-more-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .activity-load-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        color: var(--text-secondary);
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.18s;
+      }
+
+      .activity-load-more-btn:hover {
+        border-color: var(--oja-orange);
+        color: var(--oja-orange);
+      }
+
+      .activity-load-more-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* ── Summary stats strip ── */
+      .activity-summary-strip {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .activity-summary-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 100px;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .activity-summary-pill i {
+        font-size: 13px;
+      }
+
+      .activity-summary-pill .pill-count {
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .activity-summary-pill.orange {
+        border-color: var(--oja-orange-lt);
+      }
+      .activity-summary-pill.orange i {
+        color: var(--oja-orange);
+      }
+      .activity-summary-pill.blue {
+        border-color: var(--oja-blue-lt);
+      }
+      .activity-summary-pill.blue i {
+        color: var(--oja-blue);
+      }
+      .activity-summary-pill.green {
+        border-color: var(--oja-green-lt);
+      }
+      .activity-summary-pill.green i {
+        color: var(--oja-green);
+      }
+
+      /* ── No results ── */
+      .activity-no-results {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 20px;
+        color: var(--text-muted);
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .activity-no-results i {
+        font-size: 32px;
+        opacity: 0.35;
+      }
+
+      /* ── Loading skeletons ── */
+      .feed-skeleton {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .feed-skeleton-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--border);
+        flex-shrink: 0;
+        animation: shimmer 1.4s infinite;
+      }
+
+      .feed-skeleton-lines {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .feed-skeleton-line {
+        height: 12px;
+        border-radius: 6px;
+        background: var(--border);
+        animation: shimmer 1.4s infinite;
+      }
+
+      .feed-skeleton-line.short {
+        width: 35%;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .activity-search-wrap {
+          margin-left: 0;
+          width: 100%;
+        }
+        .activity-search {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="adminSidebarMount"></div>
+    <div class="admin-shell">
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <div class="admin-topbar-left">
+            <button class="admin-hamburger" id="adminHamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-topbar-title">
+              <h1 data-topbar-title>Activity</h1>
+              <p data-topbar-sub>Live marketplace event stream</p>
+            </div>
+          </div>
+          <span class="admin-live-badge">
+            <span class="admin-live-dot"></span> Live
+          </span>
+        </header>
+
+        <main class="admin-content">
+          <!-- Summary pills -->
+          <div class="activity-summary-strip">
+            <div class="activity-summary-pill orange" style="opacity: 0.4">
+              <i class="fa-solid fa-store"></i>
+              <span>Vendor Views</span>
+              <span class="pill-count" id="pillViews">—</span>
+            </div>
+            <div class="activity-summary-pill green" style="opacity: 0.4">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WA Clicks</span>
+              <span class="pill-count" id="pillWA">—</span>
+            </div>
+            <div class="activity-summary-pill blue" style="opacity: 0.4">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Searches</span>
+              <span class="pill-count" id="pillSearch">—</span>
+            </div>
+          </div>
+
+          <!-- Controls: type filters + keyword search -->
+          <div class="activity-controls">
+            <div class="activity-filter-group" id="activityTypeFilters">
+              <button class="activity-filter-btn active" data-type="all">
+                All Events
+                <span class="activity-count-badge" id="countAll">0</span>
+              </button>
+              <button class="activity-filter-btn" data-type="view">
+                <i class="fa-solid fa-store"></i>
+                Vendor Views
+                <span class="activity-count-badge" id="countViews">0</span>
+              </button>
+              <button class="activity-filter-btn" data-type="whatsapp">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+                <span class="activity-count-badge" id="countWA">0</span>
+              </button>
+              <button class="activity-filter-btn" data-type="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Searches
+                <span class="activity-count-badge" id="countSearch">0</span>
+              </button>
+            </div>
+
+            <div class="activity-search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                type="search"
+                class="activity-search"
+                id="activitySearch"
+                placeholder="Filter by vendor or keyword…"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Feed card -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <div class="admin-card-title">Recent Marketplace Events</div>
+                <div class="admin-card-sub" id="feedSubtitle">Loading…</div>
+              </div>
+            </div>
+
+            <div class="admin-card-body no-pad">
+              <!-- Loading skeletons -->
+              <div id="activitySkeletons">
+                <div class="feed-skeleton">
+                  <div class="feed-skeleton-icon"></div>
+                  <div class="feed-skeleton-lines">
+                    <div class="feed-skeleton-line"></div>
+                    <div class="feed-skeleton-line short"></div>
+                  </div>
+                </div>
+                <div class="feed-skeleton">
+                  <div class="feed-skeleton-icon"></div>
+                  <div class="feed-skeleton-lines">
+                    <div class="feed-skeleton-line"></div>
+                    <div class="feed-skeleton-line short"></div>
+                  </div>
+                </div>
+                <div class="feed-skeleton">
+                  <div class="feed-skeleton-icon"></div>
+                  <div class="feed-skeleton-lines">
+                    <div class="feed-skeleton-line"></div>
+                    <div class="feed-skeleton-line short"></div>
+                  </div>
+                </div>
+                <div class="feed-skeleton">
+                  <div class="feed-skeleton-icon"></div>
+                  <div class="feed-skeleton-lines">
+                    <div class="feed-skeleton-line"></div>
+                    <div class="feed-skeleton-line short"></div>
+                  </div>
+                </div>
+                <div class="feed-skeleton">
+                  <div class="feed-skeleton-icon"></div>
+                  <div class="feed-skeleton-lines">
+                    <div class="feed-skeleton-line"></div>
+                    <div class="feed-skeleton-line short"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Populated feed -->
+              <div class="activity-feed-full" id="activityFeedFull"></div>
+
+              <!-- No results state -->
+              <div class="activity-no-results" id="activityNoResults">
+                <i class="fa-solid fa-circle-info"></i>
+                <p id="activityNoResultsMsg">No events match your filter.</p>
+              </div>
+
+              <!-- Error state -->
+              <div class="admin-empty hidden" id="activityError">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Could not load activity. Please refresh.</p>
+              </div>
+
+              <!-- Load more -->
+              <div class="activity-load-more-wrap hidden" id="loadMoreWrap">
+                <button class="activity-load-more-btn" id="loadMoreBtn">
+                  <i class="fa-solid fa-chevron-down"></i>
+                  Load more events
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin-auth.js"></script>
+    <script type="module" src="js/admin-layout.js"></script>
+    <script type="module" src="js/activity.js"></script>
+  </body>
+</html>
