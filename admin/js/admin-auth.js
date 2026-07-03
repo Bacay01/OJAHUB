@@ -1,70 +1,86 @@
 // ═══════════════════════════════════════════════════════════
-// OJAHUB ADMIN — AUTH GATE
+// OJAHUB ADMIN — AUTH GATE (SECURE VERSION)
 // admin/js/admin-auth.js
 //
-// Import this at the TOP of every admin/*.html page EXCEPT
-// login.html. It checks for a valid session and redirects to
-// login.html immediately if none is found — before any other
-// page content/data loads.
+// Import this as the FIRST script on every protected admin
+// page (except login.html). It:
+//   1. Listens for Firebase Auth state
+//   2. If no signed-in user → redirects to login.html
+//   3. If signed in → checks /admins/{uid} in Firestore
+//   4. If not in admins collection → signs out + redirects
 //
-// USAGE (in every protected admin page, as early as possible):
+// This replaces the previous sessionStorage-based gate which
+// could be bypassed by any user with DevTools.
+//
+// USAGE — at bottom of every protected admin page:
 //   <script type="module" src="js/admin-auth.js"></script>
-//   <!-- then your other admin scripts after this one -->
-//
-// WHEN GOING LIVE WITH FIREBASE:
-//   Replace the sessionStorage check below with a real
-//   onAuthStateChanged() listener from firebase.js, and check
-//   against an "admins" Firestore collection or custom claim
-//   instead of a hardcoded session flag. The redirect logic
-//   and SESSION_KEY constant can stay the same.
+//   <script type="module" src="js/admin-layout.js"></script>
+//   <script type="module" src="js/[page].js"></script>
 // ═══════════════════════════════════════════════════════════
 
-const SESSION_KEY = "ojahub_admin_session";
-const SESSION_MAX_AGE_MS = 8 * 60 * 60 * 1000; // 8 hours
+import { auth, db } from "../../js/firebase.js";
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+import {
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
-function isSessionValid() {
-  const active = sessionStorage.getItem(SESSION_KEY);
-  if (active !== "active") return false;
+// ── Internal state ────────────────────────────────────────
+let _currentAdmin = null; // { uid, email, ...adminDocData }
 
-  const loginTime = parseInt(
-    sessionStorage.getItem("ojahub_admin_login_time") || "0",
-    10,
-  );
-  if (!loginTime) return false;
+// ── Gate — runs immediately on every protected page load ──
+export const adminReady = new Promise((resolve) => {
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      // No Firebase Auth session at all → go to login
+      window.location.href = "login.html";
+      return;
+    }
 
-  const age = Date.now() - loginTime;
-  if (age > SESSION_MAX_AGE_MS) {
-    // Session expired — clear it
-    clearSession();
-    return false;
-  }
+    try {
+      // Verify this signed-in user is actually an admin
+      const adminDoc = await getDoc(doc(db, "admin", user.uid));
 
-  return true;
-}
+      if (!adminDoc.exists()) {
+        // Firebase Auth user but not an admin (e.g. a vendor)
+        await signOut(auth);
+        window.location.href = "login.html";
+        return;
+      }
 
-function clearSession() {
-  sessionStorage.removeItem(SESSION_KEY);
-  sessionStorage.removeItem("ojahub_admin_email");
-  sessionStorage.removeItem("ojahub_admin_login_time");
-}
+      // ✅ Confirmed admin — store info and resolve the promise
+      _currentAdmin = {
+        uid: user.uid,
+        email: user.email,
+        ...adminDoc.data(),
+      };
 
-// ── Run the gate immediately on import ──────────────────
-if (!isSessionValid()) {
-  // Figure out the correct relative path back to login.html
-  // based on how deep the current page is inside /admin/.
-  // All admin pages currently sit flat in /admin/, so this is
-  // simple — but written defensively in case of future nesting.
-  window.location.href = "login.html";
-}
+      resolve(_currentAdmin);
+    } catch (err) {
+      console.error("[Admin Auth] Firestore check failed:", err);
+      // On error, fail safe — redirect to login
+      window.location.href = "login.html";
+    }
+  });
+});
 
-// ── Exported helpers for other admin scripts ────────────
+// ── Exported helpers ──────────────────────────────────────
+
+/** Returns the current admin's display email */
 export function getAdminEmail() {
-  return sessionStorage.getItem("ojahub_admin_email") || "Admin";
+  return _currentAdmin?.email || auth.currentUser?.email || "Admin";
 }
 
-export function logout() {
-  clearSession();
+/** Signs out and redirects to login */
+export async function logout() {
+  await signOut(auth);
   window.location.href = "login.html";
 }
 
-export { isSessionValid, SESSION_KEY };
+/** Returns the full admin doc data (uid, email, role, etc.) */
+export function getCurrentAdmin() {
+  return _currentAdmin;
+}

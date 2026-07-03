@@ -2,43 +2,13 @@
 // OJAHUB ADMIN — LAYOUT
 // admin/js/admin-layout.js
 //
-// Handles the shared shell on every protected admin page:
-//   - loads sidebar.html into #adminSidebarMount
-//   - highlights the active nav link based on current filename
-//   - wires up mobile hamburger / drawer / overlay
-//   - wires up the logout button (via admin-auth.js)
-//   - fills in the topbar title + the user's email
-//
-// USAGE — each admin/*.html page needs this markup:
-//   <div id="adminSidebarMount"></div>
-//   <div class="admin-shell">
-//     <div class="admin-main">
-//       <header class="admin-topbar">
-//         <div class="admin-topbar-left">
-//           <button class="admin-hamburger" id="adminHamburger">
-//             <i class="fa-solid fa-bars"></i>
-//           </button>
-//           <div class="admin-topbar-title">
-//             <h1 data-topbar-title>Page Title</h1>
-//             <p data-topbar-sub>Page subtitle</p>
-//           </div>
-//         </div>
-//         <span class="admin-live-badge">
-//           <span class="admin-live-dot"></span> Live
-//         </span>
-//       </header>
-//       <main class="admin-content">
-//         ...page content...
-//       </main>
-//     </div>
-//   </div>
-//
-// Then import this AFTER admin-auth.js:
-//   <script type="module" src="js/admin-auth.js"></script>
-//   <script type="module" src="js/admin-layout.js"></script>
+// Loads sidebar.html, highlights active nav link, wires
+// mobile drawer, and fills in the user's email/avatar.
+// Waits for adminReady (from admin-auth.js) before showing
+// user info so it always reflects the real Firebase user.
 // ═══════════════════════════════════════════════════════════
 
-import { getAdminEmail, logout } from "./admin-auth.js";
+import { adminReady, logout } from "./admin-auth.js";
 
 async function loadSidebar() {
   const mount = document.getElementById("adminSidebarMount");
@@ -63,9 +33,9 @@ function initSidebarBehavior() {
   const hamburger = document.getElementById("adminHamburger");
   const logoutBtn = document.getElementById("adminLogoutBtn");
   const userEmailEl = document.getElementById("adminUserEmail");
-  const userAvatarEl = document.getElementById("adminUserAvatar");
+  const userAvatar = document.getElementById("adminUserAvatar");
 
-  // ── Highlight active nav link based on current page filename
+  // ── Active nav highlight ──────────────────────────────
   const currentPage =
     window.location.pathname.split("/").pop().replace(".html", "") || "index";
 
@@ -75,12 +45,14 @@ function initSidebarBehavior() {
     }
   });
 
-  // ── Fill in user info ──────────────────────────────────
-  const email = getAdminEmail();
-  if (userEmailEl) userEmailEl.textContent = email;
-  if (userAvatarEl) userAvatarEl.textContent = email.charAt(0).toUpperCase();
+  // ── Fill user info once Firebase auth resolves ────────
+  adminReady.then((admin) => {
+    const email = admin?.email || "Admin";
+    if (userEmailEl) userEmailEl.textContent = email;
+    if (userAvatar) userAvatar.textContent = email.charAt(0).toUpperCase();
+  });
 
-  // ── Mobile drawer open/close ───────────────────────────
+  // ── Mobile drawer ─────────────────────────────────────
   function openDrawer() {
     sidebar.classList.add("open");
     overlay.classList.add("visible");
@@ -101,21 +73,19 @@ function initSidebarBehavior() {
     if (e.key === "Escape") closeDrawer();
   });
 
-  // Close drawer when a nav link is tapped (mobile)
   document.querySelectorAll(".admin-nav-link").forEach((link) => {
     link.addEventListener("click", closeDrawer);
   });
 
-  // ── Logout ──────────────────────────────────────────────
+  // ── Logout ────────────────────────────────────────────
   if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
+    logoutBtn.addEventListener("click", async () => {
       const confirmed = confirm("Log out of the admin console?");
-      if (confirmed) logout();
+      if (confirmed) await logout();
     });
   }
 }
 
-// ── Run on page load ───────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   loadSidebar();
 });
