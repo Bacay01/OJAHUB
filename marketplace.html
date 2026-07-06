@@ -24,6 +24,9 @@
 
     <!-- YOUR CSS -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- NEW: Premium vendor profile styling (hero card + feedback form) -->
+    <link rel="stylesheet" href="vendor-profile.css" />
   </head>
 
   <body>
@@ -85,135 +88,6 @@
       </div>
     </div>
 
-    <!-- PRODUCTS GRID -->
-    <!-- <main class="products-section">
-          <div id="productsGrid" class="products-grid"> -->
-    <!-- Skeleton loaders -->
-    <!-- <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-          </div> -->
-
-    <!-- EMPTY STATE -->
-    <!-- <div id="emptyState" class="empty-state" style="display: none">
-            <div class="empty-icon">🛍️</div>
-            <h3>No products found</h3>
-            <p>Try a different category or search term</p>
-            <button class="btn-primary" onclick="resetFilters()">
-              Show All Products
-            </button>
-          </div>
-        </main> -->
-
-    <!-- PRODUCT MODAL -->
-    <!-- <div
-          id="productModal"
-          class="modal-overlay"
-          style="display: none"
-          onclick="closeModal(event)"
-        >
-          <div class="modal-box">
-            <button class="modal-close" onclick="closeModal()">✕</button>
-            <div class="modal-inner">
-              <div class="modal-img-wrap">
-                <img id="modalImage" src="" alt="" class="modal-img" />
-              </div>
-              <div class="modal-details">
-                <span id="modalCategory" class="modal-badge"></span>
-                <h2 id="modalName" class="modal-title"></h2>
-                <p id="modalPrice" class="modal-price"></p>
-                <p id="modalDescription" class="modal-desc"></p>
-                <div class="modal-vendor">
-                  <span class="vendor-label">Sold by</span>
-                  <span id="modalVendor" class="vendor-name"></span>
-                </div>
-                <a
-                  id="modalWhatsapp"
-                  href="#"
-                  target="_blank"
-                  class="whatsapp-btn"
-                >
-                  💬 Contact Vendor on WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-    <!-- HOW IT WORKS SECTION -->
-    <!-- <section class="marketplace-section">
-      <div class="marketplace-section-container"> -->
-    <!-- HEADER -->
-    <!-- <div class="marketplace-hero">
-          <div class="marketplace-eyebrow">Simple process</div>
-
-          <h1 class="marketplace">How OjaHub Works</h1>
-
-          <p class="marketplace">
-            A simple guide to finding and connecting with vendors
-          </p>
-        </div> -->
-
-    <!-- ================= MARKETPLACE WRAPPER ================= -->
-    <!-- <div class="mp-wrapper"> -->
-
-    <!-- ================= SEARCH BAR ================= -->
-    <!-- <div class="mp-search-section">
-    <input 
-      type="text" 
-      id="mp-searchInput" 
-      class="mp-search-input"
-      placeholder="Search vendors..."
-    />
-  </div> -->
-
-    <!-- ================= CATEGORY FILTER ================= -->
-    <!-- <div class="mp-category-bar" id="mp-categoryBar">
-    <button class="mp-category-btn active" data-category="All">All</button>
-    <button class="mp-category-btn" data-category="Food">Food</button>
-    <button class="mp-category-btn" data-category="Fashion">Fashion</button>
-    <button class="mp-category-btn" data-category="Beauty">Beauty</button>
-    <button class="mp-category-btn" data-category="Phones">Phones</button>
-    <button class="mp-category-btn" data-category="Services">Services</button>
-    <button class="mp-category-btn" data-category="Others">Others</button>
-  </div> -->
-
-    <!-- ================= VENDOR GRID ================= -->
-    <!-- <div class="mp-grid" id="mp-vendorGrid"></div> -->
-
-    <!-- ================= LOAD MORE ================= -->
-    <!-- <div class="mp-loadmore-wrap">
-    <button id="mp-loadMoreBtn" class="mp-loadmore-btn">Load More</button>
-  </div>
-
-</div> -->
-
-    <!-- FILTER SECTION -->
-    <!-- <section class="vendor-filter">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search for vendors..."
-          />
-
-          <div class="categories">
-            <button class="category-btn active" data-category="all">All</button>
-            <button class="category-btn" data-category="food">Food</button>
-            <button class="category-btn" data-category="fashion">
-              Fashion
-            </button>
-            <button class="category-btn" data-category="beauty">Beauty</button>
-            <button class="category-btn" data-category="phones">Phones</button>
-            <button class="category-btn" data-category="services">
-              Services
-            </button>
-            <button class="category-btn" data-category="others">Others</button>
-          </div>
-        </section> -->
-
     <!-- VENDORS GRID -->
     <section class="vendors-section">
       <h2>Featured Vendors</h2>
@@ -223,28 +97,114 @@
 
     <!-- FULL DETAIL VIEW -->
     <section class="vendor-detail hidden" id="vendorDetail">
-      <button id="backBtn">← Back to Vendors</button>
+      <button id="backBtn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Vendors
+      </button>
 
-      <!-- Top card: vendor logo + basic info side by side -->
-      <div class="detail-card">
-        <img id="detailImg" alt="" />
+      <!-- PREMIUM HERO CARD -->
+      <div class="vp-hero">
+        <div class="vp-avatar-wrap">
+          <img id="detailImg" class="vp-avatar" alt="" />
+          <span
+            class="vp-verified-badge hidden"
+            id="vpVerifiedBadge"
+            title="Verified Vendor"
+          >
+            <i class="fa-solid fa-check"></i>
+          </span>
+        </div>
 
-        <div class="detail-content">
-          <span id="detailTag" class="card-content-tag"></span>
-
+        <div class="vp-hero-info">
+          <span class="vp-eyebrow" id="detailTag">Vendor</span>
           <h1 id="detailName"></h1>
-
-          <p id="detailLocation"></p>
-
-          <div id="detailDesc"></div>
+          <p id="detailLocation" class="vp-location"></p>
+          <div id="detailDesc" class="vp-desc"></div>
 
           <div class="vendor-detail-tags" id="vendorDetailTags">
             <!-- Tags injected by JS -->
           </div>
-          <a id="claimBtn" class="claim-btn">
-            <i class="fa-solid fa-store"></i> Claim This Business
-          </a>
+
+          <div class="vp-actions">
+            <a
+              id="detailWhatsapp"
+              href="#"
+              target="_blank"
+              class="vp-whatsapp-btn hidden"
+            >
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <a id="claimBtn" class="vp-claim-link">
+              <i class="fa-solid fa-store"></i> Is this your business? Claim it
+            </a>
+          </div>
         </div>
+      </div>
+
+      <!-- BUYER FEEDBACK PANEL (replaces old "Vendor Note") -->
+      <div class="vp-feedback-card">
+        <div class="vp-feedback-header">
+          <div class="vp-feedback-icon">
+            <i class="fa-solid fa-comment-dots"></i>
+          </div>
+          <div>
+            <h3>Share feedback about this vendor</h3>
+            <p>
+              Had an experience with this vendor? Let the OjaHub team know —
+              reports are reviewed and not shown publicly.
+            </p>
+          </div>
+        </div>
+
+        <form id="vendorFeedbackForm" class="vp-feedback-form">
+          <div class="vp-sentiment-row" id="vpSentimentRow">
+            <button
+              type="button"
+              class="vp-sentiment-btn"
+              data-sentiment="positive"
+            >
+              <i class="fa-solid fa-face-smile"></i> Positive
+            </button>
+            <button
+              type="button"
+              class="vp-sentiment-btn"
+              data-sentiment="neutral"
+            >
+              <i class="fa-solid fa-face-meh"></i> Neutral
+            </button>
+            <button
+              type="button"
+              class="vp-sentiment-btn"
+              data-sentiment="negative"
+            >
+              <i class="fa-solid fa-face-frown"></i> Negative
+            </button>
+          </div>
+
+          <textarea
+            id="vpFeedbackMessage"
+            class="vp-feedback-textarea"
+            placeholder="Tell us what happened..."
+            required
+            maxlength="600"
+          ></textarea>
+
+          <input
+            type="text"
+            id="vpFeedbackName"
+            class="vp-feedback-input"
+            placeholder="Your name (optional)"
+            maxlength="60"
+          />
+
+          <button
+            type="submit"
+            class="vp-feedback-submit"
+            id="vpFeedbackSubmitBtn"
+          >
+            Submit Feedback
+          </button>
+          <p class="vp-feedback-status" id="vpFeedbackStatus"></p>
+        </form>
       </div>
 
       <!-- Products section — full width, below the hero card -->
@@ -254,7 +214,6 @@
     <!-- Footer placeholder -->
     <div id="footer"></div>
 
-    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
     <script src="main.js"></script>
     <script type="module" src="marketplace.js"></script>
 

@@ -22,6 +22,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// ─────────────────────────────────────────────
+// 📍 REAL LOCATION PIN ICON (inline SVG)
+// Standard "location dot" map-pin glyph (matches the
+// common Font Awesome / Material "location" icon) so it
+// always reads clearly as a location marker — regardless
+// of whether any icon font has loaded. Uses currentColor
+// so it inherits whatever text color it's placed inside.
+// ─────────────────────────────────────────────
+function locationPinSvg(size) {
+  size = size || 13;
+  return (
+    '<svg width="' +
+    size +
+    '" height="' +
+    (size * (512 / 384)).toFixed(0) +
+    '" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>' +
+    "</svg>"
+  );
+}
+
 // 🔥 TRACK VENDOR VIEW
 async function trackVendorView(vendorId, vendorName) {
   try {
@@ -242,6 +263,10 @@ async function loadVendors() {
       const cityLabel = data.city || "";
       const subCat = data.subCategory ? " · " + data.subCategory : "";
 
+      // ── Verified = manually flagged OR vendor has claimed their
+      // business (claiming attaches an ownerUid to the doc).
+      const isVerifiedVendor = !!(data.verified || data.ownerUid);
+
       // Searchable text blob
       const searchable = [
         data.businessName || "",
@@ -277,6 +302,9 @@ async function loadVendors() {
         ' data-whatsapp="' +
         (data.whatsapp || "") +
         '"' +
+        ' data-verified="' +
+        (isVerifiedVendor ? "1" : "0") +
+        '"' +
         ' data-searchable="' +
         searchable +
         '"' +
@@ -295,13 +323,15 @@ async function loadVendors() {
         "</div>";
 
       html += '<div class="card-content">';
-      html +=
-        '<div class="card-badges">' +
-        '<span class="badge-verified">' +
-        '<i class="fa-solid fa-circle-check"></i> Verified · ' +
-        cityLabel +
-        "</span>" +
-        "</div>";
+      if (isVerifiedVendor) {
+        html +=
+          '<div class="card-badges">' +
+          '<span class="badge-verified">' +
+          '<i class="fa-solid fa-circle-check"></i> Verified · ' +
+          cityLabel +
+          "</span>" +
+          "</div>";
+      }
 
       html +=
         '<h3 class="card-business-name">' +
@@ -311,7 +341,9 @@ async function loadVendors() {
 
       if (cityLabel) {
         html +=
-          '<p class="card-location"><i class="fa-solid fa-location-dot"></i> ' +
+          '<p class="card-location">' +
+          locationPinSvg(12) +
+          " " +
           cityLabel +
           "</p>";
       }
@@ -407,11 +439,18 @@ function openVendorDetail(card) {
   if (phone.startsWith("0")) phone = "234" + phone.substring(1);
 
   const categoryLabel = card.dataset.category || "Vendor";
+  const isVerified = card.dataset.verified === "1";
 
   // ── Hero image: use stored image, or generate avatar as fallback
   const storedImage = card.dataset.image;
   detailImg.src = storedImage || makeAvatarUrl(vendorName);
   detailImg.alt = vendorName;
+
+  // ── Verified badge on avatar
+  const verifiedBadge = document.getElementById("vpVerifiedBadge");
+  if (verifiedBadge) {
+    verifiedBadge.classList.toggle("hidden", !isVerified);
+  }
 
   // ── Category badge
   detailTag.textContent =
@@ -420,7 +459,7 @@ function openVendorDetail(card) {
   // ── Name, location, description
   detailName.textContent = vendorName;
   detailLocation.innerHTML =
-    '<i class="fa-solid fa-location-dot"></i> ' + (card.dataset.location || "");
+    locationPinSvg(13) + " " + (card.dataset.location || "");
   detailDesc.innerHTML =
     "<p>" + (card.dataset.desc || "No description available.") + "</p>";
 
@@ -435,7 +474,8 @@ function openVendorDetail(card) {
       "</span>" +
       (card.dataset.location
         ? '<span class="vd-tag vd-tag--location">' +
-          '<i class="fa-solid fa-location-dot"></i> ' +
+          locationPinSvg(12) +
+          " " +
           card.dataset.location +
           "</span>"
         : "") +
@@ -446,14 +486,36 @@ function openVendorDetail(card) {
         : '<span class="vd-tag vd-tag--no-wa">' +
           '<i class="fa-solid fa-comment-slash"></i> No WhatsApp' +
           "</span>") +
-      '<span class="vd-tag vd-tag--verified">' +
-      '<i class="fa-solid fa-circle-check"></i> Verified Vendor' +
-      "</span>";
+      // Verified Vendor tag — shown for anyone manually verified OR
+      // who has claimed their business (see isVerifiedVendor above).
+      (isVerified
+        ? '<span class="vd-tag vd-tag--verified">' +
+          '<i class="fa-solid fa-circle-check"></i> Verified Vendor' +
+          "</span>"
+        : "");
+  }
+
+  // ── WhatsApp button (in hero actions row)
+  if (detailWhatsapp) {
+    if (phone) {
+      detailWhatsapp.href = "https://wa.me/" + phone;
+      detailWhatsapp.classList.remove("hidden");
+      detailWhatsapp.onclick = () =>
+        trackWhatsappClick(card.dataset.id, vendorName);
+    } else {
+      detailWhatsapp.classList.add("hidden");
+    }
   }
 
   // ── Claim button
   claimBtn.href =
     "pages/claim_business/claim_business.html?vendorId=" + card.dataset.id;
+
+  // ── Stash current vendor so the feedback form knows who it's about
+  window.currentDetailVendor = {
+    id: card.dataset.id,
+    name: vendorName,
+  };
 
   // ── Products
   const products = JSON.parse(card.dataset.products || "[]");
@@ -543,6 +605,93 @@ function buildProductGrid(products, phone) {
 }
 
 // ─────────────────────────────────────────────
+// 🔥 VENDOR FEEDBACK / REPORT FORM
+// (writes to the "vendorReports" Firestore collection,
+//  reviewed later from the admin "Vendor Reports" page)
+// ─────────────────────────────────────────────
+function setupFeedbackForm() {
+  const sentimentRow = document.getElementById("vpSentimentRow");
+  const feedbackForm = document.getElementById("vendorFeedbackForm");
+  const statusEl = document.getElementById("vpFeedbackStatus");
+  const submitBtn = document.getElementById("vpFeedbackSubmitBtn");
+
+  if (!feedbackForm) return;
+
+  let selectedSentiment = "neutral";
+
+  if (sentimentRow) {
+    sentimentRow.querySelectorAll(".vp-sentiment-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        sentimentRow
+          .querySelectorAll(".vp-sentiment-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedSentiment = btn.dataset.sentiment;
+      });
+    });
+  }
+
+  feedbackForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const vendor = window.currentDetailVendor;
+    const messageInput = document.getElementById("vpFeedbackMessage");
+    const nameInput = document.getElementById("vpFeedbackName");
+    const message = messageInput ? messageInput.value.trim() : "";
+    const reporterName = nameInput ? nameInput.value.trim() : "";
+
+    if (!vendor) {
+      statusEl.textContent =
+        "Something went wrong. Please reopen the vendor page and try again.";
+      statusEl.className = "vp-feedback-status error";
+      return;
+    }
+    if (!message) {
+      statusEl.textContent = "Please write a message before submitting.";
+      statusEl.className = "vp-feedback-status error";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    try {
+      // ✅ FIXED: writes to "vendorReports" (matches admin dashboard read
+      // and Firestore rules — was previously mismatched as "vendor_feedback"
+      // on the admin side). Field is "timestamp" (not "createdAt") to match
+      // what admin/js/vendor-reports.js reads and orders by.
+      await addDoc(collection(db, "vendorReports"), {
+        vendorId: vendor.id,
+        vendorName: vendor.name,
+        sentiment: selectedSentiment,
+        message: message,
+        reporterName: reporterName || "Anonymous",
+        status: "new",
+        timestamp: serverTimestamp(),
+      });
+
+      statusEl.textContent =
+        "Thank you — your feedback has been submitted to the OjaHub team.";
+      statusEl.className = "vp-feedback-status success";
+      feedbackForm.reset();
+      if (sentimentRow) {
+        sentimentRow
+          .querySelectorAll(".vp-sentiment-btn")
+          .forEach((b) => b.classList.remove("active"));
+      }
+      selectedSentiment = "neutral";
+    } catch (err) {
+      console.error("Feedback submit error:", err);
+      statusEl.textContent = "Failed to submit. Please try again.";
+      statusEl.className = "vp-feedback-status error";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Feedback";
+    }
+  });
+}
+
+// ─────────────────────────────────────────────
 // 🔥 DOM READY
 // ─────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
@@ -561,6 +710,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const catButtons = document.querySelectorAll(".cat-btn");
   const searchInput = document.getElementById("searchInput");
   const sortSelect = document.getElementById("sortSelect");
+
+  // ── Feedback form wiring
+  setupFeedbackForm();
 
   // ── Category filter
   catButtons.forEach((btn) => {

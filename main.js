@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     detailImg.src = image;
     detailName.textContent = name;
     detailDesc.textContent = desc;
-    detailLocation.textContent = "📍 " + location;
+    detailLocation.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${location}`;
     detailTag.textContent = tag;
     detailWhatsapp.href = "https://wa.me/2348165410790";
 

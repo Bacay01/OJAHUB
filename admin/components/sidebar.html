@@ -1,15 +1,6 @@
 <!-- ═══════════════════════════════════════════════════════════
      OJAHUB ADMIN — SIDEBAR COMPONENT
      admin/components/sidebar.html
-
-     Loaded via fetch() into <div id="sidebar"></div> on every
-     protected admin page (same pattern as the public site's
-     header.html / footer.html loader in main.js).
-
-     admin-layout.js handles:
-       - highlighting the active nav link
-       - mobile drawer open/close
-       - logout button click
 ═══════════════════════════════════════════════════════════ -->
 
 <aside class="admin-sidebar" id="adminSidebar">
@@ -65,8 +56,15 @@
     </a>
 
     <p class="admin-nav-label">System</p>
+    <a
+      href="vendor-reports.html"
+      class="admin-nav-link"
+      data-page="vendor-reports"
+    >
+      <i class="fa-solid fa-flag"></i> Vendor Reports
+    </a>
     <a href="reports.html" class="admin-nav-link" data-page="reports">
-      <i class="fa-solid fa-file-export"></i> Reports
+      <i class="fa-solid fa-file-export"></i> Export Reports
     </a>
   </nav>
 
@@ -86,5 +84,4 @@
   </div>
 </aside>
 
-<!-- Mobile overlay backdrop -->
 <div class="admin-sidebar-overlay" id="adminSidebarOverlay"></div>

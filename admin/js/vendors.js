@@ -2,458 +2,480 @@
 // OJAHUB ADMIN — VENDORS PAGE
 // admin/js/vendors.js
 //
-// Renders:
-//  1. Stat strip  — total / active / claimed / new-this-month
-//  2. Growth chart — cumulative vendors over last 6 months
-//  3. Category chart — vendor count per category (horizontal bar)
-//  4. Full vendor table — search + category + status filters,
-//     client-side pagination (25 per page)
-//
-// Data sources: getAllVendors(), getVendorGrowth(),
-//               getCategoryBreakdown() from data-service.js
-// Charts: renderBarChart(), renderHorizontalBarChart() from
-//         admin-charts.js
+// Reads from "vendors" (+ "vendor_views" for activity, and
+// "products" so listing-related stats stay accurate). Powers
+// the stat strip, the two Chart.js charts, and the searchable/
+// filterable/paginated vendor table on vendors.html.
 // ═══════════════════════════════════════════════════════════
 
-import {
-  getOverviewStats,
-  getVendorGrowth,
-  getCategoryPerformance,
-} from "./data-service.js";
-
-import { renderTrendChart, renderHorizontalBarChart } from "./admin-charts.js";
-
-// ── We also need the raw vendor list — data-service exposes
-//    the collections via its cache, but doesn't export a bare
-//    getAllVendors(). We import db directly and do a single
-//    read here, reusing the same dedup logic. ──────────────
 import { db } from "../../js/firebase.js";
 import {
   collection,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+import { adminReady } from "./admin-auth.js";
 
-// ── Pagination config ────────────────────────────────────
-const PAGE_SIZE = 25;
+const PAGE_SIZE = 10;
 
-// ── State ────────────────────────────────────────────────
-let allVendors = []; // deduped, full list
-let filteredVendors = []; // after search + category + status
+let allVendors = [];
+let filteredVendors = [];
 let currentPage = 1;
+let growthChart = null;
+let categoryChart = null;
 
-// ── DOM refs ─────────────────────────────────────────────
-let tbody, tableEmpty, tableEmptyMsg, tableError, tableSub;
-let paginationEl, resultsLabel;
-let vendorSearch, categoryFilter, statusFilter;
+// ── Wait for admin auth before loading anything ───────────
+adminReady.then(() => {
+  loadVendors();
+  initControls();
+});
 
 // ─────────────────────────────────────────────────────────
 // HELPERS
 // ─────────────────────────────────────────────────────────
-function getInitials(name) {
-  name = name || "";
-  const words = name.trim().split(/\s+/).filter(Boolean);
-  if (!words.length) return "OJ";
-  if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
-  return (words[0][0] + words[1][0]).toUpperCase();
+function toMillis(ts) {
+  if (!ts) return 0;
+  if (typeof ts.toMillis === "function") return ts.toMillis();
+  if (ts instanceof Date) return ts.getTime();
+  if (typeof ts === "number") return ts;
+  return 0;
 }
 
-const AVATAR_COLORS = [
-  ["#FF6D00", "#fff3e8"],
-  ["#1a5cff", "#e8eeff"],
-  ["#16a34a", "#e8f7ee"],
-  ["#7c3aed", "#f0ebff"],
-  ["#0d9488", "#e6f7f6"],
-  ["#db2777", "#fce8f3"],
-];
-
-function nameToColorPair(name) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++)
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
-}
-
-function formatDate(ts) {
-  if (!ts) return "—";
-  const d = ts.toDate ? ts.toDate() : new Date(ts);
-  return d.toLocaleDateString("en-NG", {
-    day: "numeric",
+function formatDate(ms) {
+  if (!ms) return "—";
+  return new Date(ms).toLocaleDateString("en-NG", {
+    day: "2-digit",
     month: "short",
     year: "numeric",
   });
 }
 
-// ─────────────────────────────────────────────────────────
-// DEDUP VENDORS (mirrors marketplace.js logic exactly)
-// ─────────────────────────────────────────────────────────
+// Same dedup logic used across the rest of the admin (claimed
+// vendor doc — has ownerUid — wins over the manually-added one).
 function dedupeVendors(vendors) {
   const seen = new Map();
-  vendors.forEach((v) => {
-    const key = (v.businessName || "").trim().toLowerCase();
+  vendors.forEach((vendor) => {
+    const key = (vendor.businessName || "").trim().toLowerCase();
     if (!seen.has(key)) {
-      seen.set(key, v);
+      seen.set(key, vendor);
     } else {
       const existing = seen.get(key);
-      if (v.ownerUid && !existing.ownerUid) seen.set(key, v);
+      if (vendor.ownerUid && !existing.ownerUid) {
+        seen.set(key, vendor);
+      }
     }
   });
   return Array.from(seen.values());
 }
 
-// ─────────────────────────────────────────────────────────
-// BUILD ONE TABLE ROW
-// ─────────────────────────────────────────────────────────
-function buildRow(vendor) {
-  const name = vendor.businessName || "Unnamed Vendor";
-  const initials = getInitials(name);
-  const [fg, bg] = nameToColorPair(name);
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
-  const category = vendor.category || "—";
-  const city = vendor.city || "";
-  const state = vendor.state || "";
-  const location = [city, state].filter(Boolean).join(", ") || "—";
-
-  const isActive = vendor.isActive !== false;
-  const isClaimed = !!vendor.ownerUid;
-
-  const statusHtml = isActive
-    ? `<span><span class="vendor-status-dot"></span>Active</span>`
-    : `<span style="color:var(--text-muted)"><span class="vendor-status-dot inactive"></span>Inactive</span>`;
-
-  const claimedHtml = isClaimed
-    ? `<span class="badge-claimed"><i class="fa-solid fa-circle-check"></i> Claimed</span>`
-    : `<span class="badge-unclaimed">Unclaimed</span>`;
-
-  const joined = formatDate(vendor.createdAt);
-
-  return `
-    <tr>
-      <td>
-        <div class="vendor-name-cell">
-          <div class="vendor-avatar" style="background:${bg};color:${fg};">${initials}</div>
-          <div class="vendor-name-text">
-            <span class="vendor-name-primary">${name}</span>
-            ${vendor.ownerName ? `<span class="vendor-name-sub">${vendor.ownerName}</span>` : ""}
-          </div>
-        </div>
-      </td>
-      <td><span class="admin-badge">${category}</span></td>
-      <td style="color:var(--text-secondary);font-size:13px;">${location}</td>
-      <td style="font-size:13px;">${statusHtml}</td>
-      <td>${claimedHtml}</td>
-      <td style="color:var(--text-muted);font-size:12px;">${joined}</td>
-    </tr>
-  `;
+function initialsOf(name) {
+  const words = (name || "").trim().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return "OJ";
+  if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
+  return (words[0][0] + words[1][0]).toUpperCase();
 }
 
 // ─────────────────────────────────────────────────────────
-// RENDER TABLE PAGE
+// LOAD DATA
 // ─────────────────────────────────────────────────────────
-function renderTable() {
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const slice = filteredVendors.slice(start, start + PAGE_SIZE);
+async function loadVendors() {
+  try {
+    const [vendorSnap, viewSnap, productSnap] = await Promise.all([
+      getDocs(collection(db, "vendors")),
+      getDocs(collection(db, "vendor_views")),
+      getDocs(collection(db, "products")),
+    ]);
 
-  if (filteredVendors.length === 0) {
-    tbody.innerHTML = "";
-    tableEmpty.classList.remove("hidden");
-    tableEmptyMsg.textContent =
-      vendorSearch.value || categoryFilter.value || statusFilter.value
-        ? "No vendors match your filters."
-        : "No vendors found.";
-    paginationEl.classList.add("hidden");
-    resultsLabel.textContent = "";
-    tableSub.textContent = "0 vendors";
-    return;
-  }
+    const vendorsRaw = [];
+    vendorSnap.forEach((d) => vendorsRaw.push({ id: d.id, ...d.data() }));
 
-  tableEmpty.classList.add("hidden");
-  tbody.innerHTML = slice.map(buildRow).join("");
+    const views = [];
+    viewSnap.forEach((d) => views.push(d.data()));
 
-  tableSub.textContent = `${filteredVendors.length.toLocaleString()} vendor${filteredVendors.length !== 1 ? "s" : ""}`;
-  resultsLabel.textContent = `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, filteredVendors.length)} of ${filteredVendors.length.toLocaleString()}`;
+    const products = [];
+    productSnap.forEach((d) => products.push(d.data()));
 
-  renderPagination();
-}
+    const deduped = dedupeVendors(vendorsRaw);
 
-// ─────────────────────────────────────────────────────────
-// PAGINATION
-// ─────────────────────────────────────────────────────────
-function renderPagination() {
-  const totalPages = Math.ceil(filteredVendors.length / PAGE_SIZE);
+    // Attach a couple of derived fields each row will need
+    const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const recentViewVendorIds = new Set(
+      views
+        .filter((v) => toMillis(v.timestamp) >= thirtyDaysAgo)
+        .map((v) => v.vendorId),
+    );
 
-  if (totalPages <= 1) {
-    paginationEl.classList.add("hidden");
-    return;
-  }
+    allVendors = deduped.map((v) => {
+      const hasProducts = products.some((p) => {
+        if (p.vendorId && p.vendorId === v.id) return true;
+        const pName = (p.vendorName || "").trim().toLowerCase();
+        const vName = (v.businessName || "").trim().toLowerCase();
+        return !!pName && pName === vName;
+      });
 
-  paginationEl.classList.remove("hidden");
-
-  let html = `
-    <button class="page-btn" id="pagePrev" ${currentPage === 1 ? "disabled" : ""}>
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-  `;
-
-  // Show at most 7 page buttons with ellipsis
-  const range = [];
-  for (let i = 1; i <= totalPages; i++) {
-    if (
-      i === 1 ||
-      i === totalPages ||
-      (i >= currentPage - 2 && i <= currentPage + 2)
-    ) {
-      range.push(i);
-    }
-  }
-
-  let prev = null;
-  range.forEach((p) => {
-    if (prev !== null && p - prev > 1) {
-      html += `<span class="page-info">…</span>`;
-    }
-    html += `<button class="page-btn ${p === currentPage ? "active" : ""}" data-page="${p}">${p}</button>`;
-    prev = p;
-  });
-
-  html += `
-    <button class="page-btn" id="pageNext" ${currentPage === totalPages ? "disabled" : ""}>
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
-  `;
-
-  paginationEl.innerHTML = html;
-
-  // Wire buttons
-  paginationEl.querySelector("#pagePrev")?.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderTable();
-      scrollToTable();
-    }
-  });
-  paginationEl.querySelector("#pageNext")?.addEventListener("click", () => {
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderTable();
-      scrollToTable();
-    }
-  });
-  paginationEl.querySelectorAll("[data-page]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      currentPage = parseInt(btn.dataset.page, 10);
-      renderTable();
-      scrollToTable();
+      return {
+        ...v,
+        _createdMs: toMillis(v.createdAt),
+        _isActive: v.isActive !== false,
+        _isClaimed: !!v.ownerUid,
+        _isRecentlyActive: recentViewVendorIds.has(v.id) || hasProducts,
+      };
     });
-  });
-}
 
-function scrollToTable() {
-  document.querySelector(".admin-table-wrap")?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
-
-// ─────────────────────────────────────────────────────────
-// APPLY FILTERS
-// ─────────────────────────────────────────────────────────
-function applyFilters() {
-  const q = (vendorSearch.value || "").toLowerCase().trim();
-  const cat = (categoryFilter.value || "").toLowerCase();
-  const status = statusFilter.value;
-
-  filteredVendors = allVendors.filter((v) => {
-    // Keyword
-    if (q) {
-      const searchable = [
-        v.businessName,
-        v.ownerName,
-        v.category,
-        v.city,
-        v.state,
-        v.description,
-      ]
-        .join(" ")
-        .toLowerCase();
-      if (!searchable.includes(q)) return false;
-    }
-
-    // Category
-    if (cat && (v.category || "").toLowerCase() !== cat) return false;
-
-    // Status
-    if (status === "active" && v.isActive === false) return false;
-    if (status === "inactive" && v.isActive !== false) return false;
-    if (status === "claimed" && !v.ownerUid) return false;
-    if (status === "unclaimed" && v.ownerUid) return false;
-
-    return true;
-  });
-
-  currentPage = 1;
-  renderTable();
-}
-
-// ─────────────────────────────────────────────────────────
-// POPULATE CATEGORY DROPDOWN
-// ─────────────────────────────────────────────────────────
-function populateCategoryDropdown() {
-  const cats = [
-    ...new Set(
-      allVendors
-        .map((v) => (v.category || "").trim())
-        .filter(Boolean)
-        .sort(),
-    ),
-  ];
-
-  cats.forEach((cat) => {
-    const opt = document.createElement("option");
-    opt.value = cat.toLowerCase();
-    opt.textContent = cat;
-    categoryFilter.appendChild(opt);
-  });
+    renderStats();
+    renderGrowthChart();
+    renderCategoryChart();
+    populateCategoryFilter();
+    applyFilters();
+  } catch (err) {
+    console.error("Failed to load vendors:", err);
+    document.getElementById("vendorTableBody").innerHTML = "";
+    document.getElementById("vendorTableError")?.classList.remove("hidden");
+    document.getElementById("vendorTableSub").textContent = "Failed to load";
+  }
 }
 
 // ─────────────────────────────────────────────────────────
 // STAT STRIP
 // ─────────────────────────────────────────────────────────
-function renderStatStrip(vendors) {
-  const total = vendors.length;
-  const active = vendors.filter((v) => v.isActive !== false).length;
-  const claimed = vendors.filter((v) => !!v.ownerUid).length;
+function renderStats() {
+  const active = allVendors.filter((v) => v._isActive);
+  const total = active.length;
+  const activeVendors = active.filter((v) => v._isRecentlyActive).length;
+  const claimed = active.filter((v) => v._isClaimed).length;
 
   const now = new Date();
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-  const newMonth = vendors.filter((v) => {
-    if (!v.createdAt) return false;
-    const d = v.createdAt.toDate ? v.createdAt.toDate() : new Date(v.createdAt);
-    return d >= monthStart;
-  }).length;
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+  const newThisMonth = active.filter((v) => v._createdMs >= monthStart).length;
 
-  document.getElementById("statTotal").textContent = total.toLocaleString();
-  document.getElementById("statActive").textContent = active.toLocaleString();
-  document.getElementById("statClaimed").textContent = claimed.toLocaleString();
-  document.getElementById("statNewMonth").textContent =
-    newMonth.toLocaleString();
+  setStat("statTotal", total);
+  setStat("statActive", activeVendors);
+  setStat("statClaimed", claimed);
+  setStat("statNewMonth", newThisMonth);
 
-  // Un-fade the stat cards
   document
     .querySelectorAll("#vendorStatStrip .admin-stat-card")
-    .forEach((c) => {
-      c.style.opacity = "1";
-    });
+    .forEach((card) => (card.style.opacity = "1"));
+}
+
+function setStat(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val.toLocaleString();
 }
 
 // ─────────────────────────────────────────────────────────
-// GROWTH CHART
+// CHARTS
 // ─────────────────────────────────────────────────────────
-async function renderGrowthChart() {
-  try {
-    const growth = await getVendorGrowth();
+function renderGrowthChart() {
+  const canvas = document.getElementById("vendorGrowthChart");
+  const emptyEl = document.getElementById("vendorGrowthEmpty");
+  if (!canvas) return;
 
-    if (!growth || growth.length === 0) {
-      document.getElementById("vendorGrowthEmpty").classList.remove("hidden");
-      return;
-    }
+  const monthLabels = [];
+  const now = new Date();
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    monthLabels.push({
+      label: d.toLocaleString("en-US", { month: "short" }),
+      cutoff: new Date(now.getFullYear(), now.getMonth() - i + 1, 1).getTime(),
+    });
+  }
 
-    renderTrendChart(
-      "vendorGrowthChart",
-      growth.map((g) => g.month),
-      [
+  const active = allVendors.filter((v) => v._isActive);
+  const data = monthLabels.map(
+    ({ cutoff }) =>
+      active.filter((v) => v._createdMs === 0 || v._createdMs < cutoff).length,
+  );
+
+  if (active.length === 0) {
+    emptyEl?.classList.remove("hidden");
+    return;
+  }
+  emptyEl?.classList.add("hidden");
+
+  if (growthChart) growthChart.destroy();
+  growthChart = new Chart(canvas, {
+    type: "line",
+    data: {
+      labels: monthLabels.map((m) => m.label),
+      datasets: [
         {
-          label: "Total Vendors",
-          data: growth.map((g) => g.count),
-          color: "orange",
+          label: "Vendors",
+          data,
+          borderColor: "#ff6d00",
+          backgroundColor: "rgba(255,109,0,0.08)",
+          fill: true,
+          tension: 0.35,
+          pointRadius: 3,
         },
       ],
-    );
-  } catch (err) {
-    console.error("Growth chart error:", err);
-    document.getElementById("vendorGrowthEmpty").classList.remove("hidden");
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
+    },
+  });
+}
+
+function renderCategoryChart() {
+  const canvas = document.getElementById("vendorCategoryChart");
+  const emptyEl = document.getElementById("vendorCategoryEmpty");
+  if (!canvas) return;
+
+  const active = allVendors.filter((v) => v._isActive);
+  const counts = {};
+  active.forEach((v) => {
+    const cat = (v.category || "Other").trim();
+    counts[cat] = (counts[cat] || 0) + 1;
+  });
+
+  const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+  if (entries.length === 0) {
+    emptyEl?.classList.remove("hidden");
+    return;
   }
+  emptyEl?.classList.add("hidden");
+
+  const palette = [
+    "#ff6d00",
+    "#1565c0",
+    "#2e7d32",
+    "#6a1b9a",
+    "#ad1457",
+    "#00838f",
+    "#e65100",
+    "#283593",
+  ];
+
+  if (categoryChart) categoryChart.destroy();
+  categoryChart = new Chart(canvas, {
+    type: "bar",
+    data: {
+      labels: entries.map(([cat]) => cat),
+      datasets: [
+        {
+          label: "Vendors",
+          data: entries.map(([, count]) => count),
+          backgroundColor: entries.map((_, i) => palette[i % palette.length]),
+          borderRadius: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
+    },
+  });
 }
 
 // ─────────────────────────────────────────────────────────
-// CATEGORY CHART (vendor count per category)
+// FILTER CONTROLS
 // ─────────────────────────────────────────────────────────
-function renderCategoryChart(vendors) {
-  try {
-    const counts = {};
-    vendors.forEach((v) => {
-      const cat = (v.category || "Other").trim();
-      counts[cat] = (counts[cat] || 0) + 1;
+function populateCategoryFilter() {
+  const select = document.getElementById("vendorCategoryFilter");
+  if (!select) return;
+
+  const active = allVendors.filter((v) => v._isActive);
+  const categories = Array.from(
+    new Set(active.map((v) => (v.category || "Other").trim())),
+  ).sort();
+
+  const current = select.value;
+  select.innerHTML =
+    '<option value="">All Categories</option>' +
+    categories
+      .map((c) => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`)
+      .join("");
+  select.value = current;
+}
+
+function initControls() {
+  document.getElementById("vendorSearch")?.addEventListener("input", () => {
+    currentPage = 1;
+    applyFilters();
+  });
+  document
+    .getElementById("vendorCategoryFilter")
+    ?.addEventListener("change", () => {
+      currentPage = 1;
+      applyFilters();
     });
+  document
+    .getElementById("vendorStatusFilter")
+    ?.addEventListener("change", () => {
+      currentPage = 1;
+      applyFilters();
+    });
+}
 
-    const sorted = Object.entries(counts)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 10);
+function applyFilters() {
+  const search = (document.getElementById("vendorSearch")?.value || "")
+    .toLowerCase()
+    .trim();
+  const category = document.getElementById("vendorCategoryFilter")?.value || "";
+  const status = document.getElementById("vendorStatusFilter")?.value || "";
 
-    if (sorted.length === 0) {
-      document.getElementById("vendorCategoryEmpty").classList.remove("hidden");
-      return;
-    }
+  filteredVendors = allVendors
+    .filter((v) => v._isActive || status === "inactive")
+    .filter((v) => {
+      const matchesSearch =
+        !search ||
+        (v.businessName || "").toLowerCase().includes(search) ||
+        (v.city || "").toLowerCase().includes(search) ||
+        (v.category || "").toLowerCase().includes(search);
 
-    renderHorizontalBarChart(
-      "vendorCategoryChart",
-      sorted.map(([cat]) => cat),
-      sorted.map(([, count]) => count),
-    );
-  } catch (err) {
-    console.error("Category chart error:", err);
-    document.getElementById("vendorCategoryEmpty").classList.remove("hidden");
+      const matchesCategory = !category || (v.category || "Other") === category;
+
+      const matchesStatus =
+        !status ||
+        (status === "active" && v._isActive) ||
+        (status === "inactive" && !v._isActive) ||
+        (status === "claimed" && v._isClaimed) ||
+        (status === "unclaimed" && !v._isClaimed);
+
+      return matchesSearch && matchesCategory && matchesStatus;
+    })
+    .sort((a, b) => b._createdMs - a._createdMs);
+
+  const label = document.getElementById("vendorResultsLabel");
+  if (label) {
+    label.textContent = `${filteredVendors.length.toLocaleString()} result${filteredVendors.length !== 1 ? "s" : ""}`;
   }
+
+  const sub = document.getElementById("vendorTableSub");
+  if (sub) {
+    sub.textContent = `${allVendors.filter((v) => v._isActive).length.toLocaleString()} total vendors`;
+  }
+
+  renderTable();
 }
 
 // ─────────────────────────────────────────────────────────
-// LOAD ALL VENDORS FROM FIRESTORE
+// TABLE + PAGINATION
 // ─────────────────────────────────────────────────────────
-async function loadVendors() {
-  try {
-    const snapshot = await getDocs(collection(db, "vendors"));
-    const raw = [];
-    snapshot.forEach((d) => raw.push({ id: d.id, ...d.data() }));
+function renderTable() {
+  const tbody = document.getElementById("vendorTableBody");
+  const emptyEl = document.getElementById("vendorTableEmpty");
+  const errorEl = document.getElementById("vendorTableError");
+  const paginationEl = document.getElementById("vendorPagination");
 
-    allVendors = dedupeVendors(raw).sort((a, b) =>
-      (a.businessName || "").localeCompare(b.businessName || ""),
-    );
+  errorEl?.classList.add("hidden");
 
-    filteredVendors = [...allVendors];
-
-    // Render everything
-    renderStatStrip(allVendors);
-    populateCategoryDropdown();
-    renderCategoryChart(allVendors);
-    renderTable();
-  } catch (err) {
-    console.error("Vendor load error:", err);
+  if (filteredVendors.length === 0) {
     tbody.innerHTML = "";
-    tableError.classList.remove("hidden");
-    tableSub.textContent = "Failed to load";
+    emptyEl?.classList.remove("hidden");
+    paginationEl?.classList.add("hidden");
+    return;
   }
+  emptyEl?.classList.add("hidden");
+
+  const totalPages = Math.ceil(filteredVendors.length / PAGE_SIZE);
+  currentPage = Math.min(currentPage, totalPages) || 1;
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageItems = filteredVendors.slice(start, start + PAGE_SIZE);
+
+  tbody.innerHTML = pageItems
+    .map((v) => {
+      const name = v.businessName || "No Name";
+      const initials = initialsOf(name);
+      const category = v.category || "Other";
+      const city = v.city || "—";
+      const state = v.state ? ", " + v.state : "";
+
+      return `
+      <tr>
+        <td>
+          <div class="vendor-name-cell">
+            <span class="vendor-avatar" style="background:#fff1e6;color:#ff6d00;">${initials}</span>
+            <div class="vendor-name-text">
+              <span class="vendor-name-primary">${escapeHtml(name)}</span>
+              <span class="vendor-name-sub">${escapeHtml(v.subCategory || "")}</span>
+            </div>
+          </div>
+        </td>
+        <td>${escapeHtml(category)}</td>
+        <td>${escapeHtml(city)}${escapeHtml(state)}</td>
+        <td>
+          <span class="vendor-status-dot ${v._isActive ? "" : "inactive"}"></span>
+          ${v._isActive ? "Active" : "Inactive"}
+        </td>
+        <td>
+          ${
+            v._isClaimed
+              ? '<span class="badge-claimed"><i class="fa-solid fa-circle-check"></i> Claimed</span>'
+              : '<span class="badge-unclaimed">Unclaimed</span>'
+          }
+        </td>
+        <td>${formatDate(v._createdMs)}</td>
+      </tr>
+    `;
+    })
+    .join("");
+
+  renderPagination(totalPages);
 }
 
-// ─────────────────────────────────────────────────────────
-// INIT
-// ─────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  tbody = document.getElementById("vendorTableBody");
-  tableEmpty = document.getElementById("vendorTableEmpty");
-  tableEmptyMsg = document.getElementById("vendorTableEmptyMsg");
-  tableError = document.getElementById("vendorTableError");
-  tableSub = document.getElementById("vendorTableSub");
-  paginationEl = document.getElementById("vendorPagination");
-  resultsLabel = document.getElementById("vendorResultsLabel");
-  vendorSearch = document.getElementById("vendorSearch");
-  categoryFilter = document.getElementById("vendorCategoryFilter");
-  statusFilter = document.getElementById("vendorStatusFilter");
+function renderPagination(totalPages) {
+  const el = document.getElementById("vendorPagination");
+  if (!el) return;
 
-  // Wire filters
-  vendorSearch.addEventListener("input", applyFilters);
-  categoryFilter.addEventListener("change", applyFilters);
-  statusFilter.addEventListener("change", applyFilters);
+  if (totalPages <= 1) {
+    el.classList.add("hidden");
+    return;
+  }
+  el.classList.remove("hidden");
 
-  // Load data (parallel: vendors table + growth chart)
-  loadVendors();
-  renderGrowthChart();
-});
+  let html = `
+    <button class="page-btn" data-page="prev" ${currentPage === 1 ? "disabled" : ""}>
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+  `;
+
+  for (let p = 1; p <= totalPages; p++) {
+    if (
+      p === 1 ||
+      p === totalPages ||
+      (p >= currentPage - 1 && p <= currentPage + 1)
+    ) {
+      html += `<button class="page-btn ${p === currentPage ? "active" : ""}" data-page="${p}">${p}</button>`;
+    } else if (p === currentPage - 2 || p === currentPage + 2) {
+      html += `<span class="page-info">…</span>`;
+    }
+  }
+
+  html += `
+    <button class="page-btn" data-page="next" ${currentPage === totalPages ? "disabled" : ""}>
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  `;
+
+  el.innerHTML = html;
+
+  el.querySelectorAll(".page-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const page = btn.dataset.page;
+      if (page === "prev") currentPage -= 1;
+      else if (page === "next") currentPage += 1;
+      else currentPage = parseInt(page, 10);
+      renderTable();
+      document
+        .getElementById("vendorTableBody")
+        ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
+}

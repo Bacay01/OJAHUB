@@ -142,7 +142,13 @@ form.addEventListener("submit", async (e) => {
     const user = userCredential.user;
 
     // 🔥 SAVE TO FIRESTORE (LINKED WITH UID)
+    // NOTE: ownerUid is required here — the Firestore security rules for
+    // /vendors/{vendorId} check request.resource.data.ownerUid ==
+    // request.auth.uid on create. Without this field the write is
+    // rejected with "Missing or insufficient permissions" even though
+    // the auth account was created successfully.
     await setDoc(doc(db, "vendors", user.uid), {
+      ownerUid: user.uid,
       businessName,
       ownerName,
       email,

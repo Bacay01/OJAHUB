@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Vendor Reports - OjaHub Admin</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/admin.css" />
+    <style>
+      .report-action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+      }
+      .report-action-btn:hover {
+        opacity: 0.8;
+      }
+      .report-action-btn.blue {
+        background: #eff3ff;
+        color: #1a5cff;
+      }
+      .report-action-btn.green {
+        background: #f0fdf4;
+        color: #16a34a;
+      }
+      .report-action-btn.red {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+
+      .reports-filter-bar {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 16px 22px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .reports-search {
+        flex: 1;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f8fafc;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 14px;
+      }
+
+      .reports-search input {
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 13px;
+        font-family: inherit;
+        color: var(--text-primary);
+        width: 100%;
+      }
+
+      .reports-search i {
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+
+      .reports-select {
+        padding: 8px 12px;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: inherit;
+        color: var(--text-primary);
+        background: #f8fafc;
+        outline: none;
+        cursor: pointer;
+      }
+
+      /* ── RESPONSIVE STAT GRID (5 cards) ── */
+      .reports-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      /* Large tablets / small laptops — 3 per row */
+      @media (max-width: 1240px) {
+        .reports-stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Tablets / large phones — 2 per row */
+      @media (max-width: 700px) {
+        .reports-stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+        }
+      }
+
+      /* Small phones — stack to 1 per row */
+      @media (max-width: 420px) {
+        .reports-stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Keep card content from overflowing at narrow widths */
+      .admin-stat-card {
+        min-width: 0;
+        width: 100%;
+      }
+      .admin-stat-card-top {
+        gap: 10px;
+        flex-wrap: nowrap;
+      }
+      .admin-stat-card-value {
+        font-size: clamp(20px, 5vw, 28px);
+      }
+      .admin-stat-card-label {
+        flex: 1 1 auto;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .admin-stat-card-icon {
+        flex-shrink: 0;
+      }
+
+      /* Filter bar stacks cleanly on mobile */
+      @media (max-width: 640px) {
+        .reports-filter-bar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .reports-select {
+          width: 100%;
+        }
+      }
+
+      /* Table cells wrap instead of forcing horizontal overflow on mobile */
+      @media (max-width: 640px) {
+        .admin-table tbody td {
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="adminSidebarMount"></div>
+    <div class="admin-shell">
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <div class="admin-topbar-left">
+            <button class="admin-hamburger" id="adminHamburger">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="admin-topbar-title">
+              <h1>Vendor Reports</h1>
+              <p>Buyer feedback and reports submitted on vendor profiles.</p>
+            </div>
+          </div>
+          <span class="admin-live-badge">
+            <span class="admin-live-dot"></span> Live
+          </span>
+        </header>
+
+        <main class="admin-content">
+          <!-- ── STAT CARDS ── -->
+          <div class="reports-stats-grid">
+            <div class="admin-stat-card">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Total Reports</span>
+                <div class="admin-stat-card-icon orange">
+                  <i class="fa-solid fa-flag"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statTotal">—</div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">New</span>
+                <div class="admin-stat-card-icon blue">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statNew">—</div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Positive</span>
+                <div class="admin-stat-card-icon green">
+                  <i class="fa-solid fa-face-smile"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statPositive">—</div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Neutral</span>
+                <div
+                  class="admin-stat-card-icon"
+                  style="background: #f8fafc; color: #64748b"
+                >
+                  <i class="fa-solid fa-face-meh"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statNeutral">—</div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div class="admin-stat-card-top">
+                <span class="admin-stat-card-label">Negative</span>
+                <div
+                  class="admin-stat-card-icon"
+                  style="background: #fef2f2; color: #dc2626"
+                >
+                  <i class="fa-solid fa-face-frown"></i>
+                </div>
+              </div>
+              <div class="admin-stat-card-value" id="statNegative">—</div>
+            </div>
+          </div>
+
+          <!-- ── REPORTS TABLE ── -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3>All Reports</h3>
+                <p id="reportsSubtitle">Loading...</p>
+              </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="reports-filter-bar">
+              <div class="reports-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  id="reportSearch"
+                  placeholder="Search vendor, message, reporter..."
+                />
+              </div>
+              <select class="reports-select" id="sentimentFilter">
+                <option value="all">All Sentiments</option>
+                <option value="positive">Positive</option>
+                <option value="neutral">Neutral</option>
+                <option value="negative">Negative</option>
+              </select>
+              <select class="reports-select" id="statusFilter">
+                <option value="all">All Statuses</option>
+                <option value="new">New</option>
+                <option value="reviewed">Reviewed</option>
+                <option value="resolved">Resolved</option>
+              </select>
+            </div>
+
+            <div class="admin-card-body no-pad">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Vendor</th>
+                      <th>Sentiment</th>
+                      <th>Message</th>
+                      <th>Reporter</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reportsTableBody">
+                    <!-- injected by vendor-reports.js -->
+                  </tbody>
+                </table>
+              </div>
+              <div id="reportsEmpty" class="admin-empty hidden">
+                <i class="fa-solid fa-flag"></i>
+                <p>No vendor reports yet.</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="js/admin-auth.js"></script>
+    <script type="module" src="js/admin-layout.js"></script>
+    <script type="module" src="js/vendor-reports.js"></script>
+  </body>
+</html>

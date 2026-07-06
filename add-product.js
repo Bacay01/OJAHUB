@@ -95,14 +95,6 @@ descEditor.addEventListener("input", () => {
   descHidden.value = preview;
 });
 
-// descEditor.addEventListener("input", () => {
-//   const text = descEditor.innerText.trim();
-//   previewDesc.textContent =
-//     text ||
-//     "This is a short description of your product. It will appear here for buyers to preview.";
-//   descHidden.value = text;
-// });
-
 categoryInput.addEventListener("change", () => {
   const opt = categoryInput.options[categoryInput.selectedIndex];
   previewCategory.textContent = opt && opt.value ? opt.text : "--";
@@ -257,7 +249,14 @@ async function handleSubmit(isDraft = false) {
     }
 
     // Save to Firestore
+    // NOTE: ownerId is required here — the Firestore security rules for
+    // /products/{productId} check request.resource.data.ownerId ==
+    // request.auth.uid on create. The old "vendorId" field name did NOT
+    // satisfy that rule, which caused "Missing or insufficient
+    // permissions" on publish. Keeping vendorId too since other pages
+    // (marketplace.js matching) key off it.
     await addDoc(collection(db, "products"), {
+      ownerId: user.uid,
       name,
       price: Number(price),
       description: desc,
